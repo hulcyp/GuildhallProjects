@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RPSLS_Hulcy</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="win">WIN</string>
+    <string name="lose">LOSE</string>
+    <string name="tie">You both made the same choice. TIE</string>
+    <string name="winLoseTie">W/L/T:</string>
+    <string name="player">Player</string>
+    <string name="opponent">Opponent</string>
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ParseMTG_Hulcy</string>
+    <string name="action_settings">Settings</string>
+    <string name="draw_card">Draw Card</string>
+    <string name="play_card">Play Card</string>
+    <string name="play_mana">Play Mana</string>
+    <string name="tap_mana">Tap Mana</string>
+    <string name="move_to_graveyard">Move to Graveyard</string>
+    <string name="exile_card">Exile Card</string>
+    <string name="put_card_in_library">Put Card in Library</string>
+
+</resources>

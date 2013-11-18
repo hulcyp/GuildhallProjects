@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ParseMTGActivity" >
+
+    <Button
+        android:id="@+id/putCardInLibrary"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:onClick="onPutCardInLibrary"
+        android:text="@string/put_card_in_library" />
+    
+    <Button
+        android:id="@+id/drawCard"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+		android:layout_below="@id/putCardInLibrary"
+		android:onClick="onDrawCardClick"
+        android:text="@string/draw_card" />
+
+    
+    <Button
+        android:id="@+id/playCard"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_below="@id/drawCard"
+        android:layout_centerHorizontal="true"
+		android:onClick="onPlayCardClick"
+        android:text="@string/play_card" />
+
+    <Button
+        android:id="@+id/playMana"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playCard"
+        android:layout_centerHorizontal="true"
+		android:onClick="onPlayManaClick"
+        android:text="@string/play_mana" />
+        
+    <Button
+        android:id="@+id/tapMana"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playMana"
+        android:layout_centerHorizontal="true"
+		android:onClick="onTapManaClick"
+        android:text="@string/tap_mana" />
+
+    <Button
+        android:id="@+id/exileCard"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tapMana"
+        android:layout_centerHorizontal="true"
+		android:onClick="onExileCard"
+        android:text="@string/exile_card" />
+
+
+    <Button
+        android:id="@+id/moveToGraveyard"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/exileCard"
+        android:layout_centerHorizontal="true"
+		android:onClick="onMoveToGraveyard"
+        android:text="@string/move_to_graveyard" />
+
+</RelativeLayout>

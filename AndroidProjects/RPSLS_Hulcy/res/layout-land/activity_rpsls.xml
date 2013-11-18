@@ -1,0 +1,161 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="layout_below:http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".RPSLSActivity" >
+    
+    <ImageView
+        android:id="@+id/boardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spockButton"
+        android:layout_marginTop="-5dp"
+        android:layout_marginLeft="-15dp"
+        android:src="@drawable/game_board" />
+    
+    
+    <ImageButton
+        android:id="@+id/spockButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="207dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector"
+        android:scaleX=".75"
+        android:scaleY=".75"
+        android:onClick="onSpockClick"
+        android:src="@drawable/spock" />
+    
+    <ImageButton
+        android:id="@+id/scissorsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/spockButton"
+        android:layout_below="@+id/spockButton"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/selector"
+        android:scaleX=".75"
+        android:scaleY=".75"
+        android:src="@drawable/scissors"
+        android:onClick="onScissorsClick" />
+
+    <ImageButton
+        android:id="@+id/lizardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spockButton"
+        android:layout_toLeftOf="@+id/spockButton"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="-160dp"
+        android:background="@drawable/selector"
+        android:scaleX=".75"
+        android:scaleY=".75"
+        android:src="@drawable/lizard"
+        android:onClick="onLizardClick" />
+
+    <ImageButton
+        android:id="@+id/rockButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spockButton"
+        android:layout_toLeftOf="@+id/spockButton"
+        android:layout_marginTop="195dp"
+        android:layout_marginRight="-225dp"
+        android:background="@drawable/selector"
+        android:scaleX=".75"
+        android:scaleY=".75"
+        android:src="@drawable/rock"
+        android:onClick="onRockClick" />
+
+    <ImageButton
+        android:id="@+id/paperButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spockButton"
+        android:layout_toRightOf="@+id/spockButton"
+        android:layout_marginTop="190dp"
+        android:layout_marginLeft="-10dp"
+        android:background="@drawable/selector"
+        android:scaleX=".75"
+        android:scaleY=".75"
+        android:src="@drawable/paper"
+        android:onClick="onPaperClick" />
+     
+     
+    <ImageView
+        android:id="@+id/playChoiceIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/playersChoice"
+        android:layout_toRightOf="@+id/playersChoice"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/lizard" />
+     
+     <TextView
+        android:id="@+id/enemiesChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/playersChoice"
+        android:layout_below="@+id/playersChoice"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:width="150dp" />
+     
+    <ImageView
+        android:id="@+id/enemiesChoiceIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/enemiesChoice"
+        android:layout_toRightOf="@+id/enemiesChoice"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/lizard" />
+     
+    <TextView
+        android:id="@+id/roundOutcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/playersChoice"
+        android:layout_below="@+id/playersChoice"
+        android:layout_marginTop="64dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:width="300dp" />
+    
+    <TextView
+        android:id="@+id/winLoseTieText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/playersChoice"
+        android:layout_below="@+id/playersChoice"
+        android:layout_marginTop="88dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:width="300dp" />
+
+    <TextView
+        android:id="@+id/playersChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="300dp"
+        android:layout_toRightOf="@+id/spockButton"
+		android:layout_alignTop="@+id/spockButton"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:width="150dp" />
+
+</RelativeLayout>

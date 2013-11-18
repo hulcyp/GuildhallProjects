@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GLPrimitivesDemo_Hulcy</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string-array name="gl_primitives">
+        <item>GL_POINTS</item>
+        <item>GL_LINES</item>
+        <item>GL_LINE_STRIP</item>
+        <item>GL_LINE_LOOP</item>
+        <item>GL_TRIANGLES</item>
+        <item>GL_TRIANGLE_STRIP</item>
+        <item>GL_TRIANGLE_FAN</item>
+    </string-array>
+    
+    <string name="gl_points">Treats each vertex as a single point. Vertex n defines point n. N points are drawn.</string>
+	<string name="gl_lines">Treates each pair of vertices as an	independent line segment. Vertices 2n-1 and 2n define	line n.	 N/2 lines are drawn.</string>
+	<string name="gl_line_strip">Draws a connected group of line segments from the first vertex to the	last. Vertices n and n+1 define line n. N-1 lines are drawn.</string>
+	<string name="gl_line_loop">Draws a connected group of line segments from the first vertex to the last, then back	to the first.  Vertices	n and n+1 define line n. The last line, however, is defined by vertices N and 1. N lines are drawn.</string>
+	<string name="gl_triangles">Treates each triplet of vertices as	an independent triangle. Vertices 3n-2, 3n-1, and 3n define triangle n.N/3 triangles are drawn.</string>
+	<string name="gl_triangle_strip">Draws a connected group of triangles. One triangle is defined for each vertex presented after the	first two vertices. For odd n, vertices	n, n+1,	and n+2	define triangle	n. For even n, vertices n+1, n, and n+2 define triangle n. N-2 triangles are drawn.</string>
+	<string name="gl_triangle_fan">Draws a connected group of triangles. One triangle is defined for each vertex presented after the first two vertices. Vertices 1, n+1, and n+2 define triangle n. N-2 triangles are drawn.</string>
+	
+	<string name="view_demo">View Demo</string>
+</resources>
