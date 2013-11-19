@@ -77,7 +77,8 @@ obj/local/armeabi/objs/CodePort_Hulcy/GameApp.o: jni/GameApp.cpp \
  jni/MathLib/RandRangeInt.h jni/MathLib/RandRangeFloat.h \
  jni/MathLib/WeightedRandPool.h jni/MonkyRenderer/Camera.h \
  jni/MonkyRenderer/Node.h jni/CoreEngine/Timer.h \
- jni/MonkyRenderer/Actor.h jni/MonkyRenderer/Object.h
+ jni/MonkyRenderer/Actor.h jni/MonkyRenderer/Object.h \
+ jni/MonkyRenderer/MeshFactory.h
 
 jni/GameApp.h:
 
@@ -276,3 +277,5 @@ jni/CoreEngine/Timer.h:
 jni/MonkyRenderer/Actor.h:
 
 jni/MonkyRenderer/Object.h:
+
+jni/MonkyRenderer/MeshFactory.h:

@@ -25,6 +25,7 @@ namespace Monky
 		EGLContext context;
 		int32_t width;
 		int32_t height;
+		bool isPaused;
 	};
 
 	class GameApp : public Singleton<GameApp>
@@ -37,6 +38,7 @@ namespace Monky
 		virtual void initialize();
 		virtual void cleanup();
 		
+
 		virtual void updateFrame();
 		virtual bool onKeyDown( MonkyKey keyCode, int x, int y );
 		virtual bool onKeyUp( MonkyKey keyCode, int x, int y );
@@ -95,6 +97,8 @@ namespace Monky
 		bool m_isInitialized;
 
 		Camera* m_debugCamera;
+
+		Actor* m_spinningCube;
 
 	};
 }

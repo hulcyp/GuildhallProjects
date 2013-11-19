@@ -27,8 +27,14 @@ const float FOV = 45.0f;
 
 bool g_frameOwed = true;
 double g_nextTimeFrameIsOwed = 0.0;
-GameApp* g_app;
+GameApp* g_app = nullptr;
 AndroidInfo g_androidInfo;
+
+
+static void Update();
+static int initGL();
+static void shutdownGL();
+static void initGame();
 
 
 static void printGLString( const char *name, GLenum s )
@@ -37,7 +43,122 @@ static void printGLString( const char *name, GLenum s )
 	LOGI( "GL %s = %s\n", name, v );
 }
 
-static int initGL( AndroidInfo* engine )
+void handleAppCmd( struct android_app* app, int32_t cmd )
+{
+	struct AndroidInfo* engine = (struct AndroidInfo*) app->userData;
+
+	switch( cmd )
+	{
+	case APP_CMD_INIT_WINDOW:
+		{
+			// The window is being shown, get it ready.
+			consolePrintf( "APP_CMD_INIT_WINDOW" );
+			if( engine->app->window != nullptr )
+			{
+				consolePrintf( "Calling: initGame()" );
+				initGame();
+			}
+		}
+		break;
+	case APP_CMD_TERM_WINDOW:
+		{
+			// The window is being hidden or closed, clean it up.
+			shutdownGL();
+		}
+		break;
+	case APP_CMD_GAINED_FOCUS:
+		{
+			g_androidInfo.isPaused = false;
+		}
+		break;
+	case APP_CMD_LOST_FOCUS:
+		{
+			g_androidInfo.isPaused = true;
+		}
+		break;
+	}
+}
+
+
+void android_main( struct android_app* app )
+{
+	app_dummy();
+
+	memset( &g_androidInfo, 0, sizeof(g_androidInfo) );
+	g_androidInfo.app = app;
+	app->userData = &g_androidInfo;
+	app->onAppCmd = handleAppCmd;
+	g_androidInfo.isPaused = false;
+
+	consolePrintf( "Initialzing file manager" );
+	getFileManager().initialize( g_androidInfo.app->activity->assetManager );
+
+
+	while( true )
+	{
+		int ident;
+		int events;
+		struct android_poll_source* source;
+
+		while( ident = ALooper_pollAll( 0, nullptr, &events, (void**)&source ) >= 0 )
+		{
+			if( source != nullptr )
+				source->process( app, source );
+
+			// Check if we are exiting.
+			if( app->destroyRequested != 0 )
+			{
+				shutdownGL();
+				return;
+			}
+		}
+
+		Update();
+	}
+}
+
+
+void Update()
+{
+	if( !g_androidInfo.isPaused && g_app != nullptr && g_app->isInitialized() )
+	{
+		float startTime = TimeUtils::GetAbsoluteTimeSeconds();
+
+		if( g_frameOwed )
+		{
+			g_app->updateFrame();
+			g_frameOwed = false;
+			eglSwapBuffers( g_androidInfo.display, g_androidInfo.surface );
+			g_nextTimeFrameIsOwed = g_app->getElapsedAppTimeSeconds() + (float)DELTA_TIME;
+
+		}
+		double endTime = TimeUtils::GetAbsoluteTimeSeconds();
+		g_app->advanceAppClock( endTime - startTime );
+		if( g_nextTimeFrameIsOwed < g_app->getElapsedAppTimeSeconds() )
+			g_frameOwed = true;
+	}
+}
+
+static void initGame()
+{
+	consolePrintf( "Game App Created...");
+	consolePrintf( "Initializing...");
+	if( g_app == nullptr )
+	{
+		initGL();
+		g_app = new GameApp( DELTA_TIME,
+										g_androidInfo.width,
+										g_androidInfo.height,
+										FOV );
+
+		g_app->initialize();
+		Camera* camera = new Camera( "Main Camera", vec3f(), Camera::PH_ORTHOGRAPHIC,
+						mat4f::ortho( 0.0f, (float)g_androidInfo.width, (float)g_androidInfo.height, 0.0f, -1.0f, 1.0f ) );
+		g_app->initializeCamera( camera );
+	}
+}
+
+static int initGL()
 {
 	// initialize OpenGL ES and EGL
 
@@ -86,10 +207,10 @@ static int initGL( AndroidInfo* engine )
 	eglGetConfigAttrib( display, config, EGL_NATIVE_VISUAL_ID, &format );
 	consolePrintf( "Initialzing got config attrib" );
 
-	ANativeWindow_setBuffersGeometry( engine->app->window, 0, 0, format );
+	ANativeWindow_setBuffersGeometry( g_androidInfo.app->window, 0, 0, format );
 	consolePrintf( "Set buffer geometry" );
 
-	surface = eglCreateWindowSurface( display, config, engine->app->window, NULL );
+	surface = eglCreateWindowSurface( display, config, g_androidInfo.app->window, NULL );
 	consolePrintf( "Initialzing surface created" );
 
 	const EGLint attrib_list [] =
@@ -110,11 +231,12 @@ static int initGL( AndroidInfo* engine )
 	eglQuerySurface( display, surface, EGL_WIDTH, &w );
 	eglQuerySurface( display, surface, EGL_HEIGHT, &h );
 
-	engine->display = display;
-	engine->context = context;
-	engine->surface = surface;
-	engine->width = w;
-	engine->height = h;
+	g_androidInfo.display = display;
+	g_androidInfo.context = context;
+	g_androidInfo.surface = surface;
+	g_androidInfo.width = w;
+	g_androidInfo.height = h;
+	consolePrintf( "Dim: (%d,%d)", w, h );
 
 	// Initialize GL state.
 	glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST );
@@ -131,123 +253,26 @@ static int initGL( AndroidInfo* engine )
 	return 0;
 }
 
-void shutdownGL( struct AndroidInfo* engine )
+
+
+
+void shutdownGL()
 {
-	if( engine->display != EGL_NO_DISPLAY )
+	if( g_androidInfo.display != EGL_NO_DISPLAY )
 	{
-		eglMakeCurrent( engine->display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT );
+		eglMakeCurrent( g_androidInfo.display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT );
 
-		if( engine->context != EGL_NO_CONTEXT )
-			eglDestroyContext( engine->display, engine->context );
+		if( g_androidInfo.context != EGL_NO_CONTEXT )
+			eglDestroyContext( g_androidInfo.display, g_androidInfo.context );
 
-		if( engine->surface != EGL_NO_SURFACE )
-			eglDestroySurface( engine->display, engine->surface );
+		if( g_androidInfo.surface != EGL_NO_SURFACE )
+			eglDestroySurface( g_androidInfo.display, g_androidInfo.surface );
 
-		eglTerminate( engine->display );
+		eglTerminate( g_androidInfo.display );
 	}
 
-	engine->display = EGL_NO_DISPLAY;
-	engine->context = EGL_NO_CONTEXT;
-	engine->surface = EGL_NO_SURFACE;
-}
-
-void initGame()
-{
-	if( g_app == nullptr )
-	{
-		g_app = new GameApp( DELTA_TIME,
-								g_androidInfo.width,
-								g_androidInfo.height,
-								FOV );
-	}
-	if( g_app != nullptr && !g_app->isInitialized() )
-	{
-		initGL( &g_androidInfo );
-
-		g_app->initialize();
-		Camera* camera = new Camera( "Main Camera", vec3f(), Camera::PH_ORTHOGRAPHIC,
-						mat4f::ortho( 0.0f, (float)g_androidInfo.width, (float)g_androidInfo.height, 0.0f, -1.0f, 1.0f ) );
-		g_app->initializeCamera( camera );
-	}
-}
-
-void handleAppCmd( struct android_app* app, int32_t cmd )
-{
-	struct AndroidInfo* engine = (struct AndroidInfo*) app->userData;
-
-	switch( cmd )
-	{
-	case APP_CMD_INIT_WINDOW:
-		{
-			// The window is being shown, get it ready.
-			consolePrintf( "APP_CMD_INIT_WINDOW" );
-			if( engine->app->window != NULL )
-			{
-				initGame();
-			}
-		}
-	case APP_CMD_TERM_WINDOW:
-		{
-			// The window is being hidden or closed, clean it up.
-			shutdownGL( engine );
-		}
-		break;
-	}
-}
-
-
-void testEvent( NamedProperties& params )
-{
-	LOGI( "Test event worked!" );
-}
-
-
-
-void android_main( struct android_app* app )
-{
-	app_dummy();
-
-	memset( &g_androidInfo, 0, sizeof(g_androidInfo) );
-	g_androidInfo.app = app;
-	app->userData = &g_app;
-	app->onAppCmd = handleAppCmd;
-
-
-	consolePrintf( "Initialzing file manager" );
-	getFileManager().initialize( g_androidInfo.app->activity->assetManager );
-
-	registerForEvent( "TestEvent", &testEvent );
-
-
-	fireEvent( "TestEvent" );
-
-	while( true )
-	{
-		if( g_app != nullptr && g_app->isInitialized() )
-		{
-			float startTime = TimeUtils::GetAbsoluteTimeSeconds();
-
-			if( g_frameOwed )
-			{
-				g_app->updateFrame();
-				g_frameOwed = false;
-				eglSwapBuffers( g_androidInfo.display, g_androidInfo.surface );
-				g_nextTimeFrameIsOwed = g_app->getElapsedAppTimeSeconds() + (float)DELTA_TIME;
-
-			}
-			double endTime = TimeUtils::GetAbsoluteTimeSeconds();
-			g_app->advanceAppClock( endTime - startTime );
-			if( g_nextTimeFrameIsOwed < g_app->getElapsedAppTimeSeconds() )
-				g_frameOwed = true;
-		}
-
-		// Check if we are exiting.
-		if( app->destroyRequested != 0 )
-		{
-			shutdownGL( &g_androidInfo );
-			return;
-		}
-	}
-
-
+	g_androidInfo.display = EGL_NO_DISPLAY;
+	g_androidInfo.context = EGL_NO_CONTEXT;
+	g_androidInfo.surface = EGL_NO_SURFACE;
+	consolePrintf( "openGL shutdown" );
 }

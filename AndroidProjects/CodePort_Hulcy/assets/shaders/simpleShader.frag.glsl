@@ -1,4 +1,4 @@
-
+precision mediump float;
 
 uniform float time;
 uniform mat4 uProjectionMatrix;
@@ -15,5 +15,7 @@ varying vec2 vTexCoord0;
 
 void main()
 {
-	gl_FragColor = vColor * texture( uDiffuseMap, vTexCoord0 ) * uUseDiffuseMap + vColor * ( 1 - uUseDiffuseMap );
+	vec4 useDiffuseMap = vec4( uUseDiffuseMap, uUseDiffuseMap, uUseDiffuseMap, uUseDiffuseMap );
+	
+	gl_FragColor = vColor * texture2D( uDiffuseMap, vTexCoord0 ) * useDiffuseMap + vColor * ( vec4(1,1,1,1) - useDiffuseMap );
 }

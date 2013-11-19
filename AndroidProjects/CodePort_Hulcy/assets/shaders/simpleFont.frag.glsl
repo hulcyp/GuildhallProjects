@@ -1,4 +1,4 @@
-#version 330
+precision mediump float;
 
 uniform float time;
 uniform mat4 uProjectionMatrix;
@@ -8,12 +8,11 @@ uniform mat4 uMVPMatrix;
 uniform sampler2D uTexels;
 uniform float uFontHeight;
 
-in vec4 myColor;
-in vec2 texCoord;
+varying vec4 myColor;
+varying vec2 texCoord;
 
-out vec4 fragColor;
 
 void main()
 {
-	fragColor = myColor*texture2D( uTexels, texCoord );
+	gl_FragColor = myColor*texture2D( uTexels, texCoord );
 }

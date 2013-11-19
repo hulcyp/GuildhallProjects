@@ -22,40 +22,6 @@
 #include "BufferLayout.h"
 #include "GLBuffer.h"
 
-static const char g_vertexShader[] = "uniform float time;"
-		"uniform mat4 uProjectionMatrix;"
-		"uniform mat4 uViewMatrix;"
-		"uniform mat4 uModelMatrix;"
-		"uniform mat4 uMVPMatrix;"
-		"uniform sampler2D uDiffuseMap;"
-		"uniform int uUseDiffuseMap;"
-		"attribute vec4 vColor;"
-		"attribute vec2 vTexCoord0;"
-		"void main()"
-		"{"
-		"	gl_FragColor = vColor * texture( uDiffuseMap, vTexCoord0 ) * uUseDiffuseMap + vColor * ( 1 - uUseDiffuseMap );"
-		"}";
-
-static const char g_fragShader[] = "uniform float time;"
-		"uniform mat4 uProjectionMatrix;"
-		"uniform mat4 uViewMatrix;"
-		"uniform mat4 uModelMatrix;"
-		"uniform mat4 uMVPMatrix;"
-		"attribute vec3 aPosition;"
-		"attribute vec3 aNormal;"
-		"attribute vec4 aColor;"
-		"attribute vec2 aTexCoord0;"
-		"attribute vec3 aTangent;"
-		"attribute vec3 aBitangent;"
-		"varying vec4 vColor;"
-		"varying vec2 vTexCoord0;"
-		"void main()"
-		"{"
-		"	gl_Position = uMVPMatrix * vec4( aPosition, 1.0 );"
-		"	vColor = aColor;"
-		"	vTexCoord0 = aTexCoord0;"
-		"}";
-
 
 namespace Monky
 {
@@ -93,12 +59,12 @@ namespace Monky
 	void Renderer::loadRendereringDataFiles()
 	{
 		consolePrintf( "Loading shader files" );
-		//loadShaders( "ShaderPrograms.xml", "shaders/" );
-		Shader::createShaderFromBuffer( "simpleVtxShader", g_vertexShader, GL_VERTEX_SHADER );
+		loadShaders( "ShaderPrograms.xml", "shaders/" );
+		//Shader::createShaderFromBuffer( "simpleVtxShader", g_vertexShader, GL_VERTEX_SHADER );
 
-		Shader::createShaderFromBuffer( "simpleFragShader", g_fragShader, GL_FRAGMENT_SHADER );
+		//Shader::createShaderFromBuffer( "simpleFragShader", g_fragShader, GL_FRAGMENT_SHADER );
 
-		ShaderProgram::createShaderProgram("simpleShader", "simpleVtxShader", "simpleFragShader" );
+		//ShaderProgram::createShaderProgram("simpleShader", "simpleVtxShader", "simpleFragShader" );
 
 		consolePrintf( "Loading textures" );
 		loadTextures( "Textures.xml", "textures/" );
@@ -106,8 +72,8 @@ namespace Monky
 		consolePrintf( "Material file" );
 		loadMaterials( "Materials.xml", "" );
 
-		//consolePrintf( "Loading font files" );
-		//loadFonts( "Fonts.xml", "fonts/" );
+		consolePrintf( "Loading font files" );
+		loadFonts( "Fonts.xml", "fonts/" );
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	void Renderer::renderMeshEvent( NamedProperties& params )

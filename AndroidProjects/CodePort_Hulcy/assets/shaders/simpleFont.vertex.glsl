@@ -1,4 +1,4 @@
-#version 330
+
 
 uniform float time;
 uniform mat4 uProjectionMatrix;
@@ -8,15 +8,15 @@ uniform mat4 uMVPMatrix;
 uniform sampler2D uTexels;
 uniform float uFontHeight;
 
-in vec3 aPosition;
-in vec3 aNormal;
-in vec4 aColor;
-in vec2 aTexCoord0;
-in vec3 aTangent;
-in vec3 aBitangent;
+attribute vec3 aPosition;
+attribute vec3 aNormal;
+attribute vec4 aColor;
+attribute vec2 aTexCoord0;
+attribute vec3 aTangent;
+attribute vec3 aBitangent;
 
-out vec4 myColor;
-out vec2 texCoord;
+varying vec4 myColor;
+varying vec2 texCoord;
 
 
 void main()

@@ -130,7 +130,7 @@ namespace Monky
 
 		SAFE_DELETE( textureBuffer );
 		LoadToOpenGL();
-
+		consolePrintf( "Texture loaded: %s", texturePath.c_str() );
 		PROMISES( IsLoaded() );
 		PROMISES( GetFilePath() == texturePath );
 	}

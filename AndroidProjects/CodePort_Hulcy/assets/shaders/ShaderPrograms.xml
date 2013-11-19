@@ -1,7 +1,7 @@
 <ShaderPrograms>
   <ShaderProgram name="simpleShader"                   vertex="simpleShader.vertex.glsl" frag="simpleShader.frag.glsl" />
- <!--  <ShaderProgram name="simpleShaderFlipYTexCoord"      vertex="simpleShader.vertex.glsl" frag="SimpleShaderFlipYTexCoord.frag.glsl" />
-  <ShaderProgram name="simpleFontShader"               vertex="simpleFont.vertex.glsl"   frag="simpleFont.frag.glsl" />
+	<ShaderProgram name="simpleFontShader"               vertex="simpleFont.vertex.glsl"   frag="simpleFont.frag.glsl" />
+   <!--  <ShaderProgram name="simpleShaderFlipYTexCoord"      vertex="simpleShader.vertex.glsl" frag="SimpleShaderFlipYTexCoord.frag.glsl" />
   <ShaderProgram name="lightingShader"                 vertex="ADS_lighting.vertex.glsl" frag="ADS_lighting.frag.glsl" />
   <ShaderProgram name="DebugShader"                    vertex="DebugShader.vertex.glsl"  frag="DebugShader.frag.glsl" />
   <ShaderProgram name="DiffuseShader"                  vertex="DiffuseLighting.vertex.glsl"   frag="DiffuseLighting.frag.glsl" />

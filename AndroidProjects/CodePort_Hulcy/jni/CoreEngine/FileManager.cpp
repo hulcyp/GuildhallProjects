@@ -44,9 +44,9 @@ namespace Monky
 				if( bufferSize != -1 )
 				{
 					consolePrintf( "File size: %d", bufferSize );
-					buffer = (char*) malloc( bufferSize );
+					buffer = (char*) malloc( bufferSize + 1 );
 					AAsset_read( assetFile, buffer, bufferSize );
-					//buffer[bufferSize] = 0;
+					buffer[bufferSize] = 0;
 					AAsset_close( assetFile );
 				}
 			}

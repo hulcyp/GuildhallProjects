@@ -176,10 +176,10 @@ namespace Monky
 			consoleOutput += fileName;
 			consoleOutput += "(" + lineNumber + "): " + errorTokens[i] + "\n";
 
-			//MonkyException::printToCompilerOutputConsole( consoleOutput.c_str() );
+			MonkyException::printToCompilerOutputConsole( consoleOutput.c_str() );
 			popupOutputMessage += errorMessage + "\n\n";
 		}
-		MonkyException::printToCompilerOutputConsole( sLog.c_str() );
+		//MonkyException::printToCompilerOutputConsole( sLog.c_str() );
 
 		//MonkyException::fatalErrorMessageBox( "Shader Error", popupOutputMessage.c_str() );
 	}

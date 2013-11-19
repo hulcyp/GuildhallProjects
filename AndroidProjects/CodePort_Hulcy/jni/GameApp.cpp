@@ -7,7 +7,7 @@
 #include "CoreEngine/MonkyKeys.h"
 #include "CoreEngine/InputSystem.h"
 #include "MonkyRenderer/Actor.h"
-
+#include "MonkyRenderer/MeshFactory.h"
 
 
 namespace Monky
@@ -63,13 +63,17 @@ namespace Monky
 		*/
 		
 		m_mainFontParams.set( "fontName", std::string( "mainFont_72" ) );
-		m_mainFontParams.set( "fontHeight", 12.0f );
+		m_mainFontParams.set( "fontHeight", 20.0f );
 		m_mainFontParams.set( "color", color::GREEN );
 		m_mainFontParams.set( "posRel", std::string( "TOPLEFT" ) );
+		m_mainFontParams.set( "camera", m_debugCamera );
 
 		matStackf modelStack;
 		modelStack.translate( 0.0f, (float)m_screenHeight - 108, 0.0f );
 		m_memoryVisualizerParams.set( "modelMatrix", modelStack.top() );
+
+		m_spinningCube = spawn( "random actor", MeshFactory::generate2DOrthoRectangle( 20.0f, 20.0f ) );
+		m_spinningCube->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
 	}
 	//-------------------------------------------------------------------------------
 	void GameApp::cleanup()
@@ -170,6 +174,10 @@ namespace Monky
 		m_frameClock.advance( DELTA_TIME );
 		Material::updateTimeOnMaterials( m_frameClock.getElapsedSecondsFloat() );
 		m_actorManager.update( DELTA_TIME );
+
+		mat3f rot( mat3f::IDENTITY );
+		rot.rotateZ( m_frameClock.getElapsedSecondsFloat() );
+		m_spinningCube->setRotation( rot );
 	}
 	//-------------------------------------------------------------------------------
 	void GameApp::updateDisplay()
@@ -184,6 +192,7 @@ namespace Monky
 		}
 		//m_renderer->setWireFrame( m_wireFrame );
 		m_actorManager.renderActors();
+		renderDebugHUD();
 		//m_GDOManager->renderGDOs( m_renderer, m_frameClock.getElapsedSecondsFloat() );
 		m_renderer->popCamera();
 		ProfileSystem::getInstance()->clearFrameData();		
@@ -197,18 +206,18 @@ namespace Monky
 		if( m_renderDebugHUD )
 		{
 			m_renderer->pushCamera( m_debugCamera );
-			m_mainFontParams.set( "text", "FPS: " + floatToString( m_currentFPS, 0 ) );
+			m_mainFontParams.set( "text", std::string( "FPS: " ) + floatToString( m_currentFPS, 0 ) );
 			mat4f modelMatrix( mat4f::IDENTITY );
-			modelMatrix.translate( vec3f( (float)m_screenWidth, (float) m_screenHeight ) );
+			modelMatrix.translate( vec3f( (float)m_screenWidth, (float) m_screenHeight - 30.0f, 0.0f ) );
 			m_mainFontParams.set( "modelMatrix", modelMatrix );
 			m_mainFontParams.set( "posRel", std::string( "TOPRIGHT" ) );
 			fireEvent( "renderText", m_mainFontParams );
 			
-			m_mainFontParams.set( "posRel", std::string( "TOPLEFT" ) );
-			modelMatrix.loadIdentity();
-			modelMatrix.translate( vec3f( 0.0f, (float)m_screenHeight ) );
-			m_mainFontParams.set( "modelMatrix", modelMatrix );
-			ProfileSystem::getInstance()->renderData( vec3f( 50.0f, (float)m_screenHeight, 0.0f ), m_debugCamera );
+			//m_mainFontParams.set( "posRel", std::string( "TOPLEFT" ) );
+			//modelMatrix.loadIdentity();
+			//modelMatrix.translate( vec3f( 0.0f, (float)m_screenHeight ) );
+			//m_mainFontParams.set( "modelMatrix", modelMatrix );
+			ProfileSystem::getInstance()->renderData( vec3f( 50.0f, (float)m_screenHeight - 30.0f, 0.0f ), m_debugCamera );
 			m_renderer->popCamera();
 		}
 	}
