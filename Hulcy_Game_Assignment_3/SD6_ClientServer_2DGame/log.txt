@@ -1,0 +1,3089 @@
+Server started...
+Waiting for players to join...
+Player: 0 joined game
+Socket host: Zeratul.smu.edu
+Replying to player...
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Player: 1 joined game
+Socket host: Zeratul.smu.edu
+Replying to player...
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Removing player: 1 from game
+Failed to recieve data. Error code: 10054
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Removing player: 0 from game
+Failed to recieve data. Error code: 10054
+Player: 0 joined game
+Socket host: Zeratul.smu.edu
+Replying to player...
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Player: 1 joined game
+Socket host: Zeratul.smu.edu
+Replying to player...
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Sending player 0 update
+Sending player 1 update
+Recieved ACK
+Removing player: 1 from game
+Failed to recieve data. Error code: 10054
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending player 0 update
+Recieved ACK
+Sending pl

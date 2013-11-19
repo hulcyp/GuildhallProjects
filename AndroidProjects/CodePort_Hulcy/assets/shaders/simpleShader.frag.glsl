@@ -1,4 +1,4 @@
-#version 330
+
 
 uniform float time;
 uniform mat4 uProjectionMatrix;
@@ -9,12 +9,11 @@ uniform mat4 uMVPMatrix;
 uniform sampler2D uDiffuseMap;
 uniform int uUseDiffuseMap;
 
-in vec4 vColor;
-in vec2 vTexCoord0;
+varying vec4 vColor;
+varying vec2 vTexCoord0;
 
-out vec4 fragColor;
 
 void main()
 {
-	fragColor = vColor * texture( uDiffuseMap, vTexCoord0 ) * uUseDiffuseMap + vColor * ( 1 - uUseDiffuseMap );
+	gl_FragColor = vColor * texture( uDiffuseMap, vTexCoord0 ) * uUseDiffuseMap + vColor * ( 1 - uUseDiffuseMap );
 }

@@ -2,6 +2,7 @@
 //#include "zip.h"
 //#include "unzip.h"
 #include <android/asset_manager.h>
+#include "CoreEngine/Logging.h"
 
 
 namespace Monky
@@ -42,9 +43,10 @@ namespace Monky
 				bufferSize = AAsset_getLength( assetFile );
 				if( bufferSize != -1 )
 				{
-					buffer = (char*) malloc( bufferSize + 1 );
+					consolePrintf( "File size: %d", bufferSize );
+					buffer = (char*) malloc( bufferSize );
 					AAsset_read( assetFile, buffer, bufferSize );
-					buffer[bufferSize] = 0;
+					//buffer[bufferSize] = 0;
 					AAsset_close( assetFile );
 				}
 			}

@@ -45,7 +45,9 @@ GameApp.cpp								\
 ./MonkyRenderer/ShaderProgram.cpp		\
 ./MonkyRenderer/stb_image.c				\
 ./MonkyRenderer/Texture.cpp				\
-./MonkyRenderer/VtxBufferAccessor.cpp
+./MonkyRenderer/VtxBufferAccessor.cpp	\
+./MonkyRenderer/Actor.cpp				\
+./MonkyRenderer/ActorManager.cpp		
 
 
 

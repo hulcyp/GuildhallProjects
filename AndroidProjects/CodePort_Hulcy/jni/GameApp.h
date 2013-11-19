@@ -3,8 +3,9 @@
 #include "CoreEngine/Clock.h"
 #include "CoreEngine/Singleton.h"
 #include "CoreEngine/InputSystem.h"
-#include <android_native_app_glue.h>
+#include "MonkyRenderer/ActorManager.h"
 
+#include <android_native_app_glue.h>
 #include <EGL/egl.h>
 
 
@@ -12,7 +13,7 @@ namespace Monky
 {
 	class Camera;
 	class Renderer;
-
+	class Mesh;
 
 	struct AndroidInfo
 	{
@@ -29,10 +30,9 @@ namespace Monky
 	class GameApp : public Singleton<GameApp>
 	{
 	public:
-		GameApp( double deltaTime, int width, int height, float fov, AndroidInfo* androidInfo );
+		GameApp( double deltaTime, int width, int height, float fov );
 		virtual ~GameApp();
 				
-		void runApp();
 
 		virtual void initialize();
 		virtual void cleanup();
@@ -44,11 +44,17 @@ namespace Monky
 		virtual void onMouseMove( int mouseX, int mouseY );
 		virtual bool onMouseButton( int keyCode, MonkyMouseButtonState state, int mouseX, int mouseY );
 
+		Actor* spawn( const std::string& id, Mesh* mesh = 0 );
+
 		void executeStartUpCmds( const std::string& filePath );
 				
 		void initializeCamera( Camera* camera );
 
-		void exitProgram( int code );
+
+		void advanceAppClock( double time );
+		float getElapsedAppTimeSeconds() const;
+
+		bool isInitialized() const { return m_isInitialized; }
 	
 	protected:
 		virtual void updateSimulation();
@@ -63,18 +69,19 @@ namespace Monky
 	protected:
 		const double DELTA_TIME;
 
-		AndroidInfo* m_androidInfo;
+
+		ActorManager m_actorManager;
 
 		Renderer* m_renderer;
 		Camera* m_camera;
 		Clock m_frameClock;
 
 		Clock m_applicationClock;
-		float m_nextTimeFrameIsOwed;
-		bool m_frameOwed;
 		
 		NamedProperties m_mainFontParams;
 		NamedProperties m_memoryVisualizerParams;
+
+		float m_fov;
 
 		float m_currentFPS;
 		float m_previousTime;
@@ -85,10 +92,9 @@ namespace Monky
 
 		bool m_renderAxis;
 		bool m_renderDebugHUD;
+		bool m_isInitialized;
 
 		Camera* m_debugCamera;
 
-		class QuitProgram : public std::exception
-		{};
 	};
 }

@@ -6,15 +6,17 @@
 #include "CoreEngine/TimeUtils.h"
 #include "CoreEngine/MonkyKeys.h"
 #include "CoreEngine/InputSystem.h"
+#include "MonkyRenderer/Actor.h"
+
 
 
 namespace Monky
 {
-	GameApp::GameApp( double deltaTime, int width, int height, float fov, AndroidInfo* androidInfo )
+	GameApp::GameApp( double deltaTime, int width, int height, float fov )
 		:	Singleton( this )
 		,	DELTA_TIME( deltaTime )
-		,	m_renderAxis( false )
-		,	m_renderDebugHUD( false )
+		,	m_renderAxis( true )
+		,	m_renderDebugHUD( true )
 		,	m_frameClock( nullptr )
 		,	m_currentFPS( 0.0f )
 		,	m_previousTime( 0.0f )
@@ -25,14 +27,9 @@ namespace Monky
 		,	m_screenWidth( width )
 		,	m_screenHeight( height )
 		,	m_applicationClock( nullptr )
-		,	m_androidInfo( androidInfo )
+		,	m_fov( fov )
+		, 	m_isInitialized( false )
 	{	
-
-
-		m_renderer = new Renderer( m_screenWidth, m_screenHeight, fov, 0.1f, 100000.0f );
-		m_renderer->loadRendereringDataFiles();
-
-		initialize();
 	}
 	//-------------------------------------------------------------------------------
 	GameApp::~GameApp()
@@ -40,34 +37,13 @@ namespace Monky
 		cleanup();
 	}
 	//-------------------------------------------------------------------------------
-	void GameApp::runApp()
-	{
-		try
-		{
-			while( true )
-			{
-
-				double startTime = TimeUtils::GetAbsoluteTimeSeconds();
-
-				if( m_frameOwed )
-				{
-					updateFrame();
-					eglSwapBuffers( m_androidInfo->display, m_androidInfo->surface );
-				}
-				double endTime = TimeUtils::GetAbsoluteTimeSeconds();
-				m_applicationClock.advance( endTime - startTime );
-				if( m_nextTimeFrameIsOwed < m_applicationClock.getElapsedSecondsFloat() )
-					m_frameOwed = true;
-			}
-		}
-		catch( QuitProgram& qe )
-		{
-			//qe;
-		}
-	}
-	//-------------------------------------------------------------------------------
 	void GameApp::initialize()
 	{
+		m_isInitialized = true;
+		consolePrintf( "Creating renderer" );
+		m_renderer = new Renderer( m_screenWidth, m_screenHeight, m_fov, 0.1f, 100000.0f );
+		m_renderer->loadRendereringDataFiles();
+
 		if( m_renderer != nullptr )
 		{
 			//m_font = Font::getFont( "mainFont_72" );
@@ -111,13 +87,8 @@ namespace Monky
 		//processSystemEvents();
 		updateSimulation();
 		updateDisplay();		
-		m_frameOwed = false;	
-		updateFPS();	
-		
-		if( !m_frameOwed )
-		{
-			m_nextTimeFrameIsOwed = m_applicationClock.getElapsedSecondsFloat() + (float)DELTA_TIME;
-		}
+		updateFPS();
+
 		ProfileSystem::getInstance()->clearFrameData();
 	}
 	//-------------------------------------------------------------------------------
@@ -149,6 +120,13 @@ namespace Monky
 		return used;
 	}
 	//-------------------------------------------------------------------------------
+	Actor* GameApp::spawn( const std::string& id, Mesh* mesh )
+	{
+		Actor* actor = new Actor( id, mesh );
+		m_actorManager.addActor( actor );
+		return actor;
+	}
+	//-------------------------------------------------------------------------------
 	void GameApp::executeStartUpCmds( const std::string& filePath )
 	{
 		XMLParser parser( filePath.c_str(), false );
@@ -174,7 +152,16 @@ namespace Monky
 			m_renderer->pushCamera( m_camera );
 		}
 	}
-
+	//--------------------------------------------------------------------------------
+	void GameApp::advanceAppClock( double time )
+	{
+		m_applicationClock.advance( time );
+	}
+	//--------------------------------------------------------------------------------
+	float GameApp::getElapsedAppTimeSeconds() const
+	{
+		return m_applicationClock.getElapsedSecondsFloat();
+	}
 	//-------------------------------------------------------------------------------
 	// Protected member functions
 	//-------------------------------------------------------------------------------
@@ -182,7 +169,7 @@ namespace Monky
 	{
 		m_frameClock.advance( DELTA_TIME );
 		Material::updateTimeOnMaterials( m_frameClock.getElapsedSecondsFloat() );
-		//m_actorManager.update( DELTA_TIME );
+		m_actorManager.update( DELTA_TIME );
 	}
 	//-------------------------------------------------------------------------------
 	void GameApp::updateDisplay()
@@ -196,7 +183,7 @@ namespace Monky
 			m_camera->update( DELTA_TIME );
 		}
 		//m_renderer->setWireFrame( m_wireFrame );
-		//m_actorManager.renderActors();
+		m_actorManager.renderActors();
 		//m_GDOManager->renderGDOs( m_renderer, m_frameClock.getElapsedSecondsFloat() );
 		m_renderer->popCamera();
 		ProfileSystem::getInstance()->clearFrameData();		

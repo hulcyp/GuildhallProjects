@@ -14,10 +14,12 @@ namespace Monky
 		if( vertex != nullptr && frag != nullptr )
 		{
 			m_programID = glCreateProgram();
+			consolePrintf( "Program created" );
 
 			glAttachShader( m_programID, vertex->getShaderID() );
 			glAttachShader( m_programID, frag->getShaderID() );
-		
+			consolePrintf( "Shaders attached" );
+
 			glBindAttribLocation( m_programID, 0, "aPosition" );
 			glBindAttribLocation( m_programID, 1, "aNormal" );
 			glBindAttribLocation( m_programID, 2, "aColor" );
@@ -51,11 +53,12 @@ namespace Monky
 		Shader* vertex = Shader::createOrGetShader( vertexFile, GL_VERTEX_SHADER );
 		Shader* frag = Shader::createOrGetShader( fragFile, GL_FRAGMENT_SHADER );
 
-		auto iter = sm_programs.find( shaderName );
+		consolePrintf( "Looking for shader" );
+		std::map< std::string, ShaderProgram* >::iterator iter = sm_programs.find( shaderName );
 		//ShaderProgram*& program = sm_programs[ shaderName ];
-
 		if( iter == sm_programs.end() )
 		{
+			consolePrintf( "Creating new shader" );
 			iter = sm_programs.insert( std::pair< std::string, ShaderProgram* >( shaderName, new ShaderProgram( shaderName, vertex, frag ) ) ).first;
 		}
 		return nullptr;
@@ -68,7 +71,7 @@ namespace Monky
 	//--------------------------------------------------------------------------------
 	ShaderProgram* ShaderProgram::getShaderProgram( const std::string& shaderName )
 	{
-		auto iter = sm_programs.find( shaderName );
+		std::map< std::string, ShaderProgram* >::iterator iter = sm_programs.find( shaderName );
 		if( iter != sm_programs.end() )
 			return iter->second;
 		else

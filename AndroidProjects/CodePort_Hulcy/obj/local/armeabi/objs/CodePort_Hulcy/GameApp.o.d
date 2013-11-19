@@ -47,7 +47,7 @@ obj/local/armeabi/objs/CodePort_Hulcy/GameApp.o: jni/GameApp.cpp \
  jni/CoreEngine/Colors.h jni/CoreEngine/ConsoleInterface.h \
  jni/CoreEngine/Clock.h jni/CoreEngine/TimeUtils.h \
  jni/CoreEngine/InputSystem.h jni/CoreEngine/MonkyKeys.h \
- jni/CoreEngine/MonkyMouse.h \
+ jni/CoreEngine/MonkyMouse.h jni/MonkyRenderer/ActorManager.h \
  B:/Android/android-ndk-r9/sources/android/native_app_glue/android_native_app_glue.h \
  B:/Android/android-ndk-r9/platforms/android-14/arch-arm/usr/include/poll.h \
  B:/Android/android-ndk-r9/platforms/android-14/arch-arm/usr/include/linux/poll.h \
@@ -76,7 +76,8 @@ obj/local/armeabi/objs/CodePort_Hulcy/GameApp.o: jni/GameApp.cpp \
  B:/Android/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/include/climits \
  jni/MathLib/RandRangeInt.h jni/MathLib/RandRangeFloat.h \
  jni/MathLib/WeightedRandPool.h jni/MonkyRenderer/Camera.h \
- jni/MonkyRenderer/Node.h jni/CoreEngine/Timer.h
+ jni/MonkyRenderer/Node.h jni/CoreEngine/Timer.h \
+ jni/MonkyRenderer/Actor.h jni/MonkyRenderer/Object.h
 
 jni/GameApp.h:
 
@@ -200,6 +201,8 @@ jni/CoreEngine/MonkyKeys.h:
 
 jni/CoreEngine/MonkyMouse.h:
 
+jni/MonkyRenderer/ActorManager.h:
+
 B:/Android/android-ndk-r9/sources/android/native_app_glue/android_native_app_glue.h:
 
 B:/Android/android-ndk-r9/platforms/android-14/arch-arm/usr/include/poll.h:
@@ -269,3 +272,7 @@ jni/MonkyRenderer/Camera.h:
 jni/MonkyRenderer/Node.h:
 
 jni/CoreEngine/Timer.h:
+
+jni/MonkyRenderer/Actor.h:
+
+jni/MonkyRenderer/Object.h:

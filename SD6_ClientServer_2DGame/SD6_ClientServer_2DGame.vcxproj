@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugInline_Main|Win32">
+      <Configuration>DebugInline_Main</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BF629395-6F40-4322-B11A-6D6DDC5584AA}</ProjectGuid>
+    <RootNamespace>SD6_ClientServer_2DGame</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Engine\Properties\CoreEngineInclude.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Engine\Properties\CoreEngineInclude.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='DebugInline_Main|Win32'">
+    <Import Project="..\Engine\Properties\CoreEngineInclude.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline_Main|Win32'">
+    <IncludePath>../Engine/Networking;../Engine/libs/zlib128/include;../Engine/libs/SDL-1.2.15/include;../Engine/CoreEngine;../Engine/MathLib;../Engine/TimeLib;../Engine/libs/freeglut/include/GL;../Engine/libs/glew-1.9.0/include/GL;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline_Main|Win32'">
+    <LibraryPath>../Engine/Networking;../Engine/libs/SDL-1.2.15/lib/x86;../Engine/libs/glew-1.9.0/lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline_Main|Win32'">
+    <SourcePath>../Engine/Networking;../Engine/libs/SDL-1.2.15/include;../Engine/libs/zlib128/include;../Engine/CoreEngine;../Engine/MathLib;../Engine/TimeLib;../Engine/libs/freeglut/include/GL;../Engine/libs/glew-1.9.0/include/GL;$(VCInstallDir)atlmfc\src\mfc;$(VCInstallDir)atlmfc\src\mfcm;$(VCInstallDir)atlmfc\src\atl;$(VCInstallDir)crt\src</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>../Engine/Networking;../Engine/libs/zlib128/include;../Engine/libs/SDL-1.2.15/include;../Engine/CoreEngine;../Engine/MathLib;../Engine/TimeLib;../Engine/libs/freeglut/include/GL;../Engine/libs/glew-1.9.0/include/GL;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>../Engine/Networking;../Engine/libs/SDL-1.2.15/lib/x86;../Engine/libs/glew-1.9.0/lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <SourcePath>../Engine/Networking;../Engine/libs/SDL-1.2.15/include;../Engine/libs/zlib128/include;../Engine/CoreEngine;../Engine/MathLib;../Engine/TimeLib;../Engine/libs/freeglut/include/GL;../Engine/libs/glew-1.9.0/include/GL;$(VCInstallDir)atlmfc\src\mfc;$(VCInstallDir)atlmfc\src\mfcm;$(VCInstallDir)atlmfc\src\atl;$(VCInstallDir)crt\src</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>../Engine/Networking;../Engine/libs/zlib128/include;../Engine/libs/SDL-1.2.15/include;../Engine/CoreEngine;../Engine/MathLib;../Engine/TimeLib;../Engine/libs/freeglut/include/GL;../Engine/libs/glew-1.9.0/include/GL;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>../Engine/Networking;../Engine/libs/SDL-1.2.15/lib/x86;../Engine/libs/glew-1.9.0/lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <SourcePath>../Engine/Networking;../Engine/libs/SDL-1.2.15/include;../Engine/libs/zlib128/include;../Engine/CoreEngine;../Engine/MathLib;../Engine/TimeLib;../Engine/libs/freeglut/include/GL;../Engine/libs/glew-1.9.0/include/GL;$(VCInstallDir)atlmfc\src\mfc;$(VCInstallDir)atlmfc\src\mfcm;$(VCInstallDir)atlmfc\src\atl;$(VCInstallDir)crt\src</SourcePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "B:\Guildhall_Projects_2.0\SD6_ClientServer_2DGame\Hulcy Game\Client\SD6_ClientServer_2DGame.exe"
+copy "$(TargetPath)" "B:\Guildhall_Projects_2.0\SD6_ClientServer_2DGame\Hulcy Game\Server\SD6_ClientServer_2DGame.exe"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline_Main|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline_Main|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugInline_Main|Win32'">
+    <ClCompile>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine\CoreEngine\CoreEngine.vcxproj">
+      <Project>{eed63cb5-a340-4e9d-8590-48890475b07d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Engine\MathLib\MathLib.vcxproj">
+      <Project>{237469b5-f66f-43df-8352-80ef22528960}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Engine\Networking\Networking.vcxproj">
+      <Project>{a2b29650-4d39-4950-9274-bf988c922a6a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="ClientApp.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="LocalPlayerController.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="NetworkPlayerController.cpp" />
+    <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="ServerApp.cpp" />
+    <ClCompile Include="SGA_StateTimeline.cpp" />
+    <ClCompile Include="SpaceGameActor.cpp" />
+    <ClCompile Include="Spaceship.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="ClientApp.h" />
+    <ClInclude Include="ClientServerInterface.h" />
+    <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="LocalPlayerController.h" />
+    <ClInclude Include="NetworkPlayerController.h" />
+    <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="ServerApp.h" />
+    <ClInclude Include="SGA_StateTimeline.h" />
+    <ClInclude Include="SpaceGameActor.h" />
+    <ClInclude Include="Spaceship.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

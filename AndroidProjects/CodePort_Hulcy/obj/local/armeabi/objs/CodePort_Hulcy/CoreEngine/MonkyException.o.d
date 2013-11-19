@@ -13,7 +13,9 @@ obj/local/armeabi/objs/CodePort_Hulcy/./CoreEngine/MonkyException.o: \
  B:/Android/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/include/fstream \
  B:/Android/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring \
  jni/./CoreEngine/Assertion.h \
- B:/Android/android-ndk-r9/platforms/android-14/arch-arm/usr/include/assert.h
+ B:/Android/android-ndk-r9/platforms/android-14/arch-arm/usr/include/assert.h \
+ jni/CoreEngine/ConsoleInterface.h jni/CoreEngine/Colors.h \
+ jni/CoreEngine/StringUtils.h
 
 jni/./CoreEngine/MonkyException.h:
 
@@ -44,3 +46,9 @@ B:/Android/android-ndk-r9/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring:
 jni/./CoreEngine/Assertion.h:
 
 B:/Android/android-ndk-r9/platforms/android-14/arch-arm/usr/include/assert.h:
+
+jni/CoreEngine/ConsoleInterface.h:
+
+jni/CoreEngine/Colors.h:
+
+jni/CoreEngine/StringUtils.h:

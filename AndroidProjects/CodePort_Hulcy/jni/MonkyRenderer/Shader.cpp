@@ -3,12 +3,18 @@
 #include <CoreEngine/MonkyException.h>
 #include "CoreEngine/StringUtils.h"
 #include "CoreEngine/FileManager.h"
+#include <cstring>
 
 namespace Monky
 {
 	Shader::Shader( const std::string& fileName, GLenum shaderType )
 	{
 		loadShaderFromFile( fileName.c_str(), shaderType );
+	}
+	//--------------------------------------------------------------------------------
+	Shader::Shader( const char* shader, GLenum shaderType )
+	{
+		loadShaderFromBuffer( shader, shaderType );
 	}
 	//--------------------------------------------------------------------------------
 	Shader::~Shader()
@@ -22,12 +28,15 @@ namespace Monky
 	//--------------------------------------------------------------------------------
 	Shader* Shader::createOrGetShader( const std::string& fileName, GLenum shaderType )
 	{
-		auto iter = sm_shaders.find( fileName );		
+		consolePrintf( "creating or getting a shader: %s", fileName.c_str() );
+		std::map< std::string, Shader* >::iterator iter = sm_shaders.find( fileName );
+		consolePrintf( "Search completed" );
 		//Shader*& shader = sm_shaders[ fileName ];
 		if( iter == sm_shaders.end() )
 		{
 			iter = sm_shaders.insert( std::pair< std::string, Shader* >( fileName, new Shader( fileName, shaderType ) ) ).first;
 		}
+		consolePrintf( "insert or retrievel succesful" );
 		return iter->second;
 	}
 	//--------------------------------------------------------------------------------
@@ -35,10 +44,22 @@ namespace Monky
 	{
 		createOrGetShader( fileName, shaderType );
 	}
+	void Shader::createShaderFromBuffer( const std::string& shaderName, const char* shader, GLenum shaderType )
+	{
+		consolePrintf( "creating or getting a shader: %s", shaderName.c_str() );
+		std::map< std::string, Shader* >::iterator iter = sm_shaders.find( shaderName );
+		consolePrintf( "Search completed" );
+		//Shader*& shader = sm_shaders[ fileName ];
+		if( iter == sm_shaders.end() )
+		{
+			sm_shaders.insert( std::pair< std::string, Shader* >( shaderName, new Shader( shader, shaderType ) ) );
+		}
+		consolePrintf( "insert or retrievel succesful" );
+	}
 	//--------------------------------------------------------------------------------
 	Shader* Shader::getShader( const std::string& fileName )
 	{
-		auto iter = sm_shaders.find( fileName );
+		std::map< std::string, Shader* >::iterator iter = sm_shaders.find( fileName );
 		if( iter != sm_shaders.end() )
 			return iter->second;
 		else
@@ -57,29 +78,12 @@ namespace Monky
 		//std::ifstream shaderFile( fileName );
 		int shaderBufferSize = -1;
 		const char* shaderBuffer = nullptr;
+		consolePrintf( "Loading shader from file: %s", fileName );
 		shaderBuffer = getFileManager().readDataFromFile( fileName, shaderBufferSize );		
 
 		if( shaderBuffer != nullptr )
 		{
-			std::string shaderString;
-			shaderString.assign( shaderBuffer, shaderBufferSize );
-			//shaderString.assign( std::istreambuf_iterator< char >( shaderFile ), std::istreambuf_iterator< char >() );
-			shaderID = glCreateShader( shaderType );
-
-			const GLchar* shaderSource = shaderString.c_str();
-			glShaderSource( shaderID, 1, reinterpret_cast< const GLchar** >( &shaderSource ), nullptr );
-
-			glCompileShader( shaderID );
-
-			GLint compiled = GL_FALSE;
-			glGetShaderiv( shaderID, GL_COMPILE_STATUS, &compiled );
-
-			if( compiled != GL_TRUE )
-			{
-				handleShaderCompilerError( shaderID, fileName, shaderSource );
-			}
-
-			m_shaderID = shaderID;
+			loadShaderFromBuffer( shaderBuffer, shaderType );
 		}
 		else
 		{
@@ -88,8 +92,44 @@ namespace Monky
 			std::string errorMessage;
 			ss >> errorMessage;
 			MonkyException::fatalErrorMessageBox( "Shader file open error", errorMessage.c_str() );
+			consolePrintf( "Failed to load shader" );
 		}
 		SAFE_DELETE( shaderBuffer );
+	}
+
+	void Shader::loadShaderFromBuffer( const char* shaderBuffer, GLenum shaderType )
+	{
+		GLuint shaderID = 0;
+
+		if( shaderBuffer != nullptr )
+		{
+			int shaderBufferSize = std::strlen( shaderBuffer );
+			std::string shaderString;
+			shaderString.assign( shaderBuffer, shaderBufferSize );
+			//shaderString.assign( std::istreambuf_iterator< char >( shaderFile ), std::istreambuf_iterator< char >() );
+			shaderID = glCreateShader( shaderType );
+
+
+			consolePrintf( "Sending shader source to openGL" );
+			const GLchar* shaderSource = shaderString.c_str();
+			glShaderSource( shaderID, 1, reinterpret_cast< const GLchar** >( &shaderSource ), nullptr );
+
+			consolePrintf( "Compiling shader" );
+			glCompileShader( shaderID );
+
+			GLint compiled = GL_FALSE;
+			glGetShaderiv( shaderID, GL_COMPILE_STATUS, &compiled );
+
+			consolePrintf( "Getting compile status" );
+			if( compiled != GL_TRUE )
+			{
+				handleShaderCompilerError( shaderID, "", shaderSource );
+			}
+
+			consolePrintf( "Shader loaded" );
+
+			m_shaderID = shaderID;
+		}
 	}
 
 	void Shader::handleShaderCompilerError( GLuint shaderID, const char* fileName, const std::string& shaderBuffer )
@@ -136,10 +176,12 @@ namespace Monky
 			consoleOutput += fileName;
 			consoleOutput += "(" + lineNumber + "): " + errorTokens[i] + "\n";
 
-			MonkyException::printToCompilerOutputConsole( consoleOutput.c_str() );
+			//MonkyException::printToCompilerOutputConsole( consoleOutput.c_str() );
 			popupOutputMessage += errorMessage + "\n\n";
 		}
-		MonkyException::fatalErrorMessageBox( "Shader Error", popupOutputMessage.c_str() );
+		MonkyException::printToCompilerOutputConsole( sLog.c_str() );
+
+		//MonkyException::fatalErrorMessageBox( "Shader Error", popupOutputMessage.c_str() );
 	}
 
 	std::map< std::string, Shader* > Shader::sm_shaders;

@@ -1,6 +1,7 @@
 #include "MonkyException.h"
 //#include <windows.h>
 #include <stdio.h>
+#include "CoreEngine/ConsoleInterface.h"
 
 namespace Monky
 {
@@ -51,12 +52,13 @@ namespace Monky
 		vsprintf( msg, format, args );
 		va_end( args );
 		//MessageBoxA( NULL, msg, title, MB_OK | MB_ICONERROR | MB_SETFOREGROUND );
-		exit( -1 );
+		//exit( -1 );
 	}
 	//------------------------------------------------------------
 	void MonkyException::printToCompilerOutputConsole( const char* error )
 	{
 		//OutputDebugStringA( error );
+		consolePrintf( error );
 	}
 	//------------------------------------------------------------
 	bool MonkyException::yesNoMessageBox( const char* title, const char* msg )
