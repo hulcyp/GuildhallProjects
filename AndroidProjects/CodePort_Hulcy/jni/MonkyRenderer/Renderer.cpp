@@ -32,12 +32,7 @@ namespace Monky
 		,	m_lineWidth( 1.0f )
 		,	m_backFaceCullingEnabled( true )
 	{
-		glEnable( GL_DEPTH_TEST );
-		glEnable( GL_CULL_FACE );
-		glCullFace( GL_BACK );
-		glFrontFace( GL_CW );
-		glLineWidth( m_lineWidth );
-
+		initialize();
 		m_cameraStack.push( new Camera( "RendererCamera", vec3f(), Camera::PH_PERSPECTIVE, mat4f::perspective( fov, (float)width / height, zNear, zFar ) ) );
 
 		registerForEvent( "renderMesh",  *this, &Renderer::renderMeshEvent );
@@ -54,6 +49,16 @@ namespace Monky
 		SAFE_DELETE( m_cameraStack.top() );
 		m_cameraStack.pop();
 		cleanupRendereringData();
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	void Renderer::initialize()
+	{
+		glEnable( GL_DEPTH_TEST );
+		glEnable( GL_CULL_FACE );
+		glCullFace( GL_BACK );
+		glFrontFace( GL_CW );
+		glLineWidth( m_lineWidth );
+
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	void Renderer::loadRendereringDataFiles()

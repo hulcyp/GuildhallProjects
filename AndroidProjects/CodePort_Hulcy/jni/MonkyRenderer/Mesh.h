@@ -144,6 +144,8 @@ namespace Monky
 
 		void addLight( const Material::Light* light, int i );
 		
+		void reloadBuffers();
+
 	protected:
 		void generateTangentSpaceVectors( std::vector< Vertex >& vertices, std::vector< unsigned int >& indices );
 		void generateTangentSpaceVectors( std::vector< Vertex >& vertices );

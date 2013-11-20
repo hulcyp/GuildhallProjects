@@ -11,32 +11,7 @@ namespace Monky
 		,	m_vertex( vertex )
 		,	m_fragment( frag )
 	{
-		if( vertex != nullptr && frag != nullptr )
-		{
-			m_programID = glCreateProgram();
-			consolePrintf( "Program created" );
-
-			glAttachShader( m_programID, vertex->getShaderID() );
-			glAttachShader( m_programID, frag->getShaderID() );
-			consolePrintf( "Shaders attached" );
-
-			glBindAttribLocation( m_programID, 0, "aPosition" );
-			glBindAttribLocation( m_programID, 1, "aNormal" );
-			glBindAttribLocation( m_programID, 2, "aColor" );
-			glBindAttribLocation( m_programID, 3, "aTexCoord0" );
-			glBindAttribLocation( m_programID, 4, "aTangent" );
-			glBindAttribLocation( m_programID, 5, "aBitangent" );
-
-			glLinkProgram( m_programID );
-
-			GLint linked = GL_FALSE;
-			glGetProgramiv( m_programID, GL_LINK_STATUS, &linked );
-			if( linked != GL_TRUE )
-			{
-				handleProgramLinkError( m_programID );
-			}
-		}
-
+		loadShaderProgram();
 	}
 	//--------------------------------------------------------------------------------
 	ShaderProgram::~ShaderProgram()
@@ -76,6 +51,43 @@ namespace Monky
 			return iter->second;
 		else
 			return nullptr;
+	}
+	void ShaderProgram::reloadShaderPrograms()
+	{
+		std::map< std::string, ShaderProgram* >::iterator iter = sm_programs.begin();
+		for( ; iter != sm_programs.end(); ++iter )
+		{
+			iter->second->loadShaderProgram();
+		}
+	}
+	//--------------------------------------------------------------------------------
+	void ShaderProgram::loadShaderProgram()
+	{
+		if( m_vertex != nullptr && m_fragment != nullptr )
+		{
+			m_programID = glCreateProgram();
+			consolePrintf( "Program created" );
+
+			glAttachShader( m_programID, m_vertex->getShaderID() );
+			glAttachShader( m_programID, m_fragment->getShaderID() );
+			consolePrintf( "Shaders attached" );
+
+			glBindAttribLocation( m_programID, 0, "aPosition" );
+			glBindAttribLocation( m_programID, 1, "aNormal" );
+			glBindAttribLocation( m_programID, 2, "aColor" );
+			glBindAttribLocation( m_programID, 3, "aTexCoord0" );
+			glBindAttribLocation( m_programID, 4, "aTangent" );
+			glBindAttribLocation( m_programID, 5, "aBitangent" );
+
+			glLinkProgram( m_programID );
+
+			GLint linked = GL_FALSE;
+			glGetProgramiv( m_programID, GL_LINK_STATUS, &linked );
+			if( linked != GL_TRUE )
+			{
+				handleProgramLinkError( m_programID );
+			}
+		}
 	}
 	//--------------------------------------------------------------------------------
 	void ShaderProgram::cleanupShaderPrograms()

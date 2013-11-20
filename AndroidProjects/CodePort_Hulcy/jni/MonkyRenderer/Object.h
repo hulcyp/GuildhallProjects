@@ -24,8 +24,9 @@ namespace Monky
 		virtual void setPosition( const vec3f& pos, int frame = 0 );
 		virtual void setRotation( const mat3f& rot, int frame = 0 );
 		virtual void setScale( const vec3f& scale, int frame = 0 );
-
 		
+		void reloadMesh();
+
 	private:
 		Mesh* m_mesh;
 		std::string m_occlusionGeometryName;

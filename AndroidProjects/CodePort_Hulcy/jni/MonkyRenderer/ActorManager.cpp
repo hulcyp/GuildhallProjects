@@ -111,4 +111,12 @@ namespace Monky
 			iter->second->stop();
 		}
 	}
+
+	void ActorManager::reloadActorMeshes()
+	{
+		for( aIter iter = m_actors.begin(); iter != m_actors.end(); ++iter )
+		{
+			iter->second->reloadMesh();
+		}
+	}
 }

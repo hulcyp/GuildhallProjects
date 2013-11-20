@@ -128,6 +128,15 @@ namespace Monky
 			return NONE;
 	}
 	//--------------------------------------------------------------------------
+	void Material::reloadMaterials()
+	{
+		std::map< std::string, Material* >::iterator iter = sm_materials.begin();
+		for( ; iter != sm_materials.end(); ++iter )
+		{
+			iter->second->updateUniformLocations();
+		}
+	}
+	//--------------------------------------------------------------------------
 	void Material::activateProgram()
 	{
 		if( !m_isActive )

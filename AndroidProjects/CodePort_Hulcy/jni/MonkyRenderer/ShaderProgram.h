@@ -20,6 +20,9 @@ namespace Monky
 		static ShaderProgram* createOrGetShaderProgram( const std::string& shaderName, const std::string& vertexFile, const std::string& fragFile );
 		static void createShaderProgram( const std::string& shaderName, const std::string& vertexFile, const std::string& fragFile );
 		static ShaderProgram* getShaderProgram( const std::string& shaderName );
+		static void reloadShaderPrograms();
+
+		void loadShaderProgram();
 
 	protected:
 		static void cleanupShaderPrograms();

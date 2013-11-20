@@ -24,6 +24,7 @@ namespace Monky
 		void playAllAnimations();
 		void pauseAllAnimations();
 		void stopAllAnimations();
+		void reloadActorMeshes();
 
 	private:
 		std::map< std::string, Actor* > m_actors;

@@ -25,6 +25,8 @@ namespace Monky
 		Renderer( int screenWidth, int screenHeight, float fov, float zNear, float zFar );
 		~Renderer();
 
+
+		void initialize();
 		void loadRendereringDataFiles();
 		
 

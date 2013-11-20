@@ -24,6 +24,9 @@ namespace Monky
 		static void createShader( const std::string& fileName, GLenum shaderType );
 		static void createShaderFromBuffer( const std::string& shaderName, const char* shader, GLenum shaderType );
 		static Shader* getShader( const std::string& fileName );
+		static void reloadShaders();
+
+		void loadShader();
 
 	protected:
 		static void cleanupShaders();
@@ -33,6 +36,8 @@ namespace Monky
 		
 	private:
 		GLuint m_shaderID;
+		const char* m_shaderBuffer;
+		GLenum m_shaderType;
 
 		static std::map< std::string, Shader* > sm_shaders;
 	};

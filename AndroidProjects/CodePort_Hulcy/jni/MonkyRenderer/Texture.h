@@ -53,6 +53,7 @@ namespace Monky
 		void LoadSkyboxFromFile ( const std::string& texturePath );
 		void BindTexture( int slotNum );
 		
+
 		//
 		// Static Member Functions ////////////////////////////////////////////
 		//
@@ -62,6 +63,7 @@ namespace Monky
 		static Texture* CreateOrGetTexture( const std::string& textureName, const std::string& path );
 		static Texture* CreateOrGetTexture( const std::string& textureName, ID textureID );
 		static Texture* GetTexture( const std::string& textureName );
+		static void ReloadToOpenGL();
 
 		static std::vector< Texture* > CreateOrGetSkybox( std::string texturePaths[6] );
 		

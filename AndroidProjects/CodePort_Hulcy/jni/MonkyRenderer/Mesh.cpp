@@ -226,6 +226,15 @@ namespace Monky
 			Material::getMaterial( m_triangleBatches[i]->material )->addUniform( ("uLights[" + toString(index) + "]").c_str(), light );
 		}
 	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	void Mesh::reloadBuffers()
+	{
+		for( int i = 0; i < m_triangleBatches.size(); ++i )
+		{
+			m_triangleBatches[i]->iboBuffer->sendToOpenGL();
+			m_triangleBatches[i]->vboBuffer->sendToOpenGL();
+		}
+	}
 		
 	////////////////////////////////////////////////////////////
 	// Protected member functions

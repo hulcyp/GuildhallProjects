@@ -298,6 +298,14 @@ namespace Monky
 			return nullptr;
 	}
 
+	void Texture::ReloadToOpenGL()
+	{
+		for( auto iter = sm_texturePool.begin(); iter != sm_texturePool.end(); ++iter )
+		{
+			iter->second->LoadToOpenGL();
+		}
+	}
+
 	std::vector< Texture* > Texture::CreateOrGetSkybox( std::string texturePaths[6] )
 	{
 		std::vector< Texture* > skybox(6);

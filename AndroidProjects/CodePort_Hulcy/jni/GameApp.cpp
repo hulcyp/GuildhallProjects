@@ -8,6 +8,8 @@
 #include "CoreEngine/InputSystem.h"
 #include "MonkyRenderer/Actor.h"
 #include "MonkyRenderer/MeshFactory.h"
+#include "MonkyRenderer/Shader.h"
+#include "MonkyRenderer/ShaderProgram.h"
 
 
 namespace Monky
@@ -165,6 +167,15 @@ namespace Monky
 	float GameApp::getElapsedAppTimeSeconds() const
 	{
 		return m_applicationClock.getElapsedSecondsFloat();
+	}
+	void GameApp::reloadRenderingAssets()
+	{
+		m_renderer->initialize();
+		Shader::reloadShaders();
+		ShaderProgram::reloadShaderPrograms();
+		Material::reloadMaterials();
+		Texture::ReloadToOpenGL();
+		m_actorManager.reloadActorMeshes();
 	}
 	//-------------------------------------------------------------------------------
 	// Protected member functions

@@ -71,4 +71,9 @@ namespace Monky
 		params.set( "name", m_occlusionGeometryName );
 		fireEvent( "setScaleOfASGeometry", params );
 	}
+	//-------------------------------------------------------------------
+	void Object::reloadMesh()
+	{
+		m_mesh->reloadBuffers();
+	}
 }

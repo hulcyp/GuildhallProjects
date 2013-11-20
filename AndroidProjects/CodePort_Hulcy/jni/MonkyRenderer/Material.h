@@ -127,6 +127,7 @@ namespace Monky
 		static Material* getActiveMaterial();
 		static void updateTimeOnMaterials( float time );
 		static MaterialType getTypeFromString( const std::string& materialType );
+		static void reloadMaterials();
 
 		void activateProgram();
 		void deactivateProgram();

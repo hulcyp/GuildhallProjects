@@ -8,11 +8,13 @@
 namespace Monky
 {
 	Shader::Shader( const std::string& fileName, GLenum shaderType )
+		:	m_shaderBuffer( nullptr )
 	{
 		loadShaderFromFile( fileName.c_str(), shaderType );
 	}
 	//--------------------------------------------------------------------------------
 	Shader::Shader( const char* shader, GLenum shaderType )
+		:	m_shaderBuffer( nullptr )
 	{
 		loadShaderFromBuffer( shader, shaderType );
 	}
@@ -23,6 +25,7 @@ namespace Monky
 		{
 			glDeleteShader( m_shaderID );
 			m_shaderID = 0;
+			SAFE_DELETE( m_shaderBuffer );
 		}
 	}
 	//--------------------------------------------------------------------------------
@@ -65,6 +68,46 @@ namespace Monky
 		else
 			return nullptr;
 	}
+	void Shader::reloadShaders()
+	{
+		std::map< std::string, Shader* >::iterator iter = sm_shaders.begin();
+		for( ; iter != sm_shaders.end(); ++iter )
+		{
+			iter->second->loadShader();
+		}
+	}
+	//--------------------------------------------------------------------------------
+	void Shader::loadShader()
+	{
+		GLuint shaderID = 0;
+
+		int shaderBufferSize = std::strlen( m_shaderBuffer );
+		std::string shaderString;
+		shaderString.assign( m_shaderBuffer, shaderBufferSize );
+		//shaderString.assign( std::istreambuf_iterator< char >( shaderFile ), std::istreambuf_iterator< char >() );
+		shaderID = glCreateShader( m_shaderType );
+
+
+		consolePrintf( "Sending shader source to openGL" );
+		const GLchar* shaderSource = shaderString.c_str();
+		glShaderSource( shaderID, 1, reinterpret_cast< const GLchar** >( &shaderSource ), nullptr );
+
+		consolePrintf( "Compiling shader" );
+		glCompileShader( shaderID );
+
+		GLint compiled = GL_FALSE;
+		glGetShaderiv( shaderID, GL_COMPILE_STATUS, &compiled );
+
+		consolePrintf( "Getting compile status" );
+		if( compiled != GL_TRUE )
+		{
+			handleShaderCompilerError( shaderID, "", shaderSource );
+		}
+
+		consolePrintf( "Shader loaded" );
+
+		m_shaderID = shaderID;
+	}
 	//--------------------------------------------------------------------------------
 	void Shader::cleanupShaders()
 	{
@@ -94,43 +137,18 @@ namespace Monky
 			MonkyException::fatalErrorMessageBox( "Shader file open error", errorMessage.c_str() );
 			consolePrintf( "Failed to load shader" );
 		}
-		SAFE_DELETE( shaderBuffer );
 	}
 
 	void Shader::loadShaderFromBuffer( const char* shaderBuffer, GLenum shaderType )
 	{
-		GLuint shaderID = 0;
-
 		if( shaderBuffer != nullptr )
 		{
-			int shaderBufferSize = std::strlen( shaderBuffer );
-			std::string shaderString;
-			shaderString.assign( shaderBuffer, shaderBufferSize );
-			//shaderString.assign( std::istreambuf_iterator< char >( shaderFile ), std::istreambuf_iterator< char >() );
-			shaderID = glCreateShader( shaderType );
-
-
-			consolePrintf( "Sending shader source to openGL" );
-			const GLchar* shaderSource = shaderString.c_str();
-			glShaderSource( shaderID, 1, reinterpret_cast< const GLchar** >( &shaderSource ), nullptr );
-
-			consolePrintf( "Compiling shader" );
-			glCompileShader( shaderID );
-
-			GLint compiled = GL_FALSE;
-			glGetShaderiv( shaderID, GL_COMPILE_STATUS, &compiled );
-
-			consolePrintf( "Getting compile status" );
-			if( compiled != GL_TRUE )
-			{
-				handleShaderCompilerError( shaderID, "", shaderSource );
-			}
-
-			consolePrintf( "Shader loaded" );
-
-			m_shaderID = shaderID;
+			m_shaderBuffer = shaderBuffer;
+			m_shaderType = shaderType;
+			loadShader();
 		}
 	}
+
 
 	void Shader::handleShaderCompilerError( GLuint shaderID, const char* fileName, const std::string& shaderBuffer )
 	{

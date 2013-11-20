@@ -69,16 +69,22 @@ void handleAppCmd( struct android_app* app, int32_t cmd )
 	case APP_CMD_GAINED_FOCUS:
 		{
 			g_androidInfo.isPaused = false;
+			initGL();
+			g_app->reloadRenderingAssets();
+			consolePrintf( "Gained focus" );
 		}
 		break;
 	case APP_CMD_LOST_FOCUS:
 		{
 			g_androidInfo.isPaused = true;
+			consolePrintf( "Lost focus" );
 		}
 		break;
 	}
 }
 
+void TestFunc( NamedProperties& params )
+{}
 
 void android_main( struct android_app* app )
 {
@@ -92,7 +98,6 @@ void android_main( struct android_app* app )
 
 	consolePrintf( "Initialzing file manager" );
 	getFileManager().initialize( g_androidInfo.app->activity->assetManager );
-
 
 	while( true )
 	{
