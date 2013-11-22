@@ -47,7 +47,9 @@ GameApp.cpp								\
 ./MonkyRenderer/Texture.cpp				\
 ./MonkyRenderer/VtxBufferAccessor.cpp	\
 ./MonkyRenderer/Actor.cpp				\
-./MonkyRenderer/ActorManager.cpp		
+./MonkyRenderer/ActorManager.cpp		\
+./MonkyRenderer/SpriteAnimation.cpp		\
+./MonkyRenderer/SpriteActor.cpp
 
 
 

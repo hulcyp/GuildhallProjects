@@ -13,6 +13,7 @@ namespace Monky
 		void registerForInput();
 		void unregisterForInput();
 
+
 		virtual bool onKeyDown( MonkyKey keyCode, int x, int y ) = 0;
 		virtual bool onKeyUp( MonkyKey keyCode, int x, int y ) = 0;
 		virtual bool onMouseButton( int mouseKeyCode, MonkyMouseButtonState state, int x, int y ){ return false; }

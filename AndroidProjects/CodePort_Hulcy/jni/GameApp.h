@@ -4,6 +4,7 @@
 #include "CoreEngine/Singleton.h"
 #include "CoreEngine/InputSystem.h"
 #include "MonkyRenderer/ActorManager.h"
+#include "MonkyRenderer/SpriteActor.h"
 
 #include <android_native_app_glue.h>
 #include <EGL/egl.h>
@@ -47,6 +48,7 @@ namespace Monky
 		virtual bool onMouseButton( int keyCode, MonkyMouseButtonState state, int mouseX, int mouseY );
 
 		Actor* spawn( const std::string& id, Mesh* mesh = 0 );
+		void spawn( SpriteActor* actor );
 
 		void executeStartUpCmds( const std::string& filePath );
 				

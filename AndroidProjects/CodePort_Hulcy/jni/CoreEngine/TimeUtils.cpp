@@ -12,6 +12,8 @@ namespace Monky
 {
 	typedef int64_t SystemClocks;
 
+	float TimeUtils::m_currentApplicationTime = 0.0f;
+
 	double TimeUtils::GetAbsoluteTimeSeconds()
 	{
 		timespec lTimeVal;
@@ -67,5 +69,10 @@ namespace Monky
 		default:
 			return time;
 		}
+	}
+	//---------------------------------------------------------------
+	float TimeUtils::GetCurrentApplicationTimeSeconds()
+	{
+		return m_currentApplicationTime;
 	}
 }

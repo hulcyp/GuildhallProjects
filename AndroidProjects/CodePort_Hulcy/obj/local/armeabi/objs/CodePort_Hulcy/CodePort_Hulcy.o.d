@@ -104,8 +104,10 @@ obj/local/armeabi/objs/CodePort_Hulcy/CodePort_Hulcy.o: \
  jni/CoreEngine/FileManager.h jni/GameApp.h jni/CoreEngine/Clock.h \
  jni/CoreEngine/TimeUtils.h jni/CoreEngine/InputSystem.h \
  jni/CoreEngine/MonkyKeys.h jni/CoreEngine/MonkyMouse.h \
- jni/MonkyRenderer/ActorManager.h jni/MonkyRenderer/Camera.h \
- jni/MonkyRenderer/Node.h jni/CoreEngine/Timer.h
+ jni/MonkyRenderer/ActorManager.h jni/MonkyRenderer/SpriteActor.h \
+ jni/MonkyRenderer/Actor.h jni/MonkyRenderer/Object.h \
+ jni/MonkyRenderer/Node.h jni/CoreEngine/Timer.h \
+ jni/MonkyRenderer/Camera.h
 
 B:/Android/android-ndk-r9/platforms/android-14/arch-arm/usr/include/jni.h:
 
@@ -345,8 +347,14 @@ jni/CoreEngine/MonkyMouse.h:
 
 jni/MonkyRenderer/ActorManager.h:
 
-jni/MonkyRenderer/Camera.h:
+jni/MonkyRenderer/SpriteActor.h:
+
+jni/MonkyRenderer/Actor.h:
+
+jni/MonkyRenderer/Object.h:
 
 jni/MonkyRenderer/Node.h:
 
 jni/CoreEngine/Timer.h:
+
+jni/MonkyRenderer/Camera.h:

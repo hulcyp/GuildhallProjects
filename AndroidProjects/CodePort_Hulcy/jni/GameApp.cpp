@@ -48,21 +48,11 @@ namespace Monky
 
 		if( m_renderer != nullptr )
 		{
-			//m_font = Font::getFont( "mainFont_72" );
-			m_debugCamera = new Camera( "DebugCamera", vec3f(), Camera::PH_ORTHOGRAPHIC, mat4f::ortho( 0.0f, (float)m_screenWidth, (float)m_screenHeight, 0.0f, 1.0f, -1.0f ) );
+				m_debugCamera = new Camera( "DebugCamera", vec3f(), Camera::PH_ORTHOGRAPHIC, mat4f::ortho( 0.0f, (float)m_screenWidth, (float)m_screenHeight, 0.0f, 1.0f, -1.0f ) );
 		}
 
 		executeStartUpCmds( "xml/StartupCmds.xml" );
 
-		/*
-		registerConsoleCommand( "event", "Fire event. Usage: [event name]",
-			[&]( const std::string& args )
-		{
-			fireEvent( args );
-		} );
-		registerConsoleCommand( "exit", "Exit the program", []( const std::string& ){ GameApp::getInstance()->exitProgram( 0 ); } );
-		registerConsoleCommand( "quit", "Quit the program", []( const std::string& ){ GameApp::getInstance()->exitProgram( 0 ); } );
-		*/
 		
 		m_mainFontParams.set( "fontName", std::string( "mainFont_72" ) );
 		m_mainFontParams.set( "fontHeight", 20.0f );
@@ -74,8 +64,12 @@ namespace Monky
 		modelStack.translate( 0.0f, (float)m_screenHeight - 108, 0.0f );
 		m_memoryVisualizerParams.set( "modelMatrix", modelStack.top() );
 
-		m_spinningCube = spawn( "random actor", MeshFactory::generate2DOrthoRectangle( 20.0f, 20.0f ) );
-		m_spinningCube->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
+		//m_spinningCube = spawn( "random actor", MeshFactory::generate2DOrthoRectangle( 20.0f, 20.0f ) );
+		//m_spinningCube->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
+
+		SpriteActor* spriteActor = new SpriteActor("Mushee", 5.0f, "SimpleColorMaterial" );
+		spawn( spriteActor );
+		spriteActor->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
 	}
 	//-------------------------------------------------------------------------------
 	void GameApp::cleanup()
@@ -133,6 +127,11 @@ namespace Monky
 		return actor;
 	}
 	//-------------------------------------------------------------------------------
+	void GameApp::spawn( SpriteActor* actor )
+	{
+		m_actorManager.addActor( actor );
+	}
+	//-------------------------------------------------------------------------------
 	void GameApp::executeStartUpCmds( const std::string& filePath )
 	{
 		XMLParser parser( filePath.c_str(), false );
@@ -183,9 +182,9 @@ namespace Monky
 	void GameApp::updateSimulation()
 	{
 		m_frameClock.advance( DELTA_TIME );
+		TimeUtils::m_currentApplicationTime = m_frameClock.getElapsedSecondsFloat();
 		Material::updateTimeOnMaterials( m_frameClock.getElapsedSecondsFloat() );
 		m_actorManager.update( DELTA_TIME );
-
 		mat3f rot( mat3f::IDENTITY );
 		rot.rotateZ( m_frameClock.getElapsedSecondsFloat() );
 		m_spinningCube->setRotation( rot );
