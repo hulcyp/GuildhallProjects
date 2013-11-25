@@ -11,7 +11,7 @@
 
 #include "CoreEngine/CommonCoreEngineIncludes.h"
 #include "CoreEngine/FileManager.h"
-#include "GameApp.h"
+#include "MSGame.h"
 #include "MonkyRenderer/Camera.h"
 
 #define LOG_TAG "CodePort_Hulcy"
@@ -27,7 +27,7 @@ const float FOV = 45.0f;
 
 bool g_frameOwed = true;
 double g_nextTimeFrameIsOwed = 0.0;
-GameApp* g_app = nullptr;
+MSGame* g_app = nullptr;
 AndroidInfo g_androidInfo;
 
 
@@ -151,7 +151,7 @@ static void initGame()
 	if( g_app == nullptr )
 	{
 		initGL();
-		g_app = new GameApp( DELTA_TIME,
+		g_app = new MSGame( DELTA_TIME,
 										g_androidInfo.width,
 										g_androidInfo.height,
 										FOV );

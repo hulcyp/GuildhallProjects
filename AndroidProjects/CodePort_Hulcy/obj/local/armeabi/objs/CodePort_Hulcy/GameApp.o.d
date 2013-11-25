@@ -80,7 +80,7 @@ obj/local/armeabi/objs/CodePort_Hulcy/GameApp.o: jni/GameApp.cpp \
  jni/MathLib/RandRangeInt.h jni/MathLib/RandRangeFloat.h \
  jni/MathLib/WeightedRandPool.h jni/MonkyRenderer/Camera.h \
  jni/MonkyRenderer/MeshFactory.h jni/MonkyRenderer/Shader.h \
- jni/MonkyRenderer/ShaderProgram.h
+ jni/MonkyRenderer/ShaderProgram.h jni/MonkyRenderer/SpriteAnimation.h
 
 jni/GameApp.h:
 
@@ -287,3 +287,5 @@ jni/MonkyRenderer/MeshFactory.h:
 jni/MonkyRenderer/Shader.h:
 
 jni/MonkyRenderer/ShaderProgram.h:
+
+jni/MonkyRenderer/SpriteAnimation.h:

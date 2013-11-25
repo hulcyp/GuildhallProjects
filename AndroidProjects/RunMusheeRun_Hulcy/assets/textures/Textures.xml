@@ -1,0 +1,10 @@
+<Textures>
+  <Texture name="MusheesRun01">ms_mushee_animYELLOW01.png</Texture>
+  <Texture name="MusheesRun02">ms_mushee_animYELLOW02.png</Texture>
+  <Texture name="MusheesRun03">ms_mushee_animYELLOW03.png</Texture>
+  <Texture name="MusheesRun04">ms_mushee_animYELLOW04.png</Texture>
+  <Texture name="MusheesRun05">ms_mushee_animYELLOW05.png</Texture>
+  <Texture name="MusheesRun06">ms_mushee_animYELLOW06.png</Texture>
+ <!-- <Texture name="MusheesRun">YellowMusheesRun.png</Texture> --> 
+  <Texture name="GreenMushroom">GreenMushroomPlatform.png</Texture>
+</Textures>

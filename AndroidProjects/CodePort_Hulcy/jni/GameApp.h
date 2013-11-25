@@ -40,7 +40,7 @@ namespace Monky
 		virtual void cleanup();
 		
 
-		virtual void updateFrame();
+		 void updateFrame();
 		virtual bool onKeyDown( MonkyKey keyCode, int x, int y );
 		virtual bool onKeyUp( MonkyKey keyCode, int x, int y );
 
@@ -48,7 +48,7 @@ namespace Monky
 		virtual bool onMouseButton( int keyCode, MonkyMouseButtonState state, int mouseX, int mouseY );
 
 		Actor* spawn( const std::string& id, Mesh* mesh = 0 );
-		void spawn( SpriteActor* actor );
+		void spawn( Actor* actor );
 
 		void executeStartUpCmds( const std::string& filePath );
 				
@@ -103,7 +103,6 @@ namespace Monky
 
 		Camera* m_debugCamera;
 
-		Actor* m_spinningCube;
 
 	};
 }

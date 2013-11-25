@@ -1,0 +1,43 @@
+<Materials>
+  <Material name="SimpleColorMaterial" shaderProgram="simpleShader" >
+    
+    <Uniform name="uUseDiffuseMap" type="int">0</Uniform>
+  </Material>
+
+  <Material name="MusheesRunMat" shaderProgram="simpleShader" >
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">MusheesRun01</Uniform>
+  </Material>
+  
+  <Material name="MS_Run01" shaderProgram="simpleShader" >
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">MusheesRun01</Uniform>
+  </Material>
+  <Material name="MS_Run02" shaderProgram="simpleShader" >
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">MusheesRun02</Uniform>
+  </Material>
+  <Material name="MS_Run03" shaderProgram="simpleShader" >
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">MusheesRun03</Uniform>
+  </Material>
+  <Material name="MS_Run04" shaderProgram="simpleShader" >
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">MusheesRun04</Uniform>
+  </Material>
+  <Material name="MS_Run05" shaderProgram="simpleShader" >
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">MusheesRun05</Uniform>
+  </Material>
+  <Material name="MS_Run06" shaderProgram="simpleShader" >
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">MusheesRun06</Uniform>
+  </Material>
+  
+  <Material name="GreenMushroom" shaderProgram="simpleShader" >
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">GreenMushroom</Uniform>
+  </Material>
+  
+  
+</Materials>

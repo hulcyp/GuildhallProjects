@@ -1,0 +1,47 @@
+<Animation frameRate="0.1" isLooping="1" startPlaying="1" material="MusheesRunMat">
+    
+    <Frame>
+        <TexCoords topLeft="0,0" width="1.0" height="1.0" />
+        <Material name="MS_Run01"/>
+    </Frame>
+    <Frame>
+        <TexCoords topLeft="0,0" width="1.0" height="1.0" />
+        <Material name="MS_Run02"/>
+    </Frame>
+    <Frame>
+        <TexCoords topLeft="0,0" width="1.0" height="1.0" />
+        <Material name="MS_Run03"/>
+    </Frame>
+    <Frame>
+        <TexCoords topLeft="0,0" width="1.0" height="1.0" />
+        <Material name="MS_Run04"/>
+    </Frame>
+    <Frame>
+        <TexCoords topLeft="0,0" width="1.0" height="1.0" />
+        <Material name="MS_Run05"/>
+    </Frame>
+    <Frame>
+        <TexCoords topLeft="0,0" width="1.0" height="1.0" />
+        <Material name="MS_Run06"/>
+    </Frame>
+    <!-- 
+    <Frame>
+        <TexCoords topLeft="0,0" width=".1667" height="1.0" />
+    </Frame>
+    <Frame>
+        <TexCoords topLeft=".1667,0" width=".1667" height="1.0" />
+    </Frame>
+    <Frame>
+        <TexCoords topLeft=".3334,0" width=".1667" height="1.0" />
+    </Frame>
+    <Frame>
+        <TexCoords topLeft=".5001,0" width=".1667" height="1.0" />      
+    </Frame>
+    <Frame>
+        <TexCoords topLeft=".6668,0" width=".1667" height="1.0" />
+    </Frame>
+    <Frame>
+        <TexCoords topLeft=".8335,0" width=".1667" height="1.0" />
+    </Frame>
+     -->
+</Animation>

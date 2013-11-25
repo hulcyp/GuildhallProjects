@@ -10,6 +10,7 @@
 #include "MonkyRenderer/MeshFactory.h"
 #include "MonkyRenderer/Shader.h"
 #include "MonkyRenderer/ShaderProgram.h"
+#include "MonkyRenderer/SpriteAnimation.h"
 
 
 namespace Monky
@@ -67,9 +68,7 @@ namespace Monky
 		//m_spinningCube = spawn( "random actor", MeshFactory::generate2DOrthoRectangle( 20.0f, 20.0f ) );
 		//m_spinningCube->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
 
-		SpriteActor* spriteActor = new SpriteActor("Mushee", 5.0f, "SimpleColorMaterial" );
-		spawn( spriteActor );
-		spriteActor->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
+
 	}
 	//-------------------------------------------------------------------------------
 	void GameApp::cleanup()
@@ -127,7 +126,7 @@ namespace Monky
 		return actor;
 	}
 	//-------------------------------------------------------------------------------
-	void GameApp::spawn( SpriteActor* actor )
+	void GameApp::spawn( Actor* actor )
 	{
 		m_actorManager.addActor( actor );
 	}
@@ -185,9 +184,9 @@ namespace Monky
 		TimeUtils::m_currentApplicationTime = m_frameClock.getElapsedSecondsFloat();
 		Material::updateTimeOnMaterials( m_frameClock.getElapsedSecondsFloat() );
 		m_actorManager.update( DELTA_TIME );
-		mat3f rot( mat3f::IDENTITY );
-		rot.rotateZ( m_frameClock.getElapsedSecondsFloat() );
-		m_spinningCube->setRotation( rot );
+		//mat3f rot( mat3f::IDENTITY );
+		//rot.rotateZ( m_frameClock.getElapsedSecondsFloat() );
+		//m_spinningCube->setRotation( rot );
 	}
 	//-------------------------------------------------------------------------------
 	void GameApp::updateDisplay()

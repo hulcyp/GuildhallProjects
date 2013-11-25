@@ -5,6 +5,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := CodePort_Hulcy
 LOCAL_SRC_FILES := CodePort_Hulcy.cpp 	\
 GameApp.cpp								\
+MSGame.cpp								\
 ./CoreEngine/Assertion.cpp 				\
 ./CoreEngine/Clock.cpp					\
 ./CoreEngine/Colors.cpp					\
