@@ -6,5 +6,5 @@
   <Texture name="MusheesRun05">ms_mushee_animYELLOW05.png</Texture>
   <Texture name="MusheesRun06">ms_mushee_animYELLOW06.png</Texture>
  <!-- <Texture name="MusheesRun">YellowMusheesRun.png</Texture> --> 
-  <Texture name="GreenMushroom">GreenMushroomPlatform.png</Texture>
+  <Texture name="GreenMushroom.png">GreenMushroomPlatform.png</Texture>
 </Textures>

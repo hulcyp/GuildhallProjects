@@ -1,7 +1,7 @@
 #include "GameApp.h"
 #include "MonkyRenderer/Renderer.h"
 #include "CoreEngine/CommonCoreEngineIncludes.h"
-#include "CoreEngine/StringUtils.h"
+#include "CoreEngine/Util/StringUtils.h"
 #include "CoreEngine/XMLParser.h"
 #include "CoreEngine/TimeUtils.h"
 #include "CoreEngine/MonkyKeys.h"

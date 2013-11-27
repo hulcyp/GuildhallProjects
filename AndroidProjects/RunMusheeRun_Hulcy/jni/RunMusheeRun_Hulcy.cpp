@@ -13,6 +13,7 @@
 #include "CoreEngine/FileManager.h"
 #include "Game/MSGame.h"
 #include "MonkyRenderer/Camera.h"
+#include "CoreEngine/Util/StringUtils.h"
 
 #define LOG_TAG "CodePort_Hulcy"
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__))
@@ -124,6 +125,10 @@ void android_main( struct android_app* app )
 
 	consolePrintf( "Initialzing file manager" );
 	getFileManager().initialize( g_androidInfo.app->activity->assetManager );
+
+	std::string testStr = "   test   ";
+	stripLeadingAndTrailingWhiteSpace( testStr );
+	consolePrintf( "TEST STRING: %s", testStr.c_str() );
 
 	while( true )
 	{

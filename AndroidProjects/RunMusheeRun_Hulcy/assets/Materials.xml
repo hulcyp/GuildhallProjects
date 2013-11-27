@@ -36,7 +36,7 @@
   
   <Material name="GreenMushroom" shaderProgram="simpleShader" >
     <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
-    <Uniform name="uDiffuseMap" type="texture">GreenMushroom</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">GreenMushroom.png</Uniform>
   </Material>
   
   

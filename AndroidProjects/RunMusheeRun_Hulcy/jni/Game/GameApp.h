@@ -5,6 +5,7 @@
 #include "../CoreEngine/InputSystem.h"
 #include "../MonkyRenderer/ActorManager.h"
 #include "../MonkyRenderer/SpriteActor.h"
+#include "TiledMap.h"
 
 #include <android_native_app_glue.h>
 #include <EGL/egl.h>
@@ -96,6 +97,7 @@ namespace Monky
 		
 		NamedProperties m_mainFontParams;
 		NamedProperties m_memoryVisualizerParams;
+
 
 		float m_fov;
 

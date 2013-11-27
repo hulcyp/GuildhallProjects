@@ -8,7 +8,7 @@
 #include <cassert>
 #include <ostream>
 #include <istream>
-#include "../CoreEngine/StringUtils.h"
+#include "../CoreEngine/Util/StringUtils.h"
 #include "MathFuncs.h"
 
 namespace Monky

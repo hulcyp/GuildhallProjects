@@ -1,7 +1,7 @@
 #include "CoreEngine/CommonCoreEngineIncludes.h"
 #include "Shader.h"
 #include <CoreEngine/MonkyException.h>
-#include "CoreEngine/StringUtils.h"
+#include "CoreEngine/Util/StringUtils.h"
 #include "CoreEngine/FileManager.h"
 #include <cstring>
 

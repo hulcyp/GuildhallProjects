@@ -1,5 +1,5 @@
 #pragma once
-#include "StringUtils.h"
+#include "Util/StringUtils.h"
 
 namespace Monky
 {

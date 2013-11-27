@@ -1,7 +1,7 @@
 #include "RandRangeFloat.h"
 #include "RandNumGen.h"
 #include "CoreEngine/Assertion.h"
-#include "CoreEngine/StringUtils.h"
+#include "CoreEngine/Util/StringUtils.h"
 
 namespace Monky
 {

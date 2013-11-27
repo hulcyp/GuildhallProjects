@@ -7,7 +7,7 @@
 
 #include <cassert>
 #include <ostream>
-#include "../CoreEngine/StringUtils.h"
+#include "../CoreEngine/Util/StringUtils.h"
 #include "MathFuncs.h"
 #include "Vector2.h"
 

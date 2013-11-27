@@ -19,12 +19,14 @@ namespace Monky
 
 	protected:
 		virtual void updateSimulation();
+		virtual void updateDisplay();
 
 
 
 	private:
 		SpriteActor* m_spinningCube;
 
+		TiledMap* m_tiledMap;
 		vec2f m_lastPosDown;
 	};
 }

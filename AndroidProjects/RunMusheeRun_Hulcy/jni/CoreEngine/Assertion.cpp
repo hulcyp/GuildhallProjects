@@ -1,7 +1,7 @@
 #include "Assertion.h"
 #include <stdio.h>
 #include <string>
-#include "StringUtils.h"
+#include "Util/StringUtils.h"
 
 namespace Monky
 {

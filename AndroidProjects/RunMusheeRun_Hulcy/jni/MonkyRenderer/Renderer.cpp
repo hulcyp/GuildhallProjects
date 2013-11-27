@@ -13,7 +13,7 @@
 #include "Material.h"
 #include "ShaderProgram.h"
 #include "Texture.h"
-#include "CoreEngine/StringUtils.h"
+#include "CoreEngine/Util/StringUtils.h"
 #include "Camera.h"
 #include <algorithm>
 #include "FrameBufferObject.h"

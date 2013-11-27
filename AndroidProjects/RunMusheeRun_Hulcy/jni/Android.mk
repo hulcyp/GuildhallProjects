@@ -6,7 +6,8 @@ LOCAL_MODULE    := RunMusheeRun_Hulcy
 LOCAL_SRC_FILES := RunMusheeRun_Hulcy.cpp	\
 ./Game/GameApp.cpp						\
 ./Game/MSGame.cpp						\
-./Game/Map.cpp							\
+./Game/TiledMap.cpp						\
+./Game/TileSet.cpp						\
 ./CoreEngine/Assertion.cpp 				\
 ./CoreEngine/Clock.cpp					\
 ./CoreEngine/Colors.cpp					\
@@ -22,11 +23,12 @@ LOCAL_SRC_FILES := RunMusheeRun_Hulcy.cpp	\
 ./CoreEngine/ProfileData.cpp			\
 ./CoreEngine/ProfileSection.cpp			\
 ./CoreEngine/ProfileSystem.cpp			\
-./CoreEngine/StringUtils.cpp			\
 ./CoreEngine/Timer.cpp					\
 ./CoreEngine/TimeUtils.cpp				\
 ./CoreEngine/tinyxml2.cpp				\
 ./CoreEngine/XMLParser.cpp				\
+./CoreEngine/Util/StringUtils.cpp		\
+./CoreEngine/Util/Base64.cpp			\
 ./MathLib/RandNumGen.cpp				\
 ./MathLib/RandRangeFloat.cpp			\
 ./MathLib/RandRangeInt.cpp				\

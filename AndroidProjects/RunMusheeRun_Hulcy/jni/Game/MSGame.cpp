@@ -2,6 +2,7 @@
 #include "../MonkyRenderer/SpriteAnimation.h"
 #include "../MonkyRenderer/SpriteActor.h"
 #include "../MonkyRenderer/MeshFactory.h"
+#include "../MonkyRenderer/Renderer.h"
 
 namespace Monky
 {
@@ -31,6 +32,7 @@ namespace Monky
 		m_spinningCube->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
 
 
+		m_tiledMap = new TiledMap("levels/level02.tmx");
 
 	}
 
@@ -65,6 +67,25 @@ namespace Monky
 	{
 		GameApp::updateSimulation();
 		//consolePrintf( "Updating Game" );
+	}
+
+	void MSGame::updateDisplay()
+	{
+		PROFILE_SECTION( "GameApp" );
+		glClearColor( 0.2f, 0.2f, 0.2f, 1.0f );
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+		m_renderer->pushCamera( m_camera );
+		if( m_camera )
+		{
+			m_camera->update( DELTA_TIME );
+		}
+		//m_renderer->setWireFrame( m_wireFrame );
+		m_tiledMap->RenderMap();
+		m_actorManager.renderActors();
+		renderDebugHUD();
+		//m_GDOManager->renderGDOs( m_renderer, m_frameClock.getElapsedSecondsFloat() );
+		m_renderer->popCamera();
+		ProfileSystem::getInstance()->clearFrameData();
 	}
 
 
