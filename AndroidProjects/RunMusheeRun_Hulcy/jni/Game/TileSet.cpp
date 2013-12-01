@@ -27,7 +27,8 @@ namespace Monky
 		m_imageWidth = imageWidth;
 		m_imageHeight = imageHeight;
 		m_tileAmountWidth = (int)( imageWidth / (float)tileWidth );
-		m_lastGid = m_tileAmountWidth * (int)( imageHeight / (float)tileHeight ) + firstGid;
+		m_tileAmountHeight = (int)( imageHeight / (float)tileHeight );
+		m_lastGid = m_tileAmountWidth * m_tileAmountHeight + firstGid;
 		m_tileSizeInUVSpace.x = tileWidth / (float)m_imageWidth;
 		m_tileSizeInUVSpace.y = tileHeight / (float)m_imageHeight;
 		consolePrintf( "Tileset loaded: %s", name.c_str() );
@@ -49,6 +50,8 @@ namespace Monky
 		int xIdx = normalizedGID % m_tileAmountWidth;
 		int yIdx = (int) ( normalizedGID / (float)m_tileAmountWidth );
 
-		return vec2f( xIdx, yIdx ) * m_tileSizeInUVSpace;
+		vec2f texCoord = vec2f( xIdx, yIdx ) * m_tileSizeInUVSpace;
+		//texCoord.y = texCoord.y - m_tileSizeInUVSpace.y;
+		return texCoord;
 	}
 }

@@ -483,43 +483,6 @@ namespace Monky
 		return new Mesh( vertices, indices, materialName );
 	}
 	//-------------------------------------------------------------------------------------------------------------------------
-	Mesh* MeshFactory::generate2DOrthoRectangleReverseWinding( float width, float height, const std::string& materialName, Color4f color )
-	{
-		std::vector< Mesh::Vertex > vertices;
-		std::vector< unsigned int > indices;
-
-		vertices.push_back( Mesh::Vertex( vec3f( 0.0f, height ),
-									vec3f(),
-									color,
-									vec2f( 0.0f, 0.0f ) ) );
-
-		vertices.push_back( Mesh::Vertex( vec3f( width, height ),
-									vec3f(),
-									color,
-									vec2f( 1.0f, 0.0f ) ) );
-
-		vertices.push_back( Mesh::Vertex( vec3f( width, 0.0f ),
-									vec3f(),
-									color,
-									vec2f( 1.0f, 1.0f ) ) );
-
-		vertices.push_back( Mesh::Vertex( vec3f( 0.0f, 0.0f ),
-									vec3f( 0.0f, 0.0f, 1.0f ),
-									color,
-									vec2f( 0.0f, 1.0f ) ) );
-
-
-		indices.push_back( 3 );
-		indices.push_back( 2 );
-		indices.push_back( 0 );
-
-		indices.push_back( 1 );
-		indices.push_back( 0 );
-		indices.push_back( 2 );
-
-		return new Mesh( vertices, indices, materialName );
-	}
-	//-------------------------------------------------------------------------------------------------------------------------
 	Mesh* MeshFactory::generate2DOrthoRectangleBorder( float width, float height, const std::string& materialName, Color4f color )
 	{
 		std::vector< Mesh::Vertex > vertices;

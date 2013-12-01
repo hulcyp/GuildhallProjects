@@ -28,6 +28,16 @@ namespace Monky
 		std::map< std::string, TileLayerTileGroup > tileGroups;
 	};
 
+	struct Checkpoint
+	{
+		Checkpoint( const vec3f& pos, const vec2f& size )
+			: 	pos( pos )
+			,	size( size )
+		{}
+		vec3f pos;
+		vec2f size;
+	};
+
 	class TiledMap
 	{
 	public:
@@ -35,8 +45,10 @@ namespace Monky
 
 		void RenderMap();
 
-
 		void ReloadLayers();
+
+		const vec3f& GetPlayerSpawn() { return m_playerSpawn; }
+		const vec2f& GetPlayerSize() { return m_playerSize; }
 
 	private:
 		struct MapVertex
@@ -54,8 +66,9 @@ namespace Monky
 		void LoadTileSets( XMLParser& parser, XMLNode* root );
 		void LoadTileLayers( XMLParser& parser, XMLNode* root );
 		void ConstructTileLayerMeshes();
+		void ProcessObjectGroups( XMLParser& parser, XMLNode* root );
+		void LoadSpawns( XMLParser& parser, XMLNode* spawnObjGroup );
 
-		vec3f GetLocationFromIndex( int i );
 
 		TileSet* GetTileSetGIDIsIn( int gid );
 
@@ -68,5 +81,11 @@ namespace Monky
 		int m_height;
 		int m_tileWidth;
 		int m_tileHeight;
+
+		std::vector< Checkpoint > m_checkpoints;
+		vec3f m_playerSpawn;
+		vec2f m_playerSize;
+
+
 	};
 }

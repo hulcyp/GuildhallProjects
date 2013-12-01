@@ -203,7 +203,7 @@ static void initGame()
 
 		g_app->initialize();
 		Camera* camera = new Camera( "Main Camera", vec3f(), Camera::PH_ORTHOGRAPHIC,
-						mat4f::ortho( 0.0f, (float)g_androidInfo.width, (float)g_androidInfo.height, 0.0f, -1.0f, 1.0f ) );
+						mat4f::ortho( 0.0f, (float)g_androidInfo.width, 0.0f, (float)g_androidInfo.height, -1.0f, 1.0f ) );
 		g_app->initializeCamera( camera );
 	}
 }

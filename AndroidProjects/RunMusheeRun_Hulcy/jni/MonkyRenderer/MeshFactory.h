@@ -16,7 +16,6 @@ namespace Monky
 		static Mesh* generatePointMesh( float radius, const std::string& materialName = "SimpleColorMaterial", Color4f color = color::WHITE );
 		static Mesh* generateArrow( const vec3f& dir, float length, const std::string& materialName = "SimpleColorMaterial", Color4f color = color::WHITE );
 		static Mesh* generate2DOrthoRectangle( float width, float height, const std::string& materialName = "SimpleColorMaterial", Color4f color = color::WHITE );
-		static Mesh* generate2DOrthoRectangleReverseWinding( float width, float height, const std::string& materialName = "SimpleColorMaterial", Color4f color = color::WHITE );
 		static Mesh* generate2DOrthoRectangleBorder( float width, float height, const std::string& materialName = "SimpleColorMaterial", Color4f color = color::WHITE );
 		static Mesh* generateAAPlaneXY( float width, float height, const std::string& materialName = "SimpleColorMaterial", Color4f color = color::WHITE  ); 
 		static Mesh* generateAAPlaneXZ( float width, float height, const std::string& materialName = "SimpleColorMaterial", Color4f color = color::WHITE  );

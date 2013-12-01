@@ -39,6 +39,8 @@ namespace Monky
 
 	protected:
 		void Init();
+		void GenerateMesh( float width, float height, const std::string& materialName);
+
 
 	protected:
 			vec2f m_vel;

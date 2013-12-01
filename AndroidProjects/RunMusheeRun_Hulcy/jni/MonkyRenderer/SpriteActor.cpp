@@ -5,15 +5,17 @@
 #include "MeshFactory.h"
 #include "GLBuffer.h"
 
+
 namespace Monky
 {
 	SpriteActor::SpriteActor( const std::string& name, float radius, const std::string& material, float drag, float mass )
-		:	Actor( name, MeshFactory::generate2DOrthoRectangle( radius * 0.5f, radius * 0.5f, material ) )
+		:	Actor( name, nullptr )
 		,	m_radius( radius )
 		,	m_drag( drag )
 		,	m_mass( mass )
 		, 	m_visible( true )
 	{
+		GenerateMesh( m_radius * 0.5f, m_radius * 0.5f, material );
 		Init();
 	}
 	//---------------------------------------------------------------------------------
@@ -138,6 +140,49 @@ namespace Monky
 		m_animations[ "default" ] = anim;
 		m_currentAnimation = anim;
 	}
+	//---------------------------------------------------------------------------------
+	void SpriteActor::GenerateMesh( float width, float height, const std::string& materialName )
+	{
+		std::vector< Mesh::Vertex > vertices;
+		std::vector< unsigned int > indices;
 
+		Color4f color = color::WHITE;
+
+		float hWidth = width * 0.5f;
+		float hHeight = height * 0.5f;
+
+		vertices.push_back( Mesh::Vertex( vec3f( -hWidth, -hHeight ),
+									vec3f(),
+									color,
+									vec2f( 0.0f, 1.0f ) ) );
+
+
+		vertices.push_back( Mesh::Vertex( vec3f( hWidth, -hHeight ),
+									vec3f(),
+									color,
+									vec2f( 1.0f, 1.0f ) ) );
+
+		vertices.push_back( Mesh::Vertex( vec3f( hWidth, hHeight ),
+									vec3f(),
+									color,
+									vec2f( 1.0f, 0.0f ) ) );
+
+
+		vertices.push_back( Mesh::Vertex( vec3f( -hWidth, hHeight ),
+									vec3f( 0.0f, 0.0f, 1.0f ),
+									color,
+									vec2f( 0.0f, 0.0f ) ) );
+
+
+		indices.push_back( 0 );
+		indices.push_back( 2 );
+		indices.push_back( 3 );
+
+		indices.push_back( 2 );
+		indices.push_back( 0 );
+		indices.push_back( 1 );
+
+		setMesh( new Mesh( vertices, indices, materialName ) );
+	}
 
 }

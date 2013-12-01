@@ -24,15 +24,16 @@ namespace Monky
 		//platform->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, -1.0f ) );
 
 
-		m_spinningCube = new SpriteActor("Mushee", 100.0f, "MusheesRunMat" );
+		m_tiledMap = new TiledMap("levels/level01.tmx");
+
+		m_spinningCube = new SpriteActor("Mushee", m_tiledMap->GetPlayerSize().x, "MusheesRunMat" );
 		SpriteAnimation* animation = new SpriteAnimation( "animations/MusheesYellow.xml" );
 		m_spinningCube->AddAnimation( "Run", animation );
 		m_spinningCube->PlayAnimation( "Run" );
 		spawn( m_spinningCube );
-		//m_spinningCube->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
+		m_spinningCube->setPosition( m_tiledMap->GetPlayerSpawn() );
 
 
-		m_tiledMap = new TiledMap("levels/level01.tmx");
 
 	}
 
@@ -51,11 +52,11 @@ namespace Monky
 	{
 		if( fingerID == 0 )
 		{
-			if( m_lastPosDown.y > y )
+			if( m_lastPosDown.y < y )
 			{
 				m_spinningCube->setPosition( m_spinningCube->getPosition() + vec3f( 0.0f, -20.0f ) );
 			}
-			else if( m_lastPosDown.y < y )
+			else if( m_lastPosDown.y > y )
 			{
 				m_spinningCube->setPosition( m_spinningCube->getPosition() + vec3f( 0.0f, 20.0f ) );
 			}

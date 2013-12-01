@@ -31,11 +31,11 @@ namespace Monky
 			m_tileHeight = parser.getXMLAttributeAsInt( map, "tileheight", 0 );
 
 			LoadTileSets( parser, map );
-			consolePrintf( "All tilesets loaded..." );
 			LoadTileLayers( parser, map );
-			consolePrintf( "All Tile layers loaded..." );
+			ProcessObjectGroups( parser, map );
 			ConstructTileLayerMeshes();
-			consolePrintf( "All meshes constructed..." );
+
+
 		}
 	}
 
@@ -147,7 +147,8 @@ namespace Monky
 							Tile tile;
 							tile.tileSet = tileset;
 							tile.gid = tileset->GetNormalizedGIDInTileSet( gid );
-							tile.pos = vec3f( (float)x*m_tileWidth, (float)y*m_tileHeight, 0.0f );
+							int tileYFlipped = y;//m_height - y;
+							tile.pos = vec3f( (float)x*m_tileWidth, (float)tileYFlipped*m_tileHeight, 0.0f );
 							consolePrintf( "Pos: %s", tile.pos.toString().c_str() );
 							newLayer.tileGroups[ tileset->GetName() ].tiles.push_back( tile );
 						}
@@ -192,43 +193,45 @@ namespace Monky
 
 					vec3f tilePos = iter->second.tiles[i].pos;
 					vec2f topLeftTexCoord = iter->second.tiles[i].tileSet->GetTopLeftTexCoords( iter->second.tiles[i].gid );
-					topLeftTexCoord.y = 1.0f - topLeftTexCoord.y;
 
 					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x, tilePos.y + m_tileHeight, tilePos.z ),
-													vec3f( 0.0f, 0.0f, 1.0f ),
-													color::WHITE,
-													vec2f( topLeftTexCoord.x, topLeftTexCoord.y ) ) );
-
-					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
-
-					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x + m_tileWidth, tilePos.y + m_tileHeight, tilePos.z ),
-													vec3f( 0.0f, 0.0f, 1.0f ),
-													color::WHITE,
-													topLeftTexCoord + vec2f( texCoordSize.x , 0.0f ) ) );
-
-					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
-
-					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x + m_tileWidth, tilePos.y, tilePos.z ),
-													vec3f( 0.0f, 0.0f, 1.0f ),
-													color::WHITE,
-													topLeftTexCoord + texCoordSize ) );
-
-					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
-
-					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x, tilePos.y, tilePos.z ),
 													vec3f( 0.0f, 0.0f, 1.0f ),
 													color::WHITE,
 													topLeftTexCoord + vec2f( 0.0f, texCoordSize.y ) ) );
 
 					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
 
-					indices.push_back( 4*i );
-					indices.push_back( 4*i + 2 );
-					indices.push_back( 4*i + 3 );
+					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x + m_tileWidth, tilePos.y + m_tileHeight, tilePos.z ),
+													vec3f( 0.0f, 0.0f, 1.0f ),
+													color::WHITE,
+													topLeftTexCoord + texCoordSize ) );
 
+					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
+
+					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x + m_tileWidth, tilePos.y, tilePos.z ),
+													vec3f( 0.0f, 0.0f, 1.0f ),
+													color::WHITE,
+													topLeftTexCoord + vec2f( texCoordSize.x , 0.0f ) ) );
+
+
+					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
+
+					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x, tilePos.y, tilePos.z ),
+													vec3f( 0.0f, 0.0f, 1.0f ),
+													color::WHITE,
+													vec2f( topLeftTexCoord.x, topLeftTexCoord.y ) ) );
+
+
+					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
+
+					indices.push_back( 4*i + 3 );
 					indices.push_back( 4*i + 2 );
 					indices.push_back( 4*i );
+
 					indices.push_back( 4*i + 1 );
+					indices.push_back( 4*i );
+					indices.push_back( 4*i + 2 );
+
 				}
 
 
@@ -238,12 +241,44 @@ namespace Monky
 		}
 	}
 
-	vec3f TiledMap::GetLocationFromIndex( int i )
+	void TiledMap::ProcessObjectGroups( XMLParser& parser, XMLNode* root )
 	{
-		int xIdx = i % m_width;
-		int yIdx = (int) ( i / (float)m_height );
-		return vec3f( xIdx * m_tileWidth,  yIdx * m_tileHeight );
+		for( XMLNode* objectGroup = root->FirstChildElement( "objectgroup" ); objectGroup != nullptr; objectGroup = objectGroup->NextSiblingElement( "objectgroup" ) )
+		{
+			std::string name = parser.getXMLAttributeAsString( objectGroup, "name", "" );
+			if( name == "spawns" )
+			{
+				LoadSpawns( parser, objectGroup );
+			}
+		}
 	}
 
+	void TiledMap::LoadSpawns( XMLParser& parser, XMLNode* spawnObjGroup )
+	{
+		XMLNode* objectNode = spawnObjGroup->FirstChildElement( "object" );
+		for( ; objectNode != nullptr; objectNode = objectNode->NextSiblingElement( "object" ) )
+		{
+			std::string name = parser.getXMLAttributeAsString( objectNode, "name", "" );
+			int x = parser.getXMLAttributeAsInt( objectNode, "x", 0 );
+			int y = parser.getXMLAttributeAsInt( objectNode, "y", 0 );
+
+			if( name == "playerspawn" )
+			{
+				int width = parser.getXMLAttributeAsInt( objectNode, "width", 0 );
+				int height = parser.getXMLAttributeAsInt( objectNode, "height", 0 );
+				m_playerSpawn.x = x + width * 0.5f;
+				m_playerSpawn.y = y + height * 0.5f;
+				m_playerSize.x = width * 2.0f;
+				m_playerSize.y = height * 2.0f;
+			}
+			else if( name == "checkpoint" )
+			{
+				int width = parser.getXMLAttributeAsInt( objectNode, "width", 0 );
+				int height = parser.getXMLAttributeAsInt( objectNode, "height", 0 );
+
+				m_checkpoints.push_back( Checkpoint( vec3f( (float)x, (float)y, 0.0f ), vec2f( (float)width, (float)height ) ) );
+			}
+		}
+	}
 
 }

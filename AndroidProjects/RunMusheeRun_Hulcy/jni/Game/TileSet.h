@@ -27,6 +27,7 @@ namespace Monky
 		int m_imageWidth;
 		int m_imageHeight;
 		int m_tileAmountWidth;
+		int m_tileAmountHeight;
 		vec2f m_tileSizeInUVSpace;
 	};
 }
