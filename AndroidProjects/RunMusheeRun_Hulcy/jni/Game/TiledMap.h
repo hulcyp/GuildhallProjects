@@ -35,17 +35,20 @@ namespace Monky
 
 		void RenderMap();
 
+
+		void ReloadLayers();
+
 	private:
 		struct MapVertex
 		{
-			MapVertex( const vec3f& pos, const vec2f& texCoords, const Color4f& color = color::WHITE )
-				:	pos( pos )
-				,	texCoords( texCoords )
-				,	color( color )
+			MapVertex( const vec3f& p, const vec2f& tc, const Color4f& c = color::WHITE )
+				:	pos( p )
+				,	texCoords( tc )
+				,	color( c )
 			{}
 			vec3f pos;
-			Color4f color;
 			vec2f texCoords;
+			Color4f color;
 		};
 
 		void LoadTileSets( XMLParser& parser, XMLNode* root );

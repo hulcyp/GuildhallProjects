@@ -14,22 +14,22 @@ namespace Monky
 		consolePrintf( "Texture for tileset loaded..." );
 		Material* mat = Material::createOrGetMaterial( textureFile, "simpleShader" );
 
-		mat->addUniform( "uUseDiffuseMap", 0 );
+		//mat->addUniform( "uUseDiffuseMap", 0 );
 
 		if( tex != nullptr )
 		{
 			mat->addTexture( "uDiffuseMap", tex );
-			mat->updateUniform( "uUseDiffuseMap", 1 );
+			mat->addUniform( "uUseDiffuseMap", 1 );
+			consolePrintf( "Material created for tileset..." );
 		}
 
-		consolePrintf( "Material created for tileset..." );
 		m_material = textureFile;
 		m_imageWidth = imageWidth;
 		m_imageHeight = imageHeight;
 		m_tileAmountWidth = (int)( imageWidth / (float)tileWidth );
 		m_lastGid = m_tileAmountWidth * (int)( imageHeight / (float)tileHeight ) + firstGid;
-		m_tileSizeInUVSpace.x = m_tileAmountWidth / (float)m_imageWidth;
-		m_tileSizeInUVSpace.y = ( imageHeight / (float)tileHeight ) / m_imageHeight;
+		m_tileSizeInUVSpace.x = tileWidth / (float)m_imageWidth;
+		m_tileSizeInUVSpace.y = tileHeight / (float)m_imageHeight;
 		consolePrintf( "Tileset loaded: %s", name.c_str() );
 	}
 

@@ -16,6 +16,7 @@ namespace Monky
 		virtual bool onFingerDown( int fingerID, float x, float y );
 		virtual bool onFingerUp( int fingerID, float x, float y );
 
+		virtual void reloadRenderingAssets();
 
 	protected:
 		virtual void updateSimulation();

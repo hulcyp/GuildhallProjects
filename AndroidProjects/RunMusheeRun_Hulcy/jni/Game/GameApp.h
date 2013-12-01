@@ -71,7 +71,7 @@ namespace Monky
 		bool isInitialized() const { return m_isInitialized; }
 	
 
-		void reloadRenderingAssets();
+		virtual void reloadRenderingAssets();
 
 	protected:
 		virtual void updateSimulation();

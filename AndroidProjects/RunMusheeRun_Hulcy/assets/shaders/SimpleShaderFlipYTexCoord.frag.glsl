@@ -1,22 +1,21 @@
-#version 330
+precision mediump float;
 
 uniform float time;
 uniform mat4 uProjectionMatrix;
 uniform mat4 uViewMatrix;
 uniform mat4 uModelMatrix;
 uniform mat4 uMVPMatrix;
-uniform float uFontHeight;
 
 uniform sampler2D uDiffuseMap;
 uniform int uUseDiffuseMap;
 
-in vec4 vColor;
-in vec2 vTexCoord0;
-
-out vec4 fragColor;
+varying vec4 vColor;
+varying vec2 vTexCoord0;
 
 void main()
 {
 	vec2 texCoord = vec2( vTexCoord0.x, 1.0 - vTexCoord0.y );
-	fragColor = vColor * texture( uDiffuseMap, texCoord ) * uUseDiffuseMap + vColor * ( 1 - uUseDiffuseMap );
+	
+	vec4 useDiffuseMap = vec4( uUseDiffuseMap, uUseDiffuseMap, uUseDiffuseMap, uUseDiffuseMap );	
+	gl_FragColor = vColor * texture2D( uDiffuseMap, texCoord ) * useDiffuseMap + vColor * ( vec4(1,1,1,1) - useDiffuseMap );
 }

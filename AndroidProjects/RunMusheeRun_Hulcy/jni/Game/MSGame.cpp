@@ -19,9 +19,9 @@ namespace Monky
 	{
 		GameApp::initialize();
 
-		Mesh* platformMesh = MeshFactory::generate2DOrthoRectangle( 100.f, 100.f, "GreenMushroom" );
-		Actor* platform = spawn( "zgreenPlatform", platformMesh );
-		platform->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, -1.0f ) );
+		//Mesh* platformMesh = MeshFactory::generate2DOrthoRectangle( 100.f, 100.f, "GreenMushroom" );
+		//Actor* platform = spawn( "zgreenPlatform", platformMesh );
+		//platform->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, -1.0f ) );
 
 
 		m_spinningCube = new SpriteActor("Mushee", 100.0f, "MusheesRunMat" );
@@ -29,10 +29,10 @@ namespace Monky
 		m_spinningCube->AddAnimation( "Run", animation );
 		m_spinningCube->PlayAnimation( "Run" );
 		spawn( m_spinningCube );
-		m_spinningCube->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
+		//m_spinningCube->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, 0.0f ) );
 
 
-		m_tiledMap = new TiledMap("levels/level02.tmx");
+		m_tiledMap = new TiledMap("levels/level01.tmx");
 
 	}
 
@@ -61,6 +61,12 @@ namespace Monky
 			}
 		}
 		return true;
+	}
+
+	void MSGame::reloadRenderingAssets()
+	{
+		GameApp::reloadRenderingAssets();
+		m_tiledMap->ReloadLayers();
 	}
 
 	void MSGame::updateSimulation()

@@ -11,6 +11,11 @@
 namespace Monky
 {
 
+	// Bits on the far end of the 32-bit global tile ID are used for tile flags
+	const unsigned FLIPPED_HORIZONTALLY_FLAG = 0x80000000;
+	const unsigned FLIPPED_VERTICALLY_FLAG   = 0x40000000;
+	const unsigned FLIPPED_DIAGONALLY_FLAG   = 0x20000000;
+
 	TiledMap::TiledMap( const std::string& mapFile )
 		: 	m_mapFile( mapFile )
 	{
@@ -39,6 +44,7 @@ namespace Monky
 		NamedProperties params;
 		matStackf matStack;
 		matStack.loadIdentity();
+		matStack.translate( (float)-m_width, (float)-m_height, 0.0f );
 		params.set( "modelMatrix", matStack );
 		for( int i = 0; i < m_layers.size(); ++i )
 		{
@@ -46,7 +52,18 @@ namespace Monky
 			{
 				params.set( "mesh", iter->second.mesh );
 				fireEvent( "renderMesh", params );
-				consolePrintf( "LayerGroup Rendered" );
+				//consolePrintf( "LayerGroup Rendered" );
+			}
+		}
+	}
+
+	void TiledMap::ReloadLayers()
+	{
+		for( int i = 0; i < m_layers.size(); ++i )
+		{
+			for( auto iter = m_layers[i].tileGroups.begin(); iter != m_layers[i].tileGroups.end(); ++iter )
+			{
+				iter->second.mesh->reloadBuffers();
 			}
 		}
 	}
@@ -105,26 +122,36 @@ namespace Monky
 
 				int size = decodedData.size();
 				consolePrintf( "Decoded data size: %d", size );
-				for( int i = 0; i < size; i += 4 )
-				{
-					int gid = decodedData[i] |
-							decodedData[i + 1] << 8 |
-							decodedData[i + 2] << 16 |
-							decodedData[i + 3] << 24;
+				int tile_index = 0;
 
-					TileSet* tileset = GetTileSetGIDIsIn( gid );
-
-
-					if( tileset != nullptr )
+				for( int y = 0; y < m_height; ++y )
+					for( int x = 0; x < m_width; ++x )
 					{
-						consolePrintf( "Creating tile with gid: %d", gid );
-						Tile tile;
-						tile.tileSet = tileset;
-						tile.gid = tileset->GetNormalizedGIDInTileSet( gid );
-						tile.pos = GetLocationFromIndex( i / 4 );
-						newLayer.tileGroups[ tileset->GetName() ].tiles.push_back( tile );
+						int gid = decodedData[tile_index] |
+								decodedData[tile_index + 1] << 8 |
+								decodedData[tile_index + 2] << 16 |
+								decodedData[tile_index + 3] << 24;
+
+						tile_index +=4;
+
+						gid &= ~(FLIPPED_HORIZONTALLY_FLAG |
+								 FLIPPED_VERTICALLY_FLAG |
+								 FLIPPED_DIAGONALLY_FLAG);
+
+						TileSet* tileset = GetTileSetGIDIsIn( gid );
+
+
+						if( tileset != nullptr )
+						{
+							consolePrintf( "Creating tile with gid: %d", gid );
+							Tile tile;
+							tile.tileSet = tileset;
+							tile.gid = tileset->GetNormalizedGIDInTileSet( gid );
+							tile.pos = vec3f( (float)x*m_tileWidth, (float)y*m_tileHeight, 0.0f );
+							consolePrintf( "Pos: %s", tile.pos.toString().c_str() );
+							newLayer.tileGroups[ tileset->GetName() ].tiles.push_back( tile );
+						}
 					}
-				}
 
 			}
 			else
@@ -154,10 +181,10 @@ namespace Monky
 			{
 				int numTiles = iter->second.tiles.size();
 				int numVertices = numTiles * 4;
-				std::vector< MapVertex > vertices;
+				std::vector< Mesh::Vertex > vertices;
 				std::vector< unsigned int > indices;
 
-				for( size_t i = 0; i < numTiles; ++i )
+				for( int i = 0; i < numTiles; ++i )
 				{
 
 					vec2f texCoordSize = iter->second.tiles[i].tileSet->GetTileSizeInUVSpace();
@@ -165,54 +192,47 @@ namespace Monky
 
 					vec3f tilePos = iter->second.tiles[i].pos;
 					vec2f topLeftTexCoord = iter->second.tiles[i].tileSet->GetTopLeftTexCoords( iter->second.tiles[i].gid );
+					topLeftTexCoord.y = 1.0f - topLeftTexCoord.y;
 
-					vertices.push_back( MapVertex( vec3f( tilePos.x - m_tileWidth * 0.5f, tilePos.y + m_tileWidth * 0.5f, tilePos.z ),
-										vec2f( topLeftTexCoord.x, topLeftTexCoord.y ) ) );
+					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x, tilePos.y + m_tileHeight, tilePos.z ),
+													vec3f( 0.0f, 0.0f, 1.0f ),
+													color::WHITE,
+													vec2f( topLeftTexCoord.x, topLeftTexCoord.y ) ) );
 
-					vertices.push_back( MapVertex( vec3f( tilePos.x + m_tileWidth * 0.5f, tilePos.y + m_tileWidth * 0.5f, tilePos.z ),
-										topLeftTexCoord + vec2f( texCoordSize.x , 0.0f ) ) );
+					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
 
-					vertices.push_back( MapVertex( vec3f( tilePos.x + m_tileWidth * 0.5f, tilePos.y - m_tileWidth * 0.5f, tilePos.z ),
-										topLeftTexCoord + texCoordSize ) );
+					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x + m_tileWidth, tilePos.y + m_tileHeight, tilePos.z ),
+													vec3f( 0.0f, 0.0f, 1.0f ),
+													color::WHITE,
+													topLeftTexCoord + vec2f( texCoordSize.x , 0.0f ) ) );
 
-					vertices.push_back( MapVertex( vec3f( tilePos.x - m_tileWidth * 0.5f, tilePos.y - m_tileWidth * 0.5f, tilePos.z ),
-										topLeftTexCoord + vec2f( 0.0f, texCoordSize.y ) ) );
+					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
+
+					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x + m_tileWidth, tilePos.y, tilePos.z ),
+													vec3f( 0.0f, 0.0f, 1.0f ),
+													color::WHITE,
+													topLeftTexCoord + texCoordSize ) );
+
+					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
+
+					vertices.push_back( Mesh::Vertex( vec3f( tilePos.x, tilePos.y, tilePos.z ),
+													vec3f( 0.0f, 0.0f, 1.0f ),
+													color::WHITE,
+													topLeftTexCoord + vec2f( 0.0f, texCoordSize.y ) ) );
+
+					//consolePrintf( "TexCoords: %s", vertices[ vertices.size() - 1 ].texCoords.toString().c_str() );
 
 					indices.push_back( 4*i );
 					indices.push_back( 4*i + 2 );
 					indices.push_back( 4*i + 3 );
+
 					indices.push_back( 4*i + 2 );
 					indices.push_back( 4*i );
 					indices.push_back( 4*i + 1 );
 				}
 
-				BufferLayout* vtxBufferLayout = new BufferLayout( 3,
-							BufferLayout::FLOAT3,
-							BufferLayout::FLOAT4,
-							BufferLayout::FLOAT2 );
-				size_t vtxBufferSize = vtxBufferLayout->stride() * vertices.size();
-				char* vtxBufferData = new char[ vtxBufferSize ];
-				std::memcpy( vtxBufferData, (char*)vertices.data(), vtxBufferSize );
 
-				BufferLayout* idxBufferLayout = new BufferLayout( 1, BufferLayout::INT );
-				size_t idxBufferSize = idxBufferLayout->stride() * indices.size();
-				char* idxBufferData = new char[ idxBufferSize ];
-				std::memcpy( idxBufferData, (char*)indices.data(), idxBufferSize );
-
-
-				GLBuffer* vtxBuffer = new GLBuffer( vtxBufferData, vertices.size(), vtxBufferLayout, GL_ARRAY_BUFFER );
-				GLBuffer* idxBuffer = new GLBuffer( idxBufferData, indices.size(), idxBufferLayout, GL_ELEMENT_ARRAY_BUFFER );
-
-				vtxBuffer->sendToOpenGL();
-				idxBuffer->sendToOpenGL();
-
-				std::map< VtxBufferAccessor::AttributeType, int > vtxMapping;
-				vtxMapping[ VtxBufferAccessor::POSITION ] = 0;
-				vtxMapping[ VtxBufferAccessor::COLOR ] = 1;
-				vtxMapping[ VtxBufferAccessor::UV ] = 2;
-				VtxBufferAccessor* vtxAccessor = new VtxBufferAccessor( vtxBuffer, vtxMapping );
-
-				iter->second.mesh  = new Mesh( vtxBuffer, idxBuffer, vtxAccessor, iter->second.tiles[0].tileSet->GetMaterial() );
+				iter->second.mesh  = new Mesh( vertices, indices, iter->second.tiles[0].tileSet->GetMaterial() );
 			}
 
 		}
@@ -222,7 +242,7 @@ namespace Monky
 	{
 		int xIdx = i % m_width;
 		int yIdx = (int) ( i / (float)m_height );
-		return vec3f( xIdx * m_tileWidth, yIdx * m_tileHeight );
+		return vec3f( xIdx * m_tileWidth,  yIdx * m_tileHeight );
 	}
 
 
