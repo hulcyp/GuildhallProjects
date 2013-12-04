@@ -21,6 +21,7 @@ namespace Monky
 
 		int getActorType() const { return m_actorType; }
 
+
 	protected:
 		bool m_isDead;
 		float m_lifespan;

@@ -8,6 +8,7 @@ LOCAL_SRC_FILES := RunMusheeRun_Hulcy.cpp	\
 ./Game/MSGame.cpp						\
 ./Game/TiledMap.cpp						\
 ./Game/TileSet.cpp						\
+./Game/MSCamera.cpp						\
 ./CoreEngine/Assertion.cpp 				\
 ./CoreEngine/Clock.cpp					\
 ./CoreEngine/Colors.cpp					\
@@ -54,6 +55,7 @@ LOCAL_SRC_FILES := RunMusheeRun_Hulcy.cpp	\
 ./MonkyRenderer/ActorManager.cpp		\
 ./MonkyRenderer/SpriteAnimation.cpp		\
 ./MonkyRenderer/SpriteActor.cpp			\
+
 
 LOCAL_LDLIBS := -llog -landroid -lEGL -lGLESv2
 LOCAL_STATIC_LIBRARIES := android_native_app_glue

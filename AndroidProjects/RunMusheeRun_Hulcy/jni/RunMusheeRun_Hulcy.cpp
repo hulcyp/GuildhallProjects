@@ -14,6 +14,7 @@
 #include "Game/MSGame.h"
 #include "MonkyRenderer/Camera.h"
 #include "CoreEngine/Util/StringUtils.h"
+#include "Game/MSCamera.h"
 
 #define LOG_TAG "CodePort_Hulcy"
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__))
@@ -202,7 +203,7 @@ static void initGame()
 										FOV );
 
 		g_app->initialize();
-		Camera* camera = new Camera( "Main Camera", vec3f(), Camera::PH_ORTHOGRAPHIC,
+		Camera* camera = new MSCamera( "Main Camera", vec3f(), Camera::PH_ORTHOGRAPHIC,
 						mat4f::ortho( 0.0f, (float)g_androidInfo.width, 0.0f, (float)g_androidInfo.height, -1.0f, 1.0f ) );
 		g_app->initializeCamera( camera );
 	}

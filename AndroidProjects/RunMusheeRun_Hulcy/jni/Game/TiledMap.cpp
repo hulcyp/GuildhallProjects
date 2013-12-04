@@ -68,6 +68,22 @@ namespace Monky
 		}
 	}
 
+
+	bool TiledMap::DidPlayerCollideWithCheckpoint( const aabb2f& playerBox, vec2f& checkpointPos )
+	{
+		bool collidedWithCheckpoint = false;
+		if( m_checkpoints.size() > 0 )
+		{
+			if( playerBox.intersects( m_checkpoints.front().box ) )
+			{
+				collidedWithCheckpoint = true;
+				checkpointPos = m_checkpoints.front().box.getCenter();
+				m_checkpoints.pop();
+			}
+		}
+		return collidedWithCheckpoint;
+	}
+
 	void TiledMap::LoadTileSets( XMLParser& parser, XMLNode* root )
 	{
 		XMLNode* tilesetNode = root->FirstChildElement( "tileset" );
@@ -276,7 +292,7 @@ namespace Monky
 				int width = parser.getXMLAttributeAsInt( objectNode, "width", 0 );
 				int height = parser.getXMLAttributeAsInt( objectNode, "height", 0 );
 
-				m_checkpoints.push_back( Checkpoint( vec3f( (float)x, (float)y, 0.0f ), vec2f( (float)width, (float)height ) ) );
+				m_checkpoints.push( Checkpoint( vec3f( (float)x, (float)y, 0.0f ), vec2f( (float)width, (float)height ) ) );
 			}
 		}
 	}

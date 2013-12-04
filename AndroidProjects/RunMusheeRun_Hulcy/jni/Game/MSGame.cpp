@@ -8,32 +8,26 @@ namespace Monky
 {
 	MSGame::MSGame( double deltaTime, int width, int height, float fov )
 		:	GameApp( deltaTime, width, height, fov )
+		,	m_currentHorizontalImpulseToApply( 200.0f )
+		, 	m_verticalImpulseToApply( 50.0f )
 	{}
 
 	MSGame::~MSGame()
-	{
-
-	}
+	{}
 
 	void MSGame::initialize()
 	{
 		GameApp::initialize();
 
-		//Mesh* platformMesh = MeshFactory::generate2DOrthoRectangle( 100.f, 100.f, "GreenMushroom" );
-		//Actor* platform = spawn( "zgreenPlatform", platformMesh );
-		//platform->setPosition( vec3f( m_screenWidth / 2, m_screenHeight / 2, -1.0f ) );
-
 
 		m_tiledMap = new TiledMap("levels/level01.tmx");
 
-		m_spinningCube = new SpriteActor("Mushee", m_tiledMap->GetPlayerSize().x, "MusheesRunMat" );
+		m_theMushee = new SpriteActor("Mushee", m_tiledMap->GetPlayerSize().x, "MusheesRunMat", 10.0f );
 		SpriteAnimation* animation = new SpriteAnimation( "animations/MusheesYellow.xml" );
-		m_spinningCube->AddAnimation( "Run", animation );
-		m_spinningCube->PlayAnimation( "Run" );
-		spawn( m_spinningCube );
-		m_spinningCube->setPosition( m_tiledMap->GetPlayerSpawn() );
-
-
+		m_theMushee->AddAnimation( "Run", animation );
+		m_theMushee->PlayAnimation( "Run" );
+		spawn( m_theMushee );
+		m_theMushee->setPosition( m_tiledMap->GetPlayerSpawn() );
 
 	}
 
@@ -54,11 +48,11 @@ namespace Monky
 		{
 			if( m_lastPosDown.y < y )
 			{
-				m_spinningCube->setPosition( m_spinningCube->getPosition() + vec3f( 0.0f, -20.0f ) );
+				m_theMushee->setPosition( m_theMushee->getPosition() + vec3f( 0.0f, -m_verticalImpulseToApply ) );
 			}
 			else if( m_lastPosDown.y > y )
 			{
-				m_spinningCube->setPosition( m_spinningCube->getPosition() + vec3f( 0.0f, 20.0f ) );
+				m_theMushee->setPosition( m_theMushee->getPosition() + vec3f( 0.0f, m_verticalImpulseToApply ) );
 			}
 		}
 		return true;
@@ -73,7 +67,19 @@ namespace Monky
 	void MSGame::updateSimulation()
 	{
 		GameApp::updateSimulation();
-		//consolePrintf( "Updating Game" );
+
+		m_theMushee->ApplyImpulse( vec2f( m_currentHorizontalImpulseToApply ) );
+
+		vec3f newCameraPos;
+		newCameraPos.x = m_theMushee->getPosition().x - m_screenWidth * 0.5f;
+
+		m_camera->setPosition( newCameraPos );
+
+		vec2f newCheckpointLoc;
+		if( m_tiledMap->DidPlayerCollideWithCheckpoint( m_theMushee->GetBoundingBox(), newCheckpointLoc ) )
+		{
+			m_currentCheckpoint =  newCheckpointLoc;
+		}
 	}
 
 	void MSGame::updateDisplay()
@@ -86,7 +92,6 @@ namespace Monky
 		{
 			m_camera->update( DELTA_TIME );
 		}
-		//m_renderer->setWireFrame( m_wireFrame );
 		m_tiledMap->RenderMap();
 		m_actorManager.renderActors();
 		renderDebugHUD();

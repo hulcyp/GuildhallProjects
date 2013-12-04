@@ -17,6 +17,9 @@ namespace Monky
 		void setMaxPoint( const Vector2<T>& maxPoint );
 		T getWidth() const;
 		T getHeight() const;
+		Vector2<T> getCenter() const;
+
+		void setPositionFromCenter( const Vector2<T>& position );
 
 		/* Readjusts the min and max points so that the min point is the smalles x and y and the max point is the largest x and y*/
 		void adjustMinMaxPoints();
@@ -95,6 +98,21 @@ namespace Monky
 	}
 	//----------------------------------------------------------------
 	template< typename T >
+	Vector2<T> AABB2<T>::getCenter() const
+	{
+		return ( m_maxPoint - m_minPoint ) * 0.5f;
+	}
+	//----------------------------------------------------------------
+	template< typename T >
+	void AABB2<T>::setPositionFromCenter( const Vector2<T>& position )
+	{
+		Vector2<T> hSize = Vector2<T>( m_width / 2, m_height / 2 );
+		m_minPoint = position - hSize;
+		m_maxPoint = position + hSize;
+
+	}
+	//----------------------------------------------------------------
+	template< typename T >
 	void AABB2<T>::adjustMinMaxPoints()
 	{
 		T newMinX = std::min( m_minPoint.x, m_maxPoint.x );
@@ -124,11 +142,13 @@ namespace Monky
 	template< typename T >
 	bool AABB2<T>::intersects( const AABB2<T>& box ) const
 	{
-		//return	( std::abs( m_minPoint.x - box.m_minPoint.x ) * 2 < ( m_width + box.m_width ) ) &&
-		//		( std::abs( m_minPoint.y - box.m_minPoint.y ) * 2 < ( m_height + box.m_height ) );
-		return ( ( m_minPoint.x <= box.m_maxPoint.x ) && 
-				 ( m_minPoint.y <= box.m_maxPoint.y ) &&
-				 ( m_maxPoint.x >= box.m_minPoint.x ) &&
-				 ( m_maxPoint.y >= box.m_minPoint.y ) );
+		Vector2<T> boxCenter = box.getCenter();
+		Vector2<T> myCenter = getCenter();
+		Vector2<T> delta = myCenter - boxCenter;
+
+		Vector2<T> overlapDist = Vector2<T>( m_width + box.m_width, m_height + box.m_height) - delta;
+
+		return ( overlapDist.x >= 0.0f &&
+				 overlapDist.y >= 0.0f );
 	}
 }

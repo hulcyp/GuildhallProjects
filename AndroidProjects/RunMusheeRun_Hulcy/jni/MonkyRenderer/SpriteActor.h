@@ -18,12 +18,13 @@ namespace Monky
 		virtual void ApplyImpulse( const vec2f& impulse );
 		virtual void ApplyGravity( const vec2f& gravity );
 		virtual void update( double deltaTime );
-		virtual bool OnCollision( SpriteActor* other );
+		virtual void OnCollision( SpriteActor* other );
 
 
 		vec2f GetVel() { return m_vel; }
 		float GetMass() const { return m_mass; }
 		float GetRadius() const { return m_radius; }
+		const aabb2f& GetBoundingBox() const { return m_boundingBox; }
 
 
 		virtual bool IsVisible() { return m_visible; }
@@ -37,12 +38,16 @@ namespace Monky
 		const std::string& GetCurrentAnimationName();
 		bool HasAnimation( const std::string& animationName );
 
+		//"Collision check"
+		virtual bool DoesIntersect( const aabb2f& boundingBox );
+
 	protected:
 		void Init();
 		void GenerateMesh( float width, float height, const std::string& materialName);
 
 
 	protected:
+			aabb2f m_boundingBox;
 			vec2f m_vel;
 			float m_drag;
 			float m_mass;

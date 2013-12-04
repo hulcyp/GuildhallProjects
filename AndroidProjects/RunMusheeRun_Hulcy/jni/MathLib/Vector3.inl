@@ -312,67 +312,67 @@ namespace Monky
 	}
 
 	template< typename T >
-	Vector2<T> Vector3<T>::xx() { return Vector2<T>( x, x ); }
+	Vector2<T> Vector3<T>::xx() const { return Vector2<T>( x, x ); }
 	template< typename T >
-	Vector2<T> Vector3<T>::xy() { return Vector2<T>( x, y ); }
+	Vector2<T> Vector3<T>::xy() const { return Vector2<T>( x, y ); }
 	template< typename T >
-	Vector2<T> Vector3<T>::yx() { return Vector2<T>( y, x ); }
+	Vector2<T> Vector3<T>::yx() const { return Vector2<T>( y, x ); }
 	template< typename T >
-	Vector2<T> Vector3<T>::yy() { return Vector2<T>( y, y ); }
+	Vector2<T> Vector3<T>::yy() const { return Vector2<T>( y, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::xxx() { return Vector3<T>( x, x, x ); }
+	Vector3<T> Vector3<T>::xxx() const { return Vector3<T>( x, x, x ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::xxy() { return Vector3<T>( x, x, y ); }
+	Vector3<T> Vector3<T>::xxy() const { return Vector3<T>( x, x, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::xxz() { return Vector3<T>( x, x, z ); }
+	Vector3<T> Vector3<T>::xxz() const { return Vector3<T>( x, x, z ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::xyx() { return Vector3<T>( x, y, x ); }
+	Vector3<T> Vector3<T>::xyx() const { return Vector3<T>( x, y, x ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::xyy() { return Vector3<T>( x, y, y ); }
+	Vector3<T> Vector3<T>::xyy() const { return Vector3<T>( x, y, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::xyz() { return Vector3<T>( x, y, z ); }
+	Vector3<T> Vector3<T>::xyz() const { return Vector3<T>( x, y, z ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::xzx() { return Vector3<T>( x, z, x ); }
+	Vector3<T> Vector3<T>::xzx() const { return Vector3<T>( x, z, x ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::xzy() { return Vector3<T>( x, z, y ); }
+	Vector3<T> Vector3<T>::xzy() const { return Vector3<T>( x, z, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::xzz() { return Vector3<T>( x, z, z ); }
+	Vector3<T> Vector3<T>::xzz() const { return Vector3<T>( x, z, z ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::yxx() { return Vector3<T>( y, x, x ); }
+	Vector3<T> Vector3<T>::yxx() const { return Vector3<T>( y, x, x ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::yxy() { return Vector3<T>( y, x, y ); }
+	Vector3<T> Vector3<T>::yxy() const { return Vector3<T>( y, x, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::yxz() { return Vector3<T>( y, x, z ); }
+	Vector3<T> Vector3<T>::yxz() const { return Vector3<T>( y, x, z ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::yyx() { return Vector3<T>( y, y, x ); }
+	Vector3<T> Vector3<T>::yyx() const { return Vector3<T>( y, y, x ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::yyy() { return Vector3<T>( y, y, y ); }
+	Vector3<T> Vector3<T>::yyy() const { return Vector3<T>( y, y, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::yyz() { return Vector3<T>( y, y, z ); }
+	Vector3<T> Vector3<T>::yyz() const { return Vector3<T>( y, y, z ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::yzx() { return Vector3<T>( y, z, x ); }
+	Vector3<T> Vector3<T>::yzx() const { return Vector3<T>( y, z, x ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::yzy() { return Vector3<T>( y, z, y ); }
+	Vector3<T> Vector3<T>::yzy() const { return Vector3<T>( y, z, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::yzz() { return Vector3<T>( y, z, z ); }
+	Vector3<T> Vector3<T>::yzz() const { return Vector3<T>( y, z, z ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::zxx() { return Vector3<T>( z, x, x ); }
+	Vector3<T> Vector3<T>::zxx() const { return Vector3<T>( z, x, x ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::zxy() { return Vector3<T>( z, x, y ); }
+	Vector3<T> Vector3<T>::zxy() const { return Vector3<T>( z, x, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::zxz() { return Vector3<T>( z, x, z ); }
+	Vector3<T> Vector3<T>::zxz() const { return Vector3<T>( z, x, z ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::zyx() { return Vector3<T>( z, y, x ); }
+	Vector3<T> Vector3<T>::zyx() const { return Vector3<T>( z, y, x ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::zyy() { return Vector3<T>( z, y, y ); }
+	Vector3<T> Vector3<T>::zyy() const { return Vector3<T>( z, y, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::zyz() { return Vector3<T>( z, y, z ); }
+	Vector3<T> Vector3<T>::zyz() const { return Vector3<T>( z, y, z ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::zzx() { return Vector3<T>( z, z, x ); }
+	Vector3<T> Vector3<T>::zzx() const { return Vector3<T>( z, z, x ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::zzy() { return Vector3<T>( z, z, y ); }
+	Vector3<T> Vector3<T>::zzy() const { return Vector3<T>( z, z, y ); }
 	template< typename T >
-	Vector3<T> Vector3<T>::zzz() { return Vector3<T>( z, z, z ); }
+	Vector3<T> Vector3<T>::zzz() const { return Vector3<T>( z, z, z ); }
 
 	template< typename T >
 	void Vector3<T>::scaleToLength( T newLength )

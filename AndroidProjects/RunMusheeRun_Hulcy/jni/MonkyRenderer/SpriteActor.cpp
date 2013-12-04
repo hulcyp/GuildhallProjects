@@ -14,6 +14,7 @@ namespace Monky
 		,	m_drag( drag )
 		,	m_mass( mass )
 		, 	m_visible( true )
+		,	m_boundingBox( vec2f(), m_radius * 2.0f, m_radius * 2.0f )
 	{
 		GenerateMesh( m_radius * 0.5f, m_radius * 0.5f, material );
 		Init();
@@ -44,6 +45,7 @@ namespace Monky
 		m_vel -= m_vel * dt * m_drag;
 		pos2D += m_vel * dt;
 		setPosition( pos2D );
+		m_boundingBox.setPositionFromCenter( pos2D );
 
 		if( m_currentAnimation != nullptr )
 		{
@@ -52,9 +54,9 @@ namespace Monky
 		}
 	}
 	//---------------------------------------------------------------------------------
-	bool SpriteActor::OnCollision( SpriteActor* other )
+	void SpriteActor::OnCollision( SpriteActor* other )
 	{
-		return true;
+
 	}
 	//---------------------------------------------------------------------------------
 	void SpriteActor::SetVisible( bool visible )
@@ -130,6 +132,11 @@ namespace Monky
 	bool SpriteActor::HasAnimation( const std::string& animationName )
 	{
 		return ( m_animations.find( animationName ) != m_animations.end() );
+	}
+	//---------------------------------------------------------------------------------
+	bool SpriteActor::DoesIntersect( const aabb2f& boundingBox )
+	{
+		return m_boundingBox.intersects( boundingBox );
 	}
 	//---------------------------------------------------------------------------------
 	void SpriteActor::Init()

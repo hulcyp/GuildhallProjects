@@ -25,9 +25,14 @@ namespace Monky
 
 
 	private:
-		SpriteActor* m_spinningCube;
 
 		TiledMap* m_tiledMap;
 		vec2f m_lastPosDown;
+		SpriteActor* m_theMushee;
+
+		vec2f m_currentCheckpoint;
+
+		float m_currentHorizontalImpulseToApply;
+		float m_verticalImpulseToApply;
 	};
 }
