@@ -95,11 +95,11 @@ static int32_t engine_handle_input( struct android_app* app, AInputEvent* event 
 			float x = AMotionEvent_getX( event, 0 );
 			float y = AMotionEvent_getY( event, 0 );
 
-			if( AMotionEvent_getAction( event ) == AMOTION_EVENT_ACTION_UP )
+			if( AMotionEvent_getAction( event ) == AMOTION_EVENT_ACTION_DOWN )
 			{
 				g_app->onFingerDown( fingerId, x, y );
 			}
-			else if( AMotionEvent_getAction( event ) == AMOTION_EVENT_ACTION_DOWN )
+			else if( AMotionEvent_getAction( event ) == AMOTION_EVENT_ACTION_UP )
 			{
 				g_app->onFingerUp( fingerId, x, y );
 			}

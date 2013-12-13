@@ -1,7 +1,11 @@
 <Materials>
-  <Material name="SimpleColorMaterial" shaderProgram="simpleShader" >
-    
+  <Material name="SimpleColorMaterial" shaderProgram="simpleShader" >    
     <Uniform name="uUseDiffuseMap" type="int">0</Uniform>
+  </Material>
+  
+   <Material name="MushroomPlatform" shaderProgram="simpleShader" >
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">GreenMushroomPlatformTile</Uniform>
   </Material>
 
   <Material name="MusheesRunMat" shaderProgram="simpleShader" >
@@ -39,5 +43,51 @@
     <Uniform name="uDiffuseMap" type="texture">GreenMushroom.png</Uniform>
   </Material>
   
+  <Material name="MusheeCage" shaderProgram="simpleShader">
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">MusheeCage</Uniform>  
+    </Material>   
+     
+  <Material name="MusheeChair" shaderProgram="simpleShader">
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">MusheeChair</Uniform>      
+  </Material>
   
-</Materials>
+  <Material name="UpArrow" shaderProgram="simpleShader">
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">UpArrow</Uniform>      
+  </Material>
+  
+  <Material name="UpArrow_Down" shaderProgram="simpleShader">
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">UpArrow_Down</Uniform>      
+  </Material>
+  
+  <Material name="DownArrow" shaderProgram="simpleShader">
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">DownArrow</Uniform>      
+  </Material>
+  
+  <Material name="DownArrow_Down" shaderProgram="simpleShader">
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">DownArrow_Down</Uniform>      
+  </Material>
+  
+  <Material name="PauseButton_Up" shaderProgram="simpleShader">
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">PauseButton_Up</Uniform>      
+  </Material>
+  
+  <Material name="PauseButton_Down" shaderProgram="simpleShader">
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">PauseButton_Down</Uniform>      
+  </Material>
+  
+  <Material name="Mushees_Background" shaderProgram="simpleShader">
+    <Uniform name="uUseDiffuseMap" type="int">1</Uniform>
+    <Uniform name="uDiffuseMap" type="texture">Mushees_Background</Uniform>      
+  </Material>
+  
+ </Materials>
+  
+  

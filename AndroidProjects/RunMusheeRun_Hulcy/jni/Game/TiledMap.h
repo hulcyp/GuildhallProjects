@@ -35,6 +35,13 @@ namespace Monky
 		{
 		}
 		aabb2f box;
+		Mesh* mesh;
+	};
+
+	struct TiledObj
+	{
+		aabb2f boundingBox;
+		Mesh* mesh;
 	};
 
 	class TiledMap
@@ -42,7 +49,7 @@ namespace Monky
 	public:
 		TiledMap( const std::string& mapFile );
 
-		void RenderMap();
+		void RenderMap( bool shouldShowDebug = false );
 
 		void ReloadLayers();
 
@@ -50,6 +57,10 @@ namespace Monky
 		const vec2f& GetPlayerSize() { return m_playerSize; }
 
 		bool DidPlayerCollideWithCheckpoint( const aabb2f& playerBox, vec2f& checkpointPos );
+		bool DidPlayerCollideWithBottomBounds( const aabb2f& playerBox, vec2f& overlapDist );
+		bool DidPlayerCollideWithTopBounds( const aabb2f& playerBox, vec2f& overlapDist );
+		bool DidPlayerCollideWithBounds( const aabb2f& playerBox, vec2f& overlapDist );
+		bool DidPlayerCollideWithKillBox( const aabb2f& playerBox );
 
 	private:
 		struct MapVertex
@@ -69,6 +80,7 @@ namespace Monky
 		void ConstructTileLayerMeshes();
 		void ProcessObjectGroups( XMLParser& parser, XMLNode* root );
 		void LoadSpawns( XMLParser& parser, XMLNode* spawnObjGroup );
+		void LoadBoundaries( XMLParser& parser, XMLNode* boundariesGroup );
 
 
 		TileSet* GetTileSetGIDIsIn( int gid );
@@ -87,6 +99,7 @@ namespace Monky
 		vec3f m_playerSpawn;
 		vec2f m_playerSize;
 
+		std::map< std::string, TiledObj > m_objects;
 
 	};
 }

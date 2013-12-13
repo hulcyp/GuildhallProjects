@@ -5,6 +5,16 @@
   <Texture name="MusheesRun04">ms_mushee_animYELLOW04.png</Texture>
   <Texture name="MusheesRun05">ms_mushee_animYELLOW05.png</Texture>
   <Texture name="MusheesRun06">ms_mushee_animYELLOW06.png</Texture>
+  <Texture name="GreenMushroomPlatformTile">GreenMushroomPlatformTile.png</Texture>
  <!-- <Texture name="MusheesRun">YellowMusheesRun.png</Texture> --> 
   <Texture name="GreenMushroom.png">GreenMushroomPlatform.png</Texture>
+  <Texture name="MusheeCage">Cage.png</Texture>
+  <Texture name="MusheeChair">Chair.png</Texture>
+  <Texture name="UpArrow">up-arrow-button.png</Texture>
+  <Texture name="UpArrow_Down">up-arrow-button-down.png</Texture>
+  <Texture name="DownArrow">down-arrow-button.png</Texture>
+  <Texture name="DownArrow_Down">down-arrow-button-down.png</Texture>
+  <Texture name="PauseButton_Up">PauseButton-up.png</Texture>
+  <Texture name="PauseButton_Down">PauseButton-down.png</Texture>
+  <Texture name="Mushees_Background">Mushee_BG.png</Texture>
 </Textures>

@@ -25,7 +25,9 @@ namespace Monky
 		void adjustMinMaxPoints();
 
 		bool contains( const Vector2<T>& point ) const;
-		bool intersects( const AABB2<T>& box ) const;
+		bool intersects( const AABB2<T>& box, Vector2<T>& intersectionDist ) const;
+
+		std::string toString() const;
 
 	private:
 		Vector2<T> m_minPoint;
@@ -100,15 +102,18 @@ namespace Monky
 	template< typename T >
 	Vector2<T> AABB2<T>::getCenter() const
 	{
-		return ( m_maxPoint - m_minPoint ) * 0.5f;
+		return ( m_maxPoint - m_minPoint ) * 0.5f + m_minPoint;
 	}
 	//----------------------------------------------------------------
 	template< typename T >
 	void AABB2<T>::setPositionFromCenter( const Vector2<T>& position )
 	{
-		Vector2<T> hSize = Vector2<T>( m_width / 2, m_height / 2 );
+		Vector2<T> hSize = Vector2<T>( m_width * 0.5, m_height * 0.5 );
 		m_minPoint = position - hSize;
 		m_maxPoint = position + hSize;
+		//consolePrintf( "Position to set with: %s", position.toString().c_str() );
+		//consolePrintf( "New Min: %s", m_minPoint.toString().c_str() );
+		//consolePrintf( "New Max: %s", m_maxPoint.toString().c_str() );
 
 	}
 	//----------------------------------------------------------------
@@ -140,15 +145,24 @@ namespace Monky
 	}
 	//-------------------------------------------------------------
 	template< typename T >
-	bool AABB2<T>::intersects( const AABB2<T>& box ) const
+	bool AABB2<T>::intersects( const AABB2<T>& box, Vector2<T>& intersectionDist ) const
 	{
 		Vector2<T> boxCenter = box.getCenter();
 		Vector2<T> myCenter = getCenter();
 		Vector2<T> delta = myCenter - boxCenter;
-
+		delta = delta.abs() * 2;
 		Vector2<T> overlapDist = Vector2<T>( m_width + box.m_width, m_height + box.m_height) - delta;
 
-		return ( overlapDist.x >= 0.0f &&
-				 overlapDist.y >= 0.0f );
+		intersectionDist = overlapDist;
+		return ( overlapDist.x > 0 &&
+				 overlapDist.y > 0 );
+	}
+	//-------------------------------------------------------------
+	template< typename T >
+	std::string AABB2<T>::toString() const
+	{
+		std::stringstream ss;
+		ss << "( " << m_minPoint.x << ", " << m_minPoint.y << " ) ( " << m_maxPoint.x << ", " << m_maxPoint.y << " )";
+		return ss.str();
 	}
 }

@@ -18,6 +18,7 @@ namespace Monky
 	class Vector2
 	{
 	public:
+
 		explicit Vector2<T>( T x = 0, T y = 0 );	
 		Vector2<T>( const Vector2<T>& vec );
 		

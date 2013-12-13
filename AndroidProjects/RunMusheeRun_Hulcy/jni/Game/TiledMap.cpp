@@ -16,6 +16,8 @@ namespace Monky
 	const unsigned FLIPPED_VERTICALLY_FLAG   = 0x40000000;
 	const unsigned FLIPPED_DIAGONALLY_FLAG   = 0x20000000;
 
+	Mesh* GenerateObjBoxDebugMesh( const aabb2f& box );
+
 	TiledMap::TiledMap( const std::string& mapFile )
 		: 	m_mapFile( mapFile )
 	{
@@ -39,21 +41,31 @@ namespace Monky
 		}
 	}
 
-	void TiledMap::RenderMap()
+	void TiledMap::RenderMap( bool shouldShowDebug )
 	{
 		NamedProperties params;
 		matStackf matStack;
 		matStack.loadIdentity();
 		matStack.translate( (float)-m_width, (float)-m_height, 0.0f );
-		params.set( "modelMatrix", matStack );
+		params.set( "modelMatrix", matStack.top() );
 		for( int i = 0; i < m_layers.size(); ++i )
 		{
 			for( auto iter = m_layers[i].tileGroups.begin(); iter != m_layers[i].tileGroups.end(); ++iter )
 			{
 				params.set( "mesh", iter->second.mesh );
 				fireEvent( "renderMesh", params );
-				//consolePrintf( "LayerGroup Rendered" );
 			}
+		}
+
+		if( shouldShowDebug )
+		{
+			matStack.loadIdentity();
+			for( auto iter = m_objects.begin(); iter != m_objects.end(); ++iter )
+			{
+				params.set( "mesh", iter->second.mesh );
+				fireEvent( "renderMesh", params );
+			}
+			params.set( "mesh", m_checkpoints.front().mesh );
 		}
 	}
 
@@ -74,7 +86,8 @@ namespace Monky
 		bool collidedWithCheckpoint = false;
 		if( m_checkpoints.size() > 0 )
 		{
-			if( playerBox.intersects( m_checkpoints.front().box ) )
+			vec2f intersectionDist;
+			if( playerBox.intersects( m_checkpoints.front().box, intersectionDist ) )
 			{
 				collidedWithCheckpoint = true;
 				checkpointPos = m_checkpoints.front().box.getCenter();
@@ -82,6 +95,69 @@ namespace Monky
 			}
 		}
 		return collidedWithCheckpoint;
+	}
+
+	bool TiledMap::DidPlayerCollideWithBottomBounds( const aabb2f& playerBox, vec2f& overlapDist )
+	{
+		bool collidedWith = false;
+
+		vec2f intersectionDist;
+		vec2f botMinDist = m_objects[ "bottom" ].boundingBox.minPoint();
+		intersectionDist.y = botMinDist.y - playerBox.maxPoint().y;
+		//if( intersectionDist.y < 0 )
+		if( playerBox.intersects( m_objects[ "bottom" ].boundingBox, intersectionDist ) )
+		{
+			collidedWith = true;
+			overlapDist = intersectionDist;
+			consolePrintf( "Collided with bottom" );
+			consolePrintf( "Player box: %s", playerBox.toString().c_str() );
+			consolePrintf( "Bot box: %s", m_objects[ "bottom" ].boundingBox.toString().c_str() );
+		}
+
+		return collidedWith;
+	}
+
+	bool TiledMap::DidPlayerCollideWithTopBounds( const aabb2f& playerBox, vec2f& overlapDist )
+	{
+		bool collidedWith = false;
+
+		vec2f intersectionDist;
+		vec2f topMaxDist = m_objects[ "top" ].boundingBox.maxPoint();
+		intersectionDist.y = playerBox.minPoint().y - topMaxDist.y;
+		//if( intersectionDist.y < 0 )
+		if( playerBox.intersects( m_objects[ "bottom" ].boundingBox, intersectionDist ) )
+		{
+			collidedWith = true;
+			overlapDist = intersectionDist;
+			consolePrintf( "Collided with top" );
+			consolePrintf( "Player box: %s", playerBox.toString().c_str() );
+			consolePrintf( "Top box: %s", m_objects[ "top" ].boundingBox.toString().c_str() );
+		}
+
+		return collidedWith;
+	}
+
+	bool TiledMap::DidPlayerCollideWithBounds( const aabb2f& playerBox, vec2f& overlapDist )
+	{
+		bool collidedWith = false;
+
+		collidedWith = DidPlayerCollideWithTopBounds( playerBox, overlapDist );
+		if( !collidedWith )
+		{
+			collidedWith = DidPlayerCollideWithBottomBounds( playerBox, overlapDist );
+		}
+		return collidedWith;
+	}
+
+	bool TiledMap::DidPlayerCollideWithKillBox( const aabb2f& playerBox )
+	{
+		bool collidedWith = false;
+		vec2f intersectionDist;
+		if( playerBox.intersects( m_objects[ "killbox" ].boundingBox, intersectionDist ) )
+		{
+			collidedWith = true;
+		}
+		return collidedWith;
 	}
 
 	void TiledMap::LoadTileSets( XMLParser& parser, XMLNode* root )
@@ -165,7 +241,7 @@ namespace Monky
 							tile.gid = tileset->GetNormalizedGIDInTileSet( gid );
 							int tileYFlipped = y;//m_height - y;
 							tile.pos = vec3f( (float)x*m_tileWidth, (float)tileYFlipped*m_tileHeight, 0.0f );
-							consolePrintf( "Pos: %s", tile.pos.toString().c_str() );
+							//consolePrintf( "Pos: %s", tile.pos.toString().c_str() );
 							newLayer.tileGroups[ tileset->GetName() ].tiles.push_back( tile );
 						}
 					}
@@ -266,6 +342,10 @@ namespace Monky
 			{
 				LoadSpawns( parser, objectGroup );
 			}
+			else if( name == "boundaries" )
+			{
+				LoadBoundaries( parser, objectGroup );
+			}
 		}
 	}
 
@@ -293,8 +373,76 @@ namespace Monky
 				int height = parser.getXMLAttributeAsInt( objectNode, "height", 0 );
 
 				m_checkpoints.push( Checkpoint( vec3f( (float)x, (float)y, 0.0f ), vec2f( (float)width, (float)height ) ) );
+				consolePrintf( "Generating checkpoint");
+				m_checkpoints.front().mesh = GenerateObjBoxDebugMesh( m_checkpoints.front().box );
 			}
 		}
 	}
 
+	void TiledMap::LoadBoundaries( XMLParser& parser, XMLNode* boundariesGroup )
+	{
+		XMLNode* objNode = boundariesGroup->FirstChildElement( "object" );
+		for( ; objNode != nullptr; objNode = objNode->NextSiblingElement( "object" ) )
+		{
+			std::string name = parser.getXMLAttributeAsString( objNode, "name", "" );
+			int x = parser.getXMLAttributeAsInt( objNode, "x", 0 );
+			int y = parser.getXMLAttributeAsInt( objNode, "y", 0 );
+			int width = parser.getXMLAttributeAsInt( objNode, "width", 0 );
+			int height = parser.getXMLAttributeAsInt( objNode, "height", 0 );
+
+			aabb2f boundBox( vec2f( (float)x, (float)y ), width, height );
+
+			TiledObj& obj = m_objects[ name ];
+			obj.boundingBox = boundBox;
+			consolePrintf( "Loading bounds: %s", name.c_str() );
+			obj.mesh = GenerateObjBoxDebugMesh( boundBox );
+		}
+	}
+
+	Mesh* GenerateObjBoxDebugMesh( const aabb2f& box )
+	{
+		std::vector< Mesh::Vertex > vertices;
+		std::vector< unsigned int > indices;
+
+		Color4f color = color::GREEN;
+
+		float hWidth = box.getWidth() * 0.5f;
+		float hHeight = box.getHeight() * 0.5f;
+		vec3f pos = box.getCenter();
+
+		consolePrintf( "AABB2 mesh: %s", box.toString().c_str() );
+
+		vertices.push_back( Mesh::Vertex( vec3f( -hWidth, -hHeight ) + pos,
+									vec3f(),
+									color,
+									vec2f( 0.0f, 1.0f ) ) );
+
+
+		vertices.push_back( Mesh::Vertex( vec3f( hWidth, -hHeight ) + pos,
+									vec3f(),
+									color,
+									vec2f( 1.0f, 1.0f ) ) );
+
+		vertices.push_back( Mesh::Vertex( vec3f( hWidth, hHeight ) + pos,
+									vec3f(),
+									color,
+									vec2f( 1.0f, 0.0f ) ) );
+
+
+		vertices.push_back( Mesh::Vertex( vec3f( -hWidth, hHeight ) + pos,
+									vec3f( 0.0f, 0.0f, 1.0f ),
+									color,
+									vec2f( 0.0f, 0.0f ) ) );
+
+
+		indices.push_back( 0 );
+		indices.push_back( 2 );
+		indices.push_back( 3 );
+
+		indices.push_back( 2 );
+		indices.push_back( 0 );
+		indices.push_back( 1 );
+
+		return new Mesh( vertices, indices, "MusheesRunMat" );
+	}
 }

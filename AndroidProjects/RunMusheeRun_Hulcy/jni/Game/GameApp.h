@@ -4,7 +4,7 @@
 #include "../CoreEngine/Singleton.h"
 #include "../CoreEngine/InputSystem.h"
 #include "../MonkyRenderer/ActorManager.h"
-#include "../MonkyRenderer/SpriteActor.h"
+#include "SpriteActor.h"
 #include "TiledMap.h"
 
 #include <android_native_app_glue.h>
