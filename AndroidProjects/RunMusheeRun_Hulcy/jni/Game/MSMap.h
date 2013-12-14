@@ -52,12 +52,14 @@ namespace Monky
 		void GenerateMapMesh( float floorTileX, float floorTileY, float mapWidth, const std::string& floorTileMaterial );
 		void SpawnNewObstacle( Camera* camera, const aabb2f& playerBox );
 		void CullOldObstacles( Camera* camera, const aabb2f& playerBox );
+		void UpdatePlatformRenderLocations();
 
 
 	private:
 		std::vector< std::vector< Obstacle* > > m_currentObstaclesOnMap;
 		std::vector< Obstacle* > m_obstacleBlueprints;
 		Mesh* m_platformMesh;
+		std::deque< vec3f > m_platformRenderLocations;
 		vec2f m_screenSize;
 		vec2f m_mapSize;
 		float m_verticalOffsetBetweenLayers;

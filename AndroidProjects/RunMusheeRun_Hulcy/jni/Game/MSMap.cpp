@@ -9,12 +9,10 @@
 #define MAX_SPAWN_RATE 5.0f
 #define MIN_SPAWN_RATE 1.0f
 #define STARTING_NUMBER_LAYERS 3
+#define NUM_PLATFORMS_TO_SPAWN 3
 
 namespace Monky
 {
-
-
-
 	MSMap::MSMap( const vec2f& mapOffsetFromPlayerPos, float floorTileX, float floorTileY, float mapWidth, float mapHeight, const std::string& floorTileMaterial )
 		:	m_mapSize( mapWidth, floorTileY )
 		,	m_screenSize( mapWidth, mapHeight )
@@ -30,6 +28,13 @@ namespace Monky
 		m_currentObstaclesOnMap.resize( STARTING_NUMBER_LAYERS );
 		GenerateMapMesh( floorTileX, floorTileY, mapWidth, floorTileMaterial );
 		m_mapYPos = ( m_screenSize.y - m_mapSize.y ) * 0.5f;
+
+
+		for( int i = 0; i < NUM_PLATFORMS_TO_SPAWN; ++i )
+		{
+			m_platformRenderLocations.push_back( vec3f( m_mapSize.x * i, m_mapYPos ) );
+		}
+
 	}
 
 	MSMap::~MSMap()
@@ -84,18 +89,23 @@ namespace Monky
 		CullOldObstacles( camera, playerBox );
 
 		m_currentLocation = playerBox.getCenter() - m_mapOffsetFromPlayerPos;
+		UpdatePlatformRenderLocations();
 	}
 
 	void MSMap::Render()
 	{
 		NamedProperties params;
 		matStackf matStack;
-		matStack.loadIdentity();
-		m_currentLocation.y = m_mapYPos;
-		matStack.translate( m_currentLocation );
-		params.set( "modelMatrix", matStack.top() );
 		params.set( "mesh", m_platformMesh );
-		fireEvent( "renderMesh", params );
+
+		for( int i = 0; i < m_platformRenderLocations.size(); ++i )
+		{
+			matStack.loadIdentity();
+			m_platformRenderLocations[i].y = m_mapYPos;
+			matStack.translate( m_platformRenderLocations[i] );
+			params.set( "modelMatrix", matStack.top() );
+			fireEvent( "renderMesh", params );
+		}
 	}
 
 	void MSMap::RenderLayer( int layer )
@@ -151,6 +161,11 @@ namespace Monky
 		m_currentObstaclesOnMap.resize( STARTING_NUMBER_LAYERS );
 		m_currentSpawnRate  = MAX_SPAWN_RATE;
 		m_spawnTimer = MAX_SPAWN_RATE;
+		m_platformRenderLocations.clear();
+		for( int i = 0; i < NUM_PLATFORMS_TO_SPAWN; ++i )
+		{
+			m_platformRenderLocations.push_back( vec3f( m_mapSize.x * i, m_mapYPos ) );
+		}
 	}
 
 	float MSMap::GetMinYPosForLayer( int layer )
@@ -203,6 +218,7 @@ namespace Monky
 		}
 
 		m_platformMesh = new Mesh( vertices, indices, floorTileMaterial );
+
 	}
 
 	void MSMap::SpawnNewObstacle( Camera* camera, const aabb2f& playerBox )
@@ -288,5 +304,15 @@ namespace Monky
 		return new Mesh( vertices, indices, material );
 	}
 
+	void MSMap::UpdatePlatformRenderLocations()
+	{
+		vec3f delta = m_currentLocation - m_platformRenderLocations[0];
+		float deltaDistSqrd = delta.lengthSqrd();
+		if( deltaDistSqrd > m_mapSize.x * m_mapSize.x )
+		{
+			m_platformRenderLocations.push_back( m_platformRenderLocations[0] + vec3f( m_mapSize.x * 2.0f ) );
+			m_platformRenderLocations.pop_front();
+		}
+	}
 
 }

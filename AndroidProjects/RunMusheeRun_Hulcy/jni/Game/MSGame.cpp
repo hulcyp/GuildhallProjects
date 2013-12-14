@@ -21,6 +21,8 @@ namespace Monky
 		,	m_jumpImpulse( 0.0f, -3500.0f )
 		,	m_gravity( 0.0f, 100.0f )
 		,	m_cameraOffset( m_screenWidth * 0.2f )
+		,	m_playerScore( 0 )
+		,	m_increaseScoreRate( 0.1f )
 	{}
 
 	MSGame::~MSGame()
@@ -100,6 +102,16 @@ namespace Monky
 		mat4f modelMatrix( mat4f::IDENTITY );
 		modelMatrix.translate( vec3f( m_screenWidth * 0.5f, m_screenHeight * 0.5f, 0.0f ) );
 		m_gameMessageTextParams.set( "modelMatrix", modelMatrix );
+
+
+		m_scoreTextParams.set( "fontName", std::string( "mainFont_72" ) );
+		m_scoreTextParams.set( "fontHeight", 96.0f );
+		m_scoreTextParams.set( "color", color::GREEN );
+		m_scoreTextParams.set( "posRel", std::string( "TOPRIGHT" ) );
+		m_scoreTextParams.set( "camera", m_debugCamera );
+		modelMatrix.loadIdentity();
+		modelMatrix.translate( vec3f( m_screenWidth, m_screenHeight - 35.0f ) );
+		m_scoreTextParams.set( "modelMatrix", modelMatrix );
 	}
 
 	bool MSGame::onFingerDown( int fingerID, float x, float y )
@@ -220,6 +232,7 @@ namespace Monky
 					m_theMushee = nullptr;
 				}
 				ClampMusheeBasedOnLayer();
+				m_playerScore += m_increaseScoreRate;
 			}
 			else
 			{
@@ -292,8 +305,22 @@ namespace Monky
 			}
 			else if( m_theMushee == nullptr )
 			{
-				m_gameMessageTextParams.set( "text", std::string( "Silly Rabbit\nRespawn in: " ) + toString( (int)m_respawnTimer ) );
+				mat4f modelMatrix( mat4f::IDENTITY );
+				modelMatrix.translate( vec3f( m_screenWidth * 0.5f, m_screenHeight * 0.5f ) );
+				m_gameMessageTextParams.set( "modelMatrix", modelMatrix );
+				m_gameMessageTextParams.set( "text", std::string( "Silly Mushee... Be Faster!" ) );
 				fireEvent( "renderText", m_gameMessageTextParams );
+				modelMatrix.loadIdentity();
+				modelMatrix.translate( vec3f( m_screenWidth * 0.5f, m_screenHeight * 0.5f - 96.0f ) );
+				m_gameMessageTextParams.set( "modelMatrix", modelMatrix );
+				m_gameMessageTextParams.set( "text", std::string( "Respawn in: " ) + toString( (int)m_respawnTimer ) );
+
+				fireEvent( "renderText", m_gameMessageTextParams );
+			}
+			else
+			{
+				m_scoreTextParams.set( "text", std::string( "Score: " + toString( (int)m_playerScore ) ) );
+				fireEvent( "renderText", m_scoreTextParams );
 			}
 			m_renderer->popCamera();
 		}
@@ -308,6 +335,8 @@ namespace Monky
 		spawn( m_theMushee );
 		m_theMushee->setPosition( m_randomMap->GetPlayerSpawn() );
 		m_currentPlayerLayer = m_randomMap->GetMiddleLayer();
+		m_randomMap->ResetMap();
+		m_playerScore = 0;
 	}
 
 	void MSGame::ClampMusheeBasedOnLayer()

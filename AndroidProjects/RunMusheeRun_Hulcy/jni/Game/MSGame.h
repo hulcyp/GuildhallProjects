@@ -60,9 +60,13 @@ namespace Monky
 		float m_respawnTimer;
 		float m_respawnTime;
 
+		float m_playerScore;
+		float m_increaseScoreRate;
+
 		bool m_isPaused;
 
 		NamedProperties m_bgParams;
 		NamedProperties m_gameMessageTextParams;
+		NamedProperties m_scoreTextParams;
 	};
 }
