@@ -60,7 +60,26 @@ namespace Monky
 	//--------------------------------------------------------------------------
 	void Material::createMaterial( const std::string& materialName, const std::string& shaderProgramName )
 	{
-		createOrGetMaterial( materialName, shaderProgramName );
+		auto iter = sm_materials.find( materialName );
+		Material* newMaterial = nullptr;//sm_materials[ materialName ];
+		if( iter != sm_materials.end() )
+		{
+			if( sm_currentlyActiveMaterial == iter->second )
+				sm_currentlyActiveMaterial = nullptr;
+			SAFE_DELETE( iter->second );
+			sm_materials.erase( iter );
+		}	
+		newMaterial = new Material( ShaderProgram::getShaderProgram( shaderProgramName ) );
+
+		newMaterial->addUniform( "uProjectionMatrix", mat4f::identity() );
+		newMaterial->addUniform( "uViewMatrix", mat4f::identity() );
+		newMaterial->addUniform( "uModelMatrix", mat4f::identity() );
+		newMaterial->addUniform( "uMVPMatrix", mat4f::identity() );
+		newMaterial->addUniform( "time", 0.0f );
+		newMaterial->addUniform( "uUnlit", 0 );
+
+		sm_materials.insert( std::pair< std::string, Material* >( materialName,  newMaterial ) );
+
 	}
 	//--------------------------------------------------------------------------
 	Material* Material::getMaterial( const std::string& materialName )

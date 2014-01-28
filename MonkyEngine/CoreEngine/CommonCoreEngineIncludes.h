@@ -7,7 +7,7 @@
 #include "StdLibraryIncludes.h"
 #include "Logging.h"
 #include "Colors.h"
-#include "ConsoleInterface.h"
+#include "../ConsoleSystem/ConsoleInterface.h"
 
 #define ARRAY_CLEANUP( array, size )	\
 	for( int i = 0; i < size; ++i )		\

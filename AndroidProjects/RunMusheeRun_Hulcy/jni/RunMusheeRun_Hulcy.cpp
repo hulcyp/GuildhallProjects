@@ -95,6 +95,9 @@ static int32_t engine_handle_input( struct android_app* app, AInputEvent* event 
 			float x = AMotionEvent_getX( event, 0 );
 			float y = AMotionEvent_getY( event, 0 );
 
+			x = x * (1920.0f / (float)g_androidInfo.width );
+			y = y * (1200.0f / (float)g_androidInfo.height );
+
 			if( AMotionEvent_getAction( event ) == AMOTION_EVENT_ACTION_DOWN )
 			{
 				g_app->onFingerDown( fingerId, x, y );
@@ -198,13 +201,13 @@ static void initGame()
 	{
 		initGL();
 		g_app = new MSGame( DELTA_TIME,
-										g_androidInfo.width,
-										g_androidInfo.height,
+										1920,
+										1200,
 										FOV );
 
 		g_app->initialize();
 		Camera* camera = new MSCamera( "Main Camera", vec3f(), Camera::PH_ORTHOGRAPHIC,
-						mat4f::ortho( 0.0f, (float)g_androidInfo.width, 0.0f, (float)g_androidInfo.height, -1.0f, 1.0f ) );
+						mat4f::ortho( 0.0f, (float)1920, 0.0f, (float)1200, -1.0f, 1.0f ) );
 		g_app->initializeCamera( camera );
 	}
 }

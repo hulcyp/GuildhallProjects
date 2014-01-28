@@ -8,7 +8,7 @@ namespace Monky
 {
 	MCCamera::MCCamera( const std::string& id, const vec3f& pos, const vec2i& mousPos, const mat4f& projMatrix, const mat4f& viewMatrix )
 		:	Camera( id, pos, PH_PERSPECTIVE, projMatrix, viewMatrix )
-		,	InputListener( false )
+		,	InputListener( true )
 		,	MOUSE_PITCH_POWER( 0.06f )
 		,	KEYBOARD_IMPULSE_POWER( 7.0f )
 		,	BOOST_FACTOR( 20.0f )

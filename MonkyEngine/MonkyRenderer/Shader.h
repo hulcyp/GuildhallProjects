@@ -13,17 +13,21 @@ namespace Monky
 		friend Renderer;
 
 		Shader( const std::string& fileName, GLenum shaderType );
+		Shader( const std::string& shaderName, const std::string& shaderCode, GLenum shaderType );
 		~Shader();
 
 		GLuint getShaderID() { return m_shaderID; }
 
 		static Shader* createOrGetShader( const std::string& fileName, GLenum shaderType );
+		static Shader* createOrGetShader( const std::string& shaderName, const std::string& shaderCode, GLenum shaderType );
 		static void createShader( const std::string& fileName, GLenum shaderType );
+		static void createShader( const std::string& shaderName, const std::string& shaderCode, GLenum shaderType  );
 		static Shader* getShader( const std::string& fileName );
 
 	protected:
 		static void cleanupShaders();
 		void loadShaderFromFile( const char* fileName , GLenum shaderType );
+		void loadShaderFromBuffer( const std::string& shaderName, const std::string& shaderString, GLenum shaderType );
 		void handleShaderCompilerError( GLuint shaderID, const char* fileName, const std::string& shaderBuffer );
 		
 	private:

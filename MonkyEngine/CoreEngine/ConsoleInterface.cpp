@@ -2,11 +2,6 @@
 
 namespace Monky
 {
-	ConsoleSystem * initConsole( int width, int height, int bufferSize )
-	{ 
-		return nullptr; 
-	}
-	//----------------------------------------------------------------------
 	void cleanupConsole()
 	{}
 	//----------------------------------------------------------------------

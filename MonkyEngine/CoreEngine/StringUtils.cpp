@@ -3,6 +3,18 @@
 
 namespace Monky
 {
+	unsigned int HashStringTo32Bytes( const std::string& str )
+	{
+		unsigned int hash = 0;
+		for( int b = 0; b < str.size(); ++b )
+		{
+			hash &= 0x07FFFFFF;
+			hash *= 31;
+			hash += str[b];
+		}
+		return hash;
+	}
+	//----------------------------------------------------------------------
 	std::string floatToString( float num, int prec )
 	{
 		std::stringstream out;
@@ -56,5 +68,17 @@ namespace Monky
 			}
 		}
 		return strIndex;
+	}
+	//--------------------------------------------------------------------------
+	void stripLeadingAndTrailingWhiteSpace( std::string& str )
+	{
+		int begin = -1;
+		int end = (int)str.size();
+
+		while( ( str[ ++begin ] == ' ' || str[ begin ] == '\n' ) && begin < str.size() );
+
+		while( ( str[ --end ] == ' ' || str[ end ] == '\n' ) && end >= 0 );
+
+		str = str.substr( begin, end - begin + 1 );
 	}
 }

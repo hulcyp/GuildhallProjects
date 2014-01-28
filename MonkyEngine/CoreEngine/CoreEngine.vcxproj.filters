@@ -198,9 +198,6 @@
     <ClInclude Include="TimeUtils.h">
       <Filter>Header Files\Time</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InputListener.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
@@ -340,9 +337,6 @@
     </ClCompile>
     <ClCompile Include="TimeUtils.cpp">
       <Filter>Source Files\Time</Filter>
-    </ClCompile>
-    <ClCompile Include="ConsoleInterface.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputListener.cpp">
       <Filter>Source Files\Input</Filter>

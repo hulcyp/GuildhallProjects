@@ -18,7 +18,7 @@ namespace Monky
 		static void simpleErrorMessageBox( const char* title, const char* format, ... );
 		static void fatalErrorMessageBox( const char* title, const char* format, ... );
 		static void printToCompilerOutputConsole( const char* error );
-		static bool yesNoMessageBox( const char* title, const char* msg );
+		static bool yesNoMessageBox( const char* title, const char* format, ... );
 		static void debuggerBreakPoint();
 
 	private:

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8CDC48B1-0020-48E9-B4C6-B2D0FF8E98FF}</ProjectGuid>
+    <RootNamespace>MaterialEditor</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Properties\CoreEngine.props" />
+    <Import Project="..\Properties\MonkyRenderer.props" />
+    <Import Project="..\Properties\MathLib.props" />
+    <Import Project="..\Properties\GlewLib.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Properties\CoreEngine.props" />
+    <Import Project="..\Properties\MonkyRenderer.props" />
+    <Import Project="..\Properties\MathLib.props" />
+    <Import Project="..\Properties\GlewLib.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreEngine\CoreEngine.vcxproj">
+      <Project>{2d140e0e-a920-4d62-83ca-4e589b8a237a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\MathLib\MathLib.vcxproj">
+      <Project>{237469b5-f66f-43df-8352-80ef22528960}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\MonkyRenderer\MonkyRenderer.vcxproj">
+      <Project>{f3d84fab-b94d-4775-8796-bdd1e9fc492e}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BinaryMathOperatorNodeProcessor.h" />
+    <ClInclude Include="OutputChannelNodeProcessor.h" />
+    <ClInclude Include="MaterialGenerator.h" />
+    <ClInclude Include="MathNodeProcessor.h" />
+    <ClInclude Include="SampleTextureNodeProcessor.h" />
+    <ClInclude Include="ShaderGenerator.h" />
+    <ClInclude Include="ShaderVariable.h" />
+    <ClInclude Include="SingleParamMathFuncNodeProcessor.h" />
+    <ClInclude Include="StatementNodeProcessor.h" />
+    <ClInclude Include="DeclareTextureSampleNodeProcessor.h" />
+    <ClInclude Include="VariableNodeProcessor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BinaryMathOperatorNodeProcessor.cpp" />
+    <ClCompile Include="OutputChannelNodeProcessor.cpp" />
+    <ClCompile Include="MaterialGenerator.cpp" />
+    <ClCompile Include="MathNodeProcessor.cpp" />
+    <ClCompile Include="SampleTextureNodeProcessor.cpp" />
+    <ClCompile Include="ShaderGenerator.cpp" />
+    <ClCompile Include="DeclareTextureSampleNodeProcessor.cpp" />
+    <ClCompile Include="ShaderVariable.cpp" />
+    <ClCompile Include="SingleParamMathFuncNodeProcessor.cpp" />
+    <ClCompile Include="StatementNodeProcessor.cpp" />
+    <ClCompile Include="VariableNodeProcessor.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

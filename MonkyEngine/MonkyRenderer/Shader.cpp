@@ -11,6 +11,11 @@ namespace Monky
 		loadShaderFromFile( fileName.c_str(), shaderType );
 	}
 	//--------------------------------------------------------------------------------
+	Shader::Shader( const std::string& shaderName, const std::string& shaderCode, GLenum shaderType )
+	{
+		loadShaderFromBuffer( shaderName, shaderCode, shaderType );
+	}
+	//--------------------------------------------------------------------------------
 	Shader::~Shader()
 	{
 		if( m_shaderID )
@@ -31,9 +36,39 @@ namespace Monky
 		return iter->second;
 	}
 	//--------------------------------------------------------------------------------
+	Shader* Shader::createOrGetShader( const std::string& shaderName, const std::string& shaderCode, GLenum shaderType )
+	{
+		auto iter = sm_shaders.find( shaderName );		
+		//Shader*& shader = sm_shaders[ fileName ];
+		if( iter == sm_shaders.end() )
+		{
+			iter = sm_shaders.insert( std::pair< std::string, Shader* >( shaderName, new Shader( shaderName, shaderCode, shaderType ) ) ).first;
+		}
+		return iter->second;
+	}
+	//--------------------------------------------------------------------------------
 	void Shader::createShader( const std::string& fileName, GLenum shaderType )
 	{
-		createOrGetShader( fileName, shaderType );
+		auto iter = sm_shaders.find( fileName );		
+		//Shader*& shader = sm_shaders[ fileName ];
+		if( iter != sm_shaders.end() )
+		{
+			SAFE_DELETE( iter->second );
+			sm_shaders.erase( iter );
+		}
+		iter = sm_shaders.insert( std::pair< std::string, Shader* >( fileName, new Shader( fileName, shaderType ) ) ).first;
+	}
+	//--------------------------------------------------------------------------------
+	void Shader::createShader( const std::string& shaderName, const std::string& shaderCode, GLenum shaderType  )
+	{
+		auto iter = sm_shaders.find( shaderName );		
+		//Shader*& shader = sm_shaders[ fileName ];
+		if( iter != sm_shaders.end() )
+		{
+			SAFE_DELETE( iter->second );
+			sm_shaders.erase( iter );
+		}
+		iter = sm_shaders.insert( std::pair< std::string, Shader* >( shaderName, new Shader( shaderName, shaderCode, shaderType ) ) ).first;
 	}
 	//--------------------------------------------------------------------------------
 	Shader* Shader::getShader( const std::string& fileName )
@@ -83,13 +118,32 @@ namespace Monky
 		}
 		else
 		{
-			std::stringstream ss;
-			ss << "Could not open shader file: " << fileName;
-			std::string errorMessage;
-			ss >> errorMessage;
+			std::string errorMessage = "Could not open shader file: " + std::string( fileName );
 			MonkyException::fatalErrorMessageBox( "Shader file open error", errorMessage.c_str() );
 		}
 		SAFE_DELETE( shaderBuffer );
+	}
+
+	void Shader::loadShaderFromBuffer( const std::string& shaderName, const std::string& shaderString, GLenum shaderType )
+	{
+		GLuint shaderID = 0;
+		
+		shaderID = glCreateShader( shaderType );
+
+		const GLchar* shaderSource = shaderString.c_str();
+		glShaderSource( shaderID, 1, reinterpret_cast< const GLchar** >( &shaderSource ), nullptr );
+
+		glCompileShader( shaderID );
+
+		GLint compiled = GL_FALSE;
+		glGetShaderiv( shaderID, GL_COMPILE_STATUS, &compiled );
+
+		if( compiled != GL_TRUE )
+		{
+			handleShaderCompilerError( shaderID, shaderName.c_str(), shaderSource );
+		}
+
+		m_shaderID = shaderID;
 	}
 
 	void Shader::handleShaderCompilerError( GLuint shaderID, const char* fileName, const std::string& shaderBuffer )

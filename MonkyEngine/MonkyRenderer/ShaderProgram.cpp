@@ -58,12 +58,23 @@ namespace Monky
 		{
 			iter = sm_programs.insert( std::pair< std::string, ShaderProgram* >( shaderName, new ShaderProgram( shaderName, vertex, frag ) ) ).first;
 		}
-		return nullptr;
+		return iter->second;
 	}
 	//--------------------------------------------------------------------------------
 	void ShaderProgram::createShaderProgram( const std::string& shaderName, const std::string& vertexFile, const std::string& fragFile )
 	{
-		createOrGetShaderProgram( shaderName, vertexFile, fragFile );
+		Shader* vertex = Shader::createOrGetShader( vertexFile, GL_VERTEX_SHADER );
+		Shader* frag = Shader::createOrGetShader( fragFile, GL_FRAGMENT_SHADER );
+
+		auto iter = sm_programs.find( shaderName );
+		//ShaderProgram*& program = sm_programs[ shaderName ];
+
+		if( iter != sm_programs.end() )
+		{
+			SAFE_DELETE( iter->second );
+			sm_programs.erase( iter );
+		}
+		iter = sm_programs.insert( std::pair< std::string, ShaderProgram* >( shaderName, new ShaderProgram( shaderName, vertex, frag ) ) ).first;
 	}
 	//--------------------------------------------------------------------------------
 	ShaderProgram* ShaderProgram::getShaderProgram( const std::string& shaderName )

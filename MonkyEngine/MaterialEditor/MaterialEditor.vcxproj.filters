@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\NodeProcessors">
+      <UniqueIdentifier>{7be9c82f-8c29-4218-8a0f-afe0b8a2c745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NodeProcessors">
+      <UniqueIdentifier>{773a3e8b-b75c-4f16-be65-f06a2f0d196f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NodeProcessors\MathProcessors">
+      <UniqueIdentifier>{baee5104-e9b9-4a93-a061-19c1bb9efc38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\NodeProcessors\MathNodeProcessors">
+      <UniqueIdentifier>{a62add7c-674a-4f76-8e60-0dda45c5d30d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ShaderGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StatementNodeProcessor.h">
+      <Filter>Header Files\NodeProcessors</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleTextureNodeProcessor.h">
+      <Filter>Header Files\NodeProcessors</Filter>
+    </ClInclude>
+    <ClInclude Include="DeclareTextureSampleNodeProcessor.h">
+      <Filter>Header Files\NodeProcessors</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputChannelNodeProcessor.h">
+      <Filter>Header Files\NodeProcessors</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableNodeProcessor.h">
+      <Filter>Header Files\NodeProcessors</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderVariable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MathNodeProcessor.h">
+      <Filter>Header Files\NodeProcessors\MathNodeProcessors</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleParamMathFuncNodeProcessor.h">
+      <Filter>Header Files\NodeProcessors\MathNodeProcessors</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryMathOperatorNodeProcessor.h">
+      <Filter>Header Files\NodeProcessors\MathNodeProcessors</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ShaderGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleTextureNodeProcessor.cpp">
+      <Filter>Source Files\NodeProcessors</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclareTextureSampleNodeProcessor.cpp">
+      <Filter>Source Files\NodeProcessors</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementNodeProcessor.cpp">
+      <Filter>Source Files\NodeProcessors</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputChannelNodeProcessor.cpp">
+      <Filter>Source Files\NodeProcessors</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableNodeProcessor.cpp">
+      <Filter>Source Files\NodeProcessors</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MathNodeProcessor.cpp">
+      <Filter>Source Files\NodeProcessors\MathProcessors</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleParamMathFuncNodeProcessor.cpp">
+      <Filter>Source Files\NodeProcessors\MathProcessors</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryMathOperatorNodeProcessor.cpp">
+      <Filter>Source Files\NodeProcessors\MathProcessors</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

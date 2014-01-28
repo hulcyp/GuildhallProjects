@@ -59,8 +59,14 @@ namespace Monky
 		OutputDebugStringA( error );		
 	}
 	//------------------------------------------------------------
-	bool MonkyException::yesNoMessageBox( const char* title, const char* msg )
+	bool MonkyException::yesNoMessageBox( const char* title, const char* format, ... )
 	{
+		char msg[1024];
+		va_list args;
+		va_start( args, format );
+		vsprintf_s( msg, format, args );
+		va_end( args );
+
 		bool yesSelected = false;
 		int selected = MessageBoxA( NULL, msg, title, MB_YESNO | MB_ICONWARNING | MB_SETFOREGROUND );
 		switch( selected )

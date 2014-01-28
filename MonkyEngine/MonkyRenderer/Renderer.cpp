@@ -447,7 +447,7 @@ namespace Monky
 				std::string shaderName = shaderProgram->Attribute( "name" );
 				const char* vertexShader = shaderProgram ->Attribute( "vertex" );
 				const char* fragShader = shaderProgram->Attribute( "frag" );
-				ShaderProgram::createShaderProgram( shaderName, filePath + std::string( vertexShader ), filePath + std::string( fragShader ) );
+				ShaderProgram::createOrGetShaderProgram( shaderName, filePath + std::string( vertexShader ), filePath + std::string( fragShader ) );
 			}
 		}
 	}
@@ -468,7 +468,7 @@ namespace Monky
 				parser.validateXMLAttributes( materialElement, "name,shaderProgram", "" );
 				std::string materialName = materialElement->Attribute( "name" );
 				std::string shaderProgramName = materialElement->Attribute( "shaderProgram" );
-				Material::createMaterial( materialName, shaderProgramName );
+				Material::createOrGetMaterial( materialName, shaderProgramName );
 				Material* material = Material::getMaterial( materialName );
 				
 				XMLNode* occlusion = materialElement->FirstChildElement( "Occlusion" );

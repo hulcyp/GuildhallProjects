@@ -111,7 +111,7 @@ namespace Monky
 	{
 		bool used = false;
 		
-		if( m_console->onKeyDown( keyCode ) )
+		if( m_console != nullptr && m_console->onKeyDown( keyCode ) )
 		{
 			used = true;
 		}
@@ -167,7 +167,7 @@ namespace Monky
 	bool GameApp::onMouseButton( int keyCode, MonkyMouseButtonState state, int mouseX, int mouseY )
 	{
 		bool used = false;
-		if( m_console->onMouseButton( keyCode, state ) )
+		if( m_console != nullptr && m_console->onMouseButton( keyCode, state ) )
 		{
 			used = true;
 		}
@@ -189,7 +189,7 @@ namespace Monky
 			for( const XMLNode* command = root->FirstChildElement( "Command" ); command != nullptr; command = command->NextSiblingElement( "Command" ) )
 			{
 				std::string pcData = parser.getXMLElementPCDataAsString( command );
-				if( pcData.size() > 0 )
+				if( pcData.size() > 0 && m_console != nullptr)
 					m_console->executeCommand( pcData );
 			}
 		}

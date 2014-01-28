@@ -21,6 +21,8 @@ namespace Monky
 		return !ss.fail();
 	}
 
+	unsigned int HashStringTo32Bytes( const std::string& str );
+
 	std::string floatToString( float num, int prec );
 	std::string doubleToString( double num, int prec );
 
@@ -28,4 +30,5 @@ namespace Monky
 	void stringToUpperCase( std::string& text );
 	void stringTokenizer( const std::string& s, std::vector< std::string >& tokens, const std::string& pattern = " " );
 	int findStringInList( const std::string& str, const std::vector< std::string >& list );
+	void stripLeadingAndTrailingWhiteSpace( std::string& str );
 }

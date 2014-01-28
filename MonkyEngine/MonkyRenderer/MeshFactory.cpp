@@ -687,4 +687,122 @@ namespace Monky
 		}
 		return new Mesh( vertices, indices, materialName );
 	}
+	
+	void drawTriangleForIcosahedron( vec3f& v1, vec3f& v2, vec3f& v3, float radius, std::vector< Mesh::Vertex >& vertices, std::vector< unsigned int >& indices, const Color4f& color );
+	void subdivideForIcosahedron( vec3f& v1, vec3f& v2, vec3f& v3, float radius, std::vector< Mesh::Vertex >& vertices, std::vector< unsigned int >& indices, const Color4f& color, int depth );
+	vec2f getTexCoordsForIcosahedron( const vec3f& normal );
+
+	Mesh* MeshFactory::generateIcosahedron( float radius, int subdivisions, const std::string& materialName, Color4f color )
+	{
+		const float X = 0.525731112119133606f;
+		const float Z = 0.850650808352039932f;
+
+		static vec3f vdata[12] = { 
+			vec3f( -X, 0.f, Z ), vec3f( X, 0.f, Z ), vec3f( -X, 0.f, -Z ), vec3f( X, 0.f, -Z ),
+			vec3f( 0.f, Z, X ), vec3f(0.f, Z, -X ), vec3f( 0.f, -Z, X ), vec3f( 0.f, -Z, -X ),
+			vec3f( Z, X, 0.f ), vec3f( -Z, X, 0.f ), vec3f( Z, -X, 0.f ), vec3f( -Z, -X, 0.f ) };
+
+		static unsigned int tindices[20][3] = {
+			{0,4,1}, {0,9,4}, {9,5,4}, {4,5,8}, {4,8,1},    
+			{8,10,1}, {8,3,10}, {5,3,8}, {5,2,3}, {2,7,3},    
+			{7,10,3}, {7,6,10}, {7,11,6}, {11,0,6}, {0,1,6}, 
+			{6,1,10}, {9,0,11}, {9,11,2}, {9,2,5}, {7,2,11} };
+
+
+		std::vector< Mesh::Vertex > vertices;
+		std::vector< unsigned int > indices;
+
+		for( int i = 0; i < 20; ++i )
+		{
+			subdivideForIcosahedron(	vdata[tindices[i][0]],
+										vdata[tindices[i][1]],
+										vdata[tindices[i][2]], radius, vertices, indices, color, subdivisions );
+		}
+		
+		return new Mesh( vertices, indices, materialName, GL_TRIANGLES );
+	}
+
+	void drawTriangleForIcosahedron( vec3f& v1, vec3f& v2, vec3f& v3, float radius, std::vector< Mesh::Vertex >& vertices, std::vector< unsigned int >& indices, const Color4f& color )
+	{
+		vec2f texCoord1 = getTexCoordsForIcosahedron( v1 );
+		vec2f texCoord2 = getTexCoordsForIcosahedron( v2 );
+		vec2f texCoord3 = getTexCoordsForIcosahedron( v3 );
+		vertices.push_back( Mesh::Vertex( v1 * radius, v1, color, texCoord1 ) );
+		vertices.push_back( Mesh::Vertex( v2 * radius, v2, color, texCoord2 ) );
+		vertices.push_back( Mesh::Vertex( v3 * radius, v3, color, texCoord3 ) );
+		indices.push_back( indices.size() );
+		indices.push_back( indices.size() );
+		indices.push_back( indices.size() );
+	}
+
+	void subdivideForIcosahedron( vec3f& v1, vec3f& v2, vec3f& v3, float radius, std::vector< Mesh::Vertex >& vertices, std::vector< unsigned int >& indices, const Color4f& color, int depth )
+	{
+		vec3f v12, v23, v31;
+
+		if( depth == 0 )
+		{
+			drawTriangleForIcosahedron( v1, v2, v3, radius, vertices, indices, color );
+			return;
+		}
+
+		v12 = v1 + v2;
+		v23 = v2 + v3;
+		v31 = v3 + v1;
+
+		v12.normalize();
+		v23.normalize();
+		v31.normalize();
+		subdivideForIcosahedron( v1, v12, v31, radius, vertices, indices, color, depth - 1 );
+		subdivideForIcosahedron( v2, v23, v12, radius, vertices, indices, color, depth - 1 );
+		subdivideForIcosahedron( v3, v31, v23, radius, vertices, indices, color, depth - 1 );
+		subdivideForIcosahedron( v12, v23, v31, radius, vertices, indices, color, depth - 1 );
+	}
+
+	Monky::vec2f getTexCoordsForIcosahedron( const vec3f& normal )
+	{
+		vec2f texCoords;
+		float normalizedX = 0;
+		float normalizedZ = -1;
+
+		float xzSquared = normal.x * normal.x + normal.z * normal.z; 
+		if( xzSquared > 0 )
+		{
+			normalizedX = std::sqrt( ( normal.x * normal.x ) / ( xzSquared ) );
+			if( normal.x < 0 )
+			{
+				normalizedX = -normalizedX;
+			}
+
+			normalizedZ = sqrt( ( normal.z * normal.z ) / ( xzSquared ) );
+			if( normal.z < 0 )
+			{
+				normalizedZ = -normalizedZ;
+			}
+
+			if( normalizedZ == 0 )
+			{
+				texCoords.x = ( ( normalizedX * MathFuncs<float>::PI ) * 0.5f );
+			}
+			else
+			{
+				texCoords.x = atan( normalizedX / normalizedZ );
+				if( normalizedZ < 0 )
+				{
+					texCoords.x += MathFuncs<float>::PI;
+				}				
+			}
+			if( texCoords.x < 0 )
+			{
+				texCoords.x += 2 * MathFuncs<float>::PI;
+			}
+			texCoords.x /= 2 * MathFuncs<float>::PI;
+			texCoords.y = ( -normal.y + 1 ) * 0.5f;
+		}
+
+
+		return texCoords;
+	}
+
+
+
 }

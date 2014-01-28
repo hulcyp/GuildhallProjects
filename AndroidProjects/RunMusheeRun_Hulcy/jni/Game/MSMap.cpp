@@ -6,7 +6,7 @@
 #include "MathLib/MathFuncs.h"
 #include "MonkyRenderer/MeshFactory.h"
 
-#define MAX_SPAWN_RATE 5.0f
+#define MAX_SPAWN_RATE 4.0f
 #define MIN_SPAWN_RATE 1.0f
 #define STARTING_NUMBER_LAYERS 3
 #define NUM_PLATFORMS_TO_SPAWN 3
@@ -17,7 +17,7 @@ namespace Monky
 		:	m_mapSize( mapWidth, floorTileY )
 		,	m_screenSize( mapWidth, mapHeight )
 		,	m_lastLayerSpawnedOn( 0 )
-		,	m_rateToDecreaseSpawnRate( 0.1f )
+		,	m_rateToDecreaseSpawnRate( 0.5f )
 		,	m_currentSpawnRate( MAX_SPAWN_RATE )
 		,	m_spawnTimer( MAX_SPAWN_RATE )
 		,	m_verticalOffsetBetweenLayers( 50.0f )

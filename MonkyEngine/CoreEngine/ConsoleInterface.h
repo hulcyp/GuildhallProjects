@@ -8,7 +8,6 @@ namespace Monky
 #define MONKY_CONSOLE
 	class ConsoleSystem;
 
-	ConsoleSystem * initConsole( int width, int height, int bufferSize );
 	void cleanupConsole();
 	void consolePrintColorf( const char* format, Color4f color, ... );
 	void vConsolePrintf( const char* format, Color4f color, va_list args );
