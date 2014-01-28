@@ -1,0 +1,37 @@
+<!-- The simplest of all materials 
+	Simply assign the texture to the diffuse channel
+	$time
+	$vTexCoord0
+-->
+<Material name="GreenGlowMaterial">
+	<TextureSample name="RockTexture" textureSampleName="StoneTextureDiffuse"/>	
+	<Variable name="GreenColor" type="Vector4">0.172,0.757,0.133,1</Variable>
+	<Variable name="MultiFactor" type="Vector4">0,0,0,0</Variable>
+	
+	<Multiply outputVar="MultiFactor">
+		<Input>10,10,10,10</Input>
+		<Multiply>
+			<Add>
+				<Input>1.5</Input>
+				<Multiply>
+					<Input>1</Input>
+					<Cosine>
+						<Multiply>
+							<Input>$time</Input>
+							<Input>3,3,3,3</Input>
+						</Multiply>
+					</Cosine>
+				</Multiply>
+			</Add>
+			<Input>$GreenColor</Input>
+		</Multiply>
+	</Multiply>
+	
+	
+	<Diffuse>
+		<Multiply>
+			<Input>$RockTexture</Input>
+			<Input>$MultiFactor</Input>
+		</Multiply>
+	</Diffuse>
+</Material>
