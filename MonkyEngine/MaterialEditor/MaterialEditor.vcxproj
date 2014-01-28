@@ -86,7 +86,7 @@
     <ClInclude Include="SampleTextureNodeProcessor.h" />
     <ClInclude Include="ShaderGenerator.h" />
     <ClInclude Include="ShaderVariable.h" />
-    <ClInclude Include="SingleParamMathFuncNodeProcessor.h" />
+    <ClInclude Include="MathFuncWithParamNodeProcessor.h" />
     <ClInclude Include="StatementNodeProcessor.h" />
     <ClInclude Include="DeclareTextureSampleNodeProcessor.h" />
     <ClInclude Include="VariableNodeProcessor.h" />
@@ -100,7 +100,7 @@
     <ClCompile Include="ShaderGenerator.cpp" />
     <ClCompile Include="DeclareTextureSampleNodeProcessor.cpp" />
     <ClCompile Include="ShaderVariable.cpp" />
-    <ClCompile Include="SingleParamMathFuncNodeProcessor.cpp" />
+    <ClCompile Include="MathFuncWithParamNodeProcessor.cpp" />
     <ClCompile Include="StatementNodeProcessor.cpp" />
     <ClCompile Include="VariableNodeProcessor.cpp" />
   </ItemGroup>

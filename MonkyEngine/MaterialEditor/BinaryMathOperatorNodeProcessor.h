@@ -16,6 +16,7 @@ namespace Monky
 		virtual ~BinaryMathOperatorNodeProcessor();
 
 		virtual StatementData GenerateMathOperation( XMLParser& parser, XMLNode* root, const std::vector< StatementData >& inputs );
+		virtual bool IsMathOperationValidForInputList( std::vector< StatementData >& inputs );
 
 	private:
 		std::string m_operatorSymbol;

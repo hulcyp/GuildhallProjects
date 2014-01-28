@@ -23,7 +23,7 @@ namespace Monky
 			std::string variableData = parser.getXMLElementPCDataAsString( node );
 			if( variableType.compare( "Texture2D" ) == 0 )
 			{
-				consolePrintColorf( "Cannot declare textures as variables", color::RED );
+				m_shaderGenerator->AddLogMessage( "Cannot declare textures as variables", color::RED );
 				m_shaderGenerator->EnableCompilerErrorFlag();
 			}
 			else
@@ -43,7 +43,7 @@ namespace Monky
 							{
 								if( statementData.outputType == VT_TEXTURE_SAMPLE_2D )
 								{
-									consolePrintColorf( "Cannot declare a variable of type Texture2D", color::RED );
+									m_shaderGenerator->AddLogMessage( "Cannot declare a variable of type Texture2D", color::RED );
 								}
 								else
 								{
@@ -66,7 +66,7 @@ namespace Monky
 							else
 							{
 								//Invalid node processor
-								consolePrintColorf( "Invalid child node: %s for variable: %s", color::RED, name.c_str(), variableName.c_str() );
+								m_shaderGenerator->AddLogMessage( "Invalid child node: %s for variable: %s", color::RED, name.c_str(), variableName.c_str() );
 								m_shaderGenerator->EnableCompilerErrorFlag();
 							}
 						}
@@ -86,7 +86,7 @@ namespace Monky
 								variableDataList[i] = variableDataList[i].substr( 1, variableDataList[i].npos );
 							else if( !ValidRealNumber( variableDataList[i] ) )
 							{
-								consolePrintColorf( "Syntax error in variable declaration in variable name usage: %s. Missing \'$\'?", color::RED, variableData.c_str() );
+								m_shaderGenerator->AddLogMessage( "Syntax error in variable declaration in variable name usage: %s. Missing \'$\'?", color::RED, variableData.c_str() );
 								m_shaderGenerator->EnableCompilerErrorFlag();
 							}
 						}
@@ -96,7 +96,7 @@ namespace Monky
 						}
 						else
 						{
-							consolePrintColorf( "Invalid data entered for variable declaration: Variable name: %s Data: %s", color::RED, variableName.c_str(), variableData.c_str() );
+							m_shaderGenerator->AddLogMessage( "Invalid data entered for variable declaration: Variable name: %s Data: %s", color::RED, variableName.c_str(), variableData.c_str() );
 							m_shaderGenerator->EnableCompilerErrorFlag();
 						}
 					}

@@ -29,7 +29,7 @@ namespace Monky
 						stringTokenizer( texCoords, tokens, "," );
 						if( tokens.size() != 2 )
 						{
-							consolePrintColorf( "Invalid texture coordinates specified for texture sample: %s", color::RED, textureSample.c_str() );
+							m_shaderGenerator->AddLogMessage( "Invalid texture coordinates specified for texture sample: %s", color::RED, textureSample.c_str() );
 							m_shaderGenerator->EnableCompilerErrorFlag();
 						}
 						else
@@ -64,7 +64,7 @@ namespace Monky
 					stringTokenizer( texCoords, tokens, "," );
 					if( tokens.size() != 2 )
 					{
-						consolePrintColorf( "Invalid texture coordinates specified for texture sample: %s", color::RED, textureSample.c_str() );
+						m_shaderGenerator->AddLogMessage( "Invalid texture coordinates specified for texture sample: %s", color::RED, textureSample.c_str() );
 						m_shaderGenerator->EnableCompilerErrorFlag();
 					}
 					else

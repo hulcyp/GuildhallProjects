@@ -1,7 +1,7 @@
 #include "ShaderGenerator.h"
 #include "StringUtils.h"
 #include "StatementNodeProcessor.h"
-
+#include "StdLibraryIncludes.h"
 //Note TODO: Make it so that you cannot specify a texture as a variable... that's a no no :)
 
 namespace Monky
@@ -35,6 +35,7 @@ namespace Monky
 		{
 			iter->second->ReloadProcessorDataToShaderGenerator();
 		}
+		m_logMessages.clear();
 	}
 	//----------------------------------------------------------------------
 	std::string ShaderGenerator::GenerateShader( XMLParser& parser, XMLNode* root )
@@ -212,13 +213,36 @@ namespace Monky
 		return type;
 	}
 	//----------------------------------------------------------------------
+	void ShaderGenerator::AddLogMessage( const char* format, Color4f color, ... )
+	{
+		va_list args;
+		va_start( args, color );
+		vAddLogMessage( format, color, args );		
+	}
+	//----------------------------------------------------------------------
+	void ShaderGenerator::AddLogMessage( const char* format, ... )
+	{
+		va_list args;
+		va_start( args, format );
+		vAddLogMessage( format, color::WHITE, args );
+	}
+	//----------------------------------------------------------------------
 	void ShaderGenerator::EnableCompilerErrorFlag()
 	{
 		m_wasCompilerError = true;
 	}
+	//----------------------------------------------------------------------
 	bool ShaderGenerator::WasCompilerError()
 	{
 		return m_wasCompilerError;
+	}
+	//----------------------------------------------------------------------
+	void ShaderGenerator::OutputShaderLog()
+	{
+		for( unsigned int i = 0; i < m_logMessages.size(); ++i )
+		{
+			consolePrintColorf( m_logMessages[i].errorMessage.c_str(), m_logMessages[i].msgColor );
+		}
 	}
 	//----------------------------------------------------------------------
 	// Protected member functions
@@ -254,5 +278,15 @@ namespace Monky
 	{
 		return FRAG_COLOR_OUT_CHANNEL + " = " + DIFFUSE_CHANNEL_VARIABLE_NAME + ";";
 	}
-	
+	//----------------------------------------------------------------------
+	void ShaderGenerator::vAddLogMessage( const char* format, Color4f color, va_list args )
+	{
+		char text[256];
+		vsprintf_s( text, format, args );
+		va_end( args );
+		LogMessageData msg;
+		msg.errorMessage = text;
+		msg.msgColor = color;
+		m_logMessages.push_back( msg );
+	}
 }

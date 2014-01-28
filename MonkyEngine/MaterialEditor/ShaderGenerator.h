@@ -52,18 +52,23 @@ namespace Monky
 		static const std::string DIFFUSE_CHANNEL_VARIABLE_NAME;
 		static const std::string FRAG_COLOR_OUT_CHANNEL;
 
-
+		//Logging and error handling
+		
+		void AddLogMessage( const char* format, Color4f color, ... );
+		void AddLogMessage( const char* format, ... );
 		void EnableCompilerErrorFlag();
 		bool WasCompilerError();
+		void OutputShaderLog();
 
-	protected:	
-		
+	protected:			
 		std::string GetShaderVersionCode();
 		std::string GetMainFunctionStart();
 		std::string GetMainFunctionEnd();
 		std::string GetFragColorOutCode();
 
 	private:
+		void vAddLogMessage( const char* format, Color4f color, va_list args );
+
 		// hashed string of name for map index
 		std::map< unsigned int, ShaderVariable > m_uniforms;
 		std::map< unsigned int, ShaderVariable > m_inVariables;
@@ -78,7 +83,16 @@ namespace Monky
 		std::map< unsigned int, StatementNodeProcessor* > m_statementNodeProcessors;
 
 		ShaderVersion m_version;
+		
+		//For error handing
+		struct LogMessageData
+		{
+			std::string errorMessage;
+			Color4f msgColor;
+		};
+		
 		bool m_wasCompilerError;
+		std::vector< LogMessageData > m_logMessages;
 	};
 
 }

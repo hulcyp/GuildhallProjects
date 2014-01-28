@@ -33,7 +33,7 @@ namespace Monky
 					}
 					else
 					{
-						consolePrintColorf( "Incorrect data type: \'%s\' provided for output channel %s", color::RED, GetVariableTypeAsString( statementData.outputType ).c_str(), m_name.c_str() );
+						m_shaderGenerator->AddLogMessage( "Incorrect data type: \'%s\' provided for output channel %s", color::RED, GetVariableTypeAsString( statementData.outputType ).c_str(), m_name.c_str() );
 						m_shaderGenerator->EnableCompilerErrorFlag();
 					}
 				}
@@ -47,7 +47,7 @@ namespace Monky
 					else
 					{
 						//Invalid node processor
-						consolePrintColorf( "Invalid node as child statement for %s output channel: %s", color::RED, name.c_str(), m_name.c_str() );
+						m_shaderGenerator->AddLogMessage( "Invalid node as child statement for %s output channel: %s", color::RED, name.c_str(), m_name.c_str() );
 						m_shaderGenerator->EnableCompilerErrorFlag();
 					}
 				}
@@ -56,7 +56,7 @@ namespace Monky
 		else
 		{
 			//Invalid Diffuse statement no input :(
-			consolePrintColorf( "Invalid %s channel statement. No input provided", color::RED, m_name.c_str() );
+			m_shaderGenerator->AddLogMessage( "Invalid %s channel statement. No input provided", color::RED, m_name.c_str() );
 			m_shaderGenerator->EnableCompilerErrorFlag();
 		}
 		

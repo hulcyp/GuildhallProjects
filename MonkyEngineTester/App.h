@@ -28,5 +28,7 @@ namespace Monky
 		Mesh* m_icosahedron;
 		int m_subdivisions;
 		MaterialGenerator* m_materialGenerator;
+		std::string m_currentMatBeingTestedName;
+		std::string m_currentMatBeingTestedPath;
 	};
 }

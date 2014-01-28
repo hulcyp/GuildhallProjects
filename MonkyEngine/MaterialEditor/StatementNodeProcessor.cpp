@@ -45,19 +45,17 @@ namespace Monky
 				stringTokenizer( inputData, tokens, "," );
 				if( tokens.size() > 1 )
 				{
-					for( unsigned int i = 0; i < tokens.size(); ++i )
-					{
-						if( tokens[i][0] == '$' )
-							tokens[i] = tokens[i].substr( 1, tokens[i].npos );
-						else if( !ValidRealNumber( tokens[i] ) )
-						{
-							consolePrintColorf( "Syntax error in Input node in variable name usage: %s. Missing \'$\'", color::RED, inputData.c_str() );
-							m_shaderGenerator->EnableCompilerErrorFlag();
-						}
-					}
 					if( !m_shaderGenerator->WasCompilerError() && ValidListOfVariables( tokens ) )
 					{
-						statement = BuildVariableConstructionFromVariableList( tokens, type );
+						inputData = StripDollarSignsFromListOfVariables( tokens );
+						type = GetVariableTypeFromDataString( inputData );
+						std::string variableConstruction = GetVariableConstructionFromType( type, inputData );
+						if( variableConstruction.size() == 0 )
+							m_shaderGenerator->EnableCompilerErrorFlag();
+						else
+						{
+							statement = variableConstruction;
+						}
 					}
 				}
 				else
@@ -76,7 +74,7 @@ namespace Monky
 					}
 					else
 					{
-						consolePrintColorf( "Variable undefined: %s", color::RED, inputData.c_str() );
+						m_shaderGenerator->AddLogMessage( "Variable undefined: %s", color::RED, inputData.c_str() );
 						m_shaderGenerator->EnableCompilerErrorFlag();
 					}
 				}
@@ -97,14 +95,14 @@ namespace Monky
 				}
 				else
 				{
-					consolePrintColorf( "Invalid data entered: %s. Missing '$'?", color::RED, inputData.c_str() ); 
+					m_shaderGenerator->AddLogMessage( "Invalid data entered: %s. Missing '$'?", color::RED, inputData.c_str() ); 
 					m_shaderGenerator->EnableCompilerErrorFlag();
 				}
 			}
 		}
 		else
 		{
-			consolePrintColorf( "No input data specified for %s channel", color::RED, m_name.c_str() );
+			m_shaderGenerator->AddLogMessage( "No input data specified for %s channel", color::RED, m_name.c_str() );
 			m_shaderGenerator->EnableCompilerErrorFlag();
 		}
 		return StatementData( statement, type, inputData );
@@ -145,7 +143,7 @@ namespace Monky
 	std::string StatementNodeProcessor::StripDollarSignsFromListOfVariables( const std::vector< std::string >& data )
 	{
 		std::string finalStr;
-		for( int i = 0; i < data.size(); ++i )
+		for( unsigned int i = 0; i < data.size(); ++i )
 		{
 			if( data[i] != "" && data[i][0] == '$')
 			{

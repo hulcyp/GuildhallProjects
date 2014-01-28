@@ -27,4 +27,22 @@ namespace Monky
 		return statementData;
 	}
 
+	bool BinaryMathOperatorNodeProcessor::IsMathOperationValidForInputList( std::vector< StatementData >& inputs )
+	{
+		bool valid = true;
+		ShaderVariableType typeOfFirst = inputs[0].outputType;
+		for( unsigned int i = 0; i < inputs.size() && valid; ++i )
+		{
+			if( inputs[i].outputType != typeOfFirst )
+				valid = false;
+			//special case for adding a texture sample and a vec4
+			if( ( inputs[i].outputType == VT_TEXTURE_SAMPLE_2D && typeOfFirst == VT_VECTOR_4 ) ||
+				( typeOfFirst == VT_TEXTURE_SAMPLE_2D && inputs[i].outputType == VT_VECTOR_4 ) ||
+				  typeOfFirst == VT_REAL ||
+				  inputs[i].outputType == VT_REAL ) 
+				valid = true;
+		}
+		return valid;
+	}
+
 }

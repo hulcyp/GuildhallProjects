@@ -11,7 +11,7 @@
 #include "DeclareTextureSampleNodeProcessor.h"
 #include "VariableNodeProcessor.h"
 #include "BinaryMathOperatorNodeProcessor.h"
-#include "SingleParamMathFuncNodeProcessor.h"
+#include "MathFuncWithParamNodeProcessor.h"
 
 #include <fstream>
 
@@ -29,15 +29,23 @@ namespace Monky
 		new BinaryMathOperatorNodeProcessor( "Add", m_fragShaderGenerator, "+", 2, -1 );
 		new BinaryMathOperatorNodeProcessor( "Subtract", m_fragShaderGenerator, "-", 2, -1 );
 		new BinaryMathOperatorNodeProcessor( "Multiply", m_fragShaderGenerator, "*", 2, -1 );
-		new BinaryMathOperatorNodeProcessor( "Divide", m_fragShaderGenerator, "/", 2, -1 );		
-		new SingleParamMathFuncNodeProcessor( "Sine", m_fragShaderGenerator, "sin" );
-		new SingleParamMathFuncNodeProcessor( "Cosine", m_fragShaderGenerator, "cos" );
-		new SingleParamMathFuncNodeProcessor( "Abs", m_fragShaderGenerator, "abs" );
-		new SingleParamMathFuncNodeProcessor( "Ceil", m_fragShaderGenerator, "ceil" );
-		new SingleParamMathFuncNodeProcessor( "Floor", m_fragShaderGenerator, "floor" );
-		new SingleParamMathFuncNodeProcessor( "Frac", m_fragShaderGenerator, "fract" );
-		new SingleParamMathFuncNodeProcessor( "Normalize", m_fragShaderGenerator, "normalize" );
-		new SingleParamMathFuncNodeProcessor( "SquareRoot", m_fragShaderGenerator, "sqrt" );
+		new BinaryMathOperatorNodeProcessor( "Divide", m_fragShaderGenerator, "/", 2, -1 );	
+
+		new MathFuncWithParamNodeProcessor( "Sine", m_fragShaderGenerator, "sin", 1 );
+		new MathFuncWithParamNodeProcessor( "Cosine", m_fragShaderGenerator, "cos", 1 );
+		new MathFuncWithParamNodeProcessor( "Abs", m_fragShaderGenerator, "abs", 1 );
+		new MathFuncWithParamNodeProcessor( "Ceil", m_fragShaderGenerator, "ceil", 1 );
+		new MathFuncWithParamNodeProcessor( "Floor", m_fragShaderGenerator, "floor", 1 );
+		new MathFuncWithParamNodeProcessor( "Frac", m_fragShaderGenerator, "fract", 1 );
+		new MathFuncWithParamNodeProcessor( "Normalize", m_fragShaderGenerator, "normalize", 1 );
+		new MathFuncWithParamNodeProcessor( "SquareRoot", m_fragShaderGenerator, "sqrt", 1 );
+
+		new MathFuncWithParamNodeProcessor( "DotProd", m_fragShaderGenerator, "dot", 2 );
+		new MathFuncWithParamNodeProcessor( "CrossProd", m_fragShaderGenerator, "cross", 2 );
+		new MathFuncWithParamNodeProcessor( "Fmod", m_fragShaderGenerator, "mod", 2 );
+		new MathFuncWithParamNodeProcessor( "Power", m_fragShaderGenerator, "pow", 2 );
+
+		new MathFuncWithParamNodeProcessor( "LinearInterpolate", m_fragShaderGenerator, "smoothstep", 3 );
 	}
 
 	MaterialGenerator::~MaterialGenerator()
@@ -72,6 +80,7 @@ namespace Monky
 
 					materialName = parser.getXMLAttributeAsString( root, "name", "" );
 					shaderCode = m_fragShaderGenerator->GenerateShader( parser, root );
+					m_fragShaderGenerator->OutputShaderLog();
 					if( shaderCode != "" && !m_fragShaderGenerator->WasCompilerError() )
 						failedToLoad = false;
 				}
@@ -80,6 +89,7 @@ namespace Monky
 
 		if( !failedToLoad )
 		{		
+			consolePrintColorf( "Successfully loaded material file: %s", color::GREEN, materialFilePath.c_str() );
 			std::ofstream outFile( "Test.frag.glsl" );
 			outFile.write( shaderCode.c_str(), shaderCode.size() + 1 );
 			outFile.close();

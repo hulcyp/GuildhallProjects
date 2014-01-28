@@ -54,10 +54,10 @@
     <ClInclude Include="MathNodeProcessor.h">
       <Filter>Header Files\NodeProcessors\MathNodeProcessors</Filter>
     </ClInclude>
-    <ClInclude Include="SingleParamMathFuncNodeProcessor.h">
+    <ClInclude Include="BinaryMathOperatorNodeProcessor.h">
       <Filter>Header Files\NodeProcessors\MathNodeProcessors</Filter>
     </ClInclude>
-    <ClInclude Include="BinaryMathOperatorNodeProcessor.h">
+    <ClInclude Include="MathFuncWithParamNodeProcessor.h">
       <Filter>Header Files\NodeProcessors\MathNodeProcessors</Filter>
     </ClInclude>
   </ItemGroup>
@@ -89,10 +89,10 @@
     <ClCompile Include="MathNodeProcessor.cpp">
       <Filter>Source Files\NodeProcessors\MathProcessors</Filter>
     </ClCompile>
-    <ClCompile Include="SingleParamMathFuncNodeProcessor.cpp">
+    <ClCompile Include="BinaryMathOperatorNodeProcessor.cpp">
       <Filter>Source Files\NodeProcessors\MathProcessors</Filter>
     </ClCompile>
-    <ClCompile Include="BinaryMathOperatorNodeProcessor.cpp">
+    <ClCompile Include="MathFuncWithParamNodeProcessor.cpp">
       <Filter>Source Files\NodeProcessors\MathProcessors</Filter>
     </ClCompile>
   </ItemGroup>

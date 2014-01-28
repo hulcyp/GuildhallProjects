@@ -20,7 +20,7 @@ namespace Monky
 		virtual StatementData ProcessAsChild( XMLParser& parser, XMLNode* node );
 
 		virtual StatementData GenerateMathOperation( XMLParser& parser, XMLNode* root, const std::vector< StatementData >& inputs ) = 0;
-
+		virtual bool IsMathOperationValidForInputList( std::vector< StatementData >& inputs ) = 0;
 	private:
 		int m_minNumberInputs;
 		int m_maxNumberInputs;

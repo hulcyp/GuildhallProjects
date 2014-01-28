@@ -43,51 +43,39 @@ namespace Monky
 						}
 						else
 						{
-							consolePrintColorf( "Invalid node: %s", color::RED, name.c_str() );
+							m_shaderGenerator->AddLogMessage( "Invalid node: %s", color::RED, name.c_str() );
 							m_shaderGenerator->EnableCompilerErrorFlag();
 						}
 					}
 				}
 				if( (int)inputs.size() >= m_minNumberInputs && ( m_maxNumberInputs == -1 || (int)inputs.size() <= m_maxNumberInputs  ) )
 				{
-					bool allSameType = true;
-					ShaderVariableType typeOfFirst = inputs[0].outputType;
-					for( unsigned int i = 0; i < inputs.size() && allSameType; ++i )
-					{
-						if( inputs[i].outputType != typeOfFirst )
-							allSameType = false;
-						//special case for adding a texture sample and a vec4
-						if( ( inputs[i].outputType == VT_TEXTURE_SAMPLE_2D && typeOfFirst == VT_VECTOR_4 ) ||
-							( typeOfFirst == VT_TEXTURE_SAMPLE_2D && inputs[i].outputType == VT_VECTOR_4 ) )
-							allSameType = true;
-					}
-
-					if( allSameType )
+					if( IsMathOperationValidForInputList( inputs ) )
 					{
 						StatementData generateMathOpData = GenerateMathOperation( parser, node, inputs );
 						if( generateMathOpData.outputType == outputVarType )
 							statementData.statement = outputVar + " = " + generateMathOpData.statement + ";";
 						else
 						{
-							consolePrintColorf( "Type mismatch between outputVar and math operation: outputVar: %s mathop: %s", color::RED, outputVar.c_str(), m_name.c_str() );
+							m_shaderGenerator->AddLogMessage( "Type mismatch between outputVar and math operation: outputVar: %s mathop: %s", color::RED, outputVar.c_str(), m_name.c_str() );
 							m_shaderGenerator->EnableCompilerErrorFlag();
 						}
 					}
 					else
 					{
-						consolePrintColorf(  "Not all inputs are the same type for math operation: %s", color::RED, m_name.c_str() );
+						m_shaderGenerator->AddLogMessage(  "Not all inputs are the same type for math operation: %s", color::RED, m_name.c_str() );
 						m_shaderGenerator->EnableCompilerErrorFlag();
 					}
 				}
 				else
 				{
-					consolePrintColorf( "Invalid number of inputs for math operation. Min number of inputs: %d Max number of inputs: %d", color::RED, m_minNumberInputs, m_maxNumberInputs );
+					m_shaderGenerator->AddLogMessage( "Invalid number of inputs for math operation. Min number of inputs: %d Max number of inputs: %d", color::RED, m_minNumberInputs, m_maxNumberInputs );
 					m_shaderGenerator->EnableCompilerErrorFlag();
 				}
 			}
 			else
 			{
-				consolePrintColorf( "OutputVar missing or undefined: %s", color::RED, outputVar.c_str() );
+				m_shaderGenerator->AddLogMessage( "OutputVar missing or undefined: %s", color::RED, outputVar.c_str() );
 			}
 		}
 		else
@@ -121,27 +109,14 @@ namespace Monky
 					}
 					else
 					{
-						consolePrintColorf( "Invalid node: %s", color::RED, name.c_str() );
+						m_shaderGenerator->AddLogMessage( "Invalid node: %s", color::RED, name.c_str() );
 						m_shaderGenerator->EnableCompilerErrorFlag();
 					}
 				}
 			}
 			if( (int)inputs.size() >= m_minNumberInputs && ( m_maxNumberInputs == -1 || (int)inputs.size() <= m_maxNumberInputs  ) )
 			{
-
-				bool allSameType = true;
-				ShaderVariableType typeOfFirst = inputs[0].outputType;
-				for( unsigned int i = 0; i < inputs.size() && allSameType; ++i )
-				{
-					if( inputs[i].outputType != typeOfFirst )
-						allSameType = false;
-					//special case for adding a texture sample and a vec4
-					if( ( inputs[i].outputType == VT_TEXTURE_SAMPLE_2D && typeOfFirst == VT_VECTOR_4 ) ||
-						( typeOfFirst == VT_TEXTURE_SAMPLE_2D && inputs[i].outputType == VT_VECTOR_4 ) )
-						allSameType = true;
-				}
-
-				if( allSameType )
+				if( IsMathOperationValidForInputList( inputs ) )
 				{
 					StatementData generateMathOpData = GenerateMathOperation( parser, node, inputs );
 					statementData.statement = generateMathOpData.statement;
@@ -149,13 +124,13 @@ namespace Monky
 				}
 				else
 				{
-					consolePrintColorf(  "Not all inputs are the same type for math operation: %s", color::RED, m_name.c_str() );
+					m_shaderGenerator->AddLogMessage(  "Not all inputs are the same type for math operation: %s", color::RED, m_name.c_str() );
 					m_shaderGenerator->EnableCompilerErrorFlag();
 				}	
 			}
 			else
 			{
-				consolePrintColorf( "Invalid number of inputs for math operation. Min number of inputs: %d Max number of inputs: %d", color::RED, m_minNumberInputs, m_maxNumberInputs );
+				m_shaderGenerator->AddLogMessage( "Invalid number of inputs for math operation. Min number of inputs: %d Max number of inputs: %d", color::RED, m_minNumberInputs, m_maxNumberInputs );
 				m_shaderGenerator->EnableCompilerErrorFlag();
 			}
 		}

@@ -20,9 +20,9 @@
 	</Variable>
 	<Variable name="green" type="Real">$xolor2.g</Variable>
 	<Sine outputVar="green">
-		<Floor>
+		<Cosine>
 			<Input>$time</Input>
-		</Floor>
+		</Cosine>
 	</Sine>
 	<Diffuse>
 		<Add>
