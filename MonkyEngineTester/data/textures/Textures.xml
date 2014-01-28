@@ -1,0 +1,4 @@
+<Textures>
+  <Texture name="AudioSymbol">audioSymbol.jpg</Texture>
+  <Texture name="StoneTextureDiffuse">cobblestonesDiffuse.png</Texture>
+</Textures>

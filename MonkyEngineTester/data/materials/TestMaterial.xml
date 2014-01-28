@@ -1,0 +1,33 @@
+<!-- The simplest of all materials 
+	Simply assign the texture to the diffuse channel
+	$time
+	$vTexCoord0
+-->
+<Material name="RockMaterial">
+	<TextureSample name="RockTexture" textureSampleName="StoneTextureDiffuse"/>	
+	<Variable name="color" type="Real">0.1</Variable>
+	<Constant name="PI" type="Real">3.141592654</Constant>
+	<Variable name="color5" type="Vector2">0.05,0.05</Variable>
+	<Variable name="xolor2" type="Vector2">
+		<Add>
+			<Input>$color5</Input>
+			<Input>$color5</Input>
+			<Input>$color5</Input>
+			<Input>$color5</Input>
+			<Input>0.1,0.1</Input>
+			<Input>$color5</Input>
+		</Add>
+	</Variable>
+	<Variable name="green" type="Real">$xolor2.g</Variable>
+	<Sine outputVar="green">
+		<Floor>
+			<Input>$time</Input>
+		</Floor>
+	</Sine>
+	<Diffuse>
+		<Add>
+			<Input>$RockTexture</Input>
+			<Input>0,$green,0,0</Input>
+		</Add>
+	</Diffuse>
+</Material>

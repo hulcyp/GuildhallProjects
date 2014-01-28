@@ -1,0 +1,5 @@
+<ShaderPrograms>
+  <ShaderProgram name="simpleShader"                   vertex="simpleShader.vertex.glsl" frag="simpleShader.frag.glsl" />
+  <ShaderProgram name="simpleFontShader"               vertex="simpleFont.vertex.glsl"   frag="simpleFont.frag.glsl" />
+  <ShaderProgram name="DebugShader"                    vertex="DebugShader.vertex.glsl"  frag="DebugShader.frag.glsl" />
+ </ShaderPrograms>
