@@ -3,9 +3,11 @@
 
 namespace Monky
 {
-	OutputChannelNodeProcessor::OutputChannelNodeProcessor( const std::string& name, const std::string& outputVariable, ShaderGenerator* generator )
+	OutputChannelNodeProcessor::OutputChannelNodeProcessor( const std::string& name, const std::string& outputVariable, ShaderGenerator::ShaderOutputChannels comp, ShaderGenerator* generator, ShaderVariableType type )
 		:	StatementNodeProcessor( name, generator )
 		,	m_outputVariable( outputVariable )
+		,	m_lightingModelComp( comp )
+		,	m_outputType( type )
 	{
 		ReloadProcessorDataToShaderGenerator();
 	}
@@ -16,6 +18,7 @@ namespace Monky
 	StatementData OutputChannelNodeProcessor::ProcessAsRoot( XMLParser& parser, XMLNode* node )
 	{
 		std::string statement;
+		m_shaderGenerator->EnableOuputChannel( m_lightingModelComp );
 	
 		XMLNode* child = node->FirstChildElement();
 		if( child != nullptr )
@@ -27,7 +30,7 @@ namespace Monky
 				{
 					StatementData statementData;
 					statementData = ProcessInputNode( parser, child );
-					if( statementData.outputType == VT_VECTOR_4 || statementData.outputType == VT_TEXTURE_SAMPLE_2D )
+					if( statementData.outputType == m_outputType || ( m_outputType == VT_VECTOR_4 && statementData.outputType == VT_TEXTURE_SAMPLE_2D ) )
 					{
 						statement = m_outputVariable + " = " + statementData.statement + ";";
 					}
@@ -74,8 +77,7 @@ namespace Monky
 
 	void OutputChannelNodeProcessor::ReloadProcessorDataToShaderGenerator()
 	{
-		m_shaderGenerator->AddVariable( "Vector4", m_outputVariable, "vec4(1,1,1,1)", false );
-
+		//m_shaderGenerator->AddVariable( "Vector4", m_outputVariable, "vec4(1,1,1,1)", false );	
 	}
 
 }

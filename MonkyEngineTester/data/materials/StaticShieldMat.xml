@@ -1,0 +1,62 @@
+<!--
+	$time
+	$vTexCoord0
+-->
+<Material name="StaticShieldMat">
+	<TextureSample name="LightningTex" textureSampleName="StaticShield"/>	
+	<Variable name="GreenColor" type="Vector4">0.172,0.757,0.133,1</Variable>
+	<Variable name="MultiFactor" type="Vector4">0,0,0,0</Variable>
+	
+	<Variable name="pannerTexCoords0" type="Vector2">0,0</Variable>
+	<Variable name="pannerTexCoords1" type="Vector2">0,0</Variable>
+	<Variable name="colorSample0" type="Vector4">0,0,0,0</Variable>
+	<Variable name="colorSample1" type="Vector4">0,0,0,0</Variable>
+	<Variable name="Brightness" type="Real">5</Variable>
+	<Variable name="Color" type="Vector4">0.122,0.507,1,1</Variable>
+	
+
+	<Add outputVar="pannerTexCoords0">
+		<Multiply>
+			<Input>$vTexCoord</Input>
+			<Input>1.5,1.5</Input>
+		</Multiply>
+		<Multiply>
+			<Input>$time</Input>
+			<Input>-1.5,1.0</Input>
+		</Multiply>
+	</Add>
+	
+	<Add outputVar="pannerTexCoords1">
+		<Multiply>
+			<Input>$vTexCoord</Input>
+			<Input>3.0,3.0</Input>
+		</Multiply>
+		<Multiply>
+			<Input>$time</Input>
+			<Input>0.35,0.35</Input>
+		</Multiply>
+	</Add>
+		
+	<SampleTexture outputVar="colorSample0" textureSampleName="LightningTex">$pannerTexCoords0</SampleTexture>
+	
+	<SampleTexture outputVar="colorSample1" textureSampleName="LightningTex">$pannerTexCoords1</SampleTexture>
+	
+	
+		
+	<Emissive>
+		<Multiply>
+			<Input>$Color</Input>
+			<Add>
+				<Multiply>
+					<Input>$Brightness</Input>
+					<Input>$colorSample0.r</Input>
+				</Multiply>
+				<Clamp>
+					<Input>$colorSample1.g</Input>
+					<Input>0.0</Input>
+					<Input>0.15</Input>
+				</Clamp>
+			</Add>
+		</Multiply>
+	</Emissive>
+</Material>

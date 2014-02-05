@@ -1,5 +1,5 @@
 #include "MaterialGenerator.h"
-#include "ShaderGenerator.h"
+#include "FragmentShaderGenerator.h"
 #include "Material.h"
 #include "Shader.h"
 #include "ShaderProgram.h"
@@ -12,6 +12,7 @@
 #include "VariableNodeProcessor.h"
 #include "BinaryMathOperatorNodeProcessor.h"
 #include "MathFuncWithParamNodeProcessor.h"
+#include "VertexShaderGenerator.h"
 
 #include <fstream>
 
@@ -19,13 +20,23 @@ namespace Monky
 {
 	MaterialGenerator::MaterialGenerator()
 	{
-		m_fragShaderGenerator = new ShaderGenerator( ShaderGenerator::SV_GLSL_330 );
+		m_fragShaderGenerator = new FragmentShaderGenerator( ShaderGenerator::SV_GLSL_330 );
+		m_vertexShaderGenerator = new VertexShaderGenerator( ShaderGenerator::SV_GLSL_330 );
 
-		new OutputChannelNodeProcessor( "Diffuse", ShaderGenerator::DIFFUSE_CHANNEL_VARIABLE_NAME, m_fragShaderGenerator );
+		new OutputChannelNodeProcessor( "Diffuse", ShaderGenerator::DIFFUSE_CHANNEL_VARIABLE_NAME, ShaderGenerator::SOC_DIFFUSE, m_fragShaderGenerator );
+		new OutputChannelNodeProcessor( "Normal", ShaderGenerator::NORMAL_CHANNEL_VARIABLE_NAME, ShaderGenerator::SOC_NORMAL, m_fragShaderGenerator );
+		new OutputChannelNodeProcessor( "Emissive", ShaderGenerator::EMISSIVE_CHANNEL_VARIABLE_NAME, ShaderGenerator::SOC_EMISSIVE, m_fragShaderGenerator );
+		new OutputChannelNodeProcessor( "Specular", ShaderGenerator::SPECULAR_CHANNEL_VARIABLE_NAME, ShaderGenerator::SOC_SPECULAR, m_fragShaderGenerator );
+		new OutputChannelNodeProcessor( "Opacity", ShaderGenerator::OPACITY_CHANNEL_VARIABLE_NAME, ShaderGenerator::SOC_OPACITY, m_fragShaderGenerator, VT_REAL );
+
+		new OutputChannelNodeProcessor( "VertexOffset", ShaderGenerator::VERTEX_OFFSET_CHANNEL_NAME, ShaderGenerator::SOC_VERTEX_OFFSET, m_vertexShaderGenerator, VT_VECTOR_3 );
+
+		
 		new SampleTextureNodeProcessor( "SampleTexture", m_fragShaderGenerator );
 		new DeclareTextureSampleNodeProcessor( "TextureSample", m_fragShaderGenerator );
 		new VariableNodeProcessor( "Variable", m_fragShaderGenerator );
 		new VariableNodeProcessor( "Constant", m_fragShaderGenerator );
+		
 		new BinaryMathOperatorNodeProcessor( "Add", m_fragShaderGenerator, "+", 2, -1 );
 		new BinaryMathOperatorNodeProcessor( "Subtract", m_fragShaderGenerator, "-", 2, -1 );
 		new BinaryMathOperatorNodeProcessor( "Multiply", m_fragShaderGenerator, "*", 2, -1 );
@@ -44,8 +55,10 @@ namespace Monky
 		new MathFuncWithParamNodeProcessor( "CrossProd", m_fragShaderGenerator, "cross", 2 );
 		new MathFuncWithParamNodeProcessor( "Fmod", m_fragShaderGenerator, "mod", 2 );
 		new MathFuncWithParamNodeProcessor( "Power", m_fragShaderGenerator, "pow", 2 );
+		new MathFuncWithParamNodeProcessor( "Reflect", m_fragShaderGenerator, "reflect", 2 );
 
 		new MathFuncWithParamNodeProcessor( "LinearInterpolate", m_fragShaderGenerator, "smoothstep", 3 );
+		new MathFuncWithParamNodeProcessor( "Clamp", m_fragShaderGenerator, "clamp", 3 );
 	}
 
 	MaterialGenerator::~MaterialGenerator()
@@ -57,7 +70,8 @@ namespace Monky
 	{
 		Material* material = nullptr;
 		std::string materialName;
-		std::string shaderCode;
+		std::string fragShaderCode;
+		std::string vertShaderCode;
 		XMLParser parser( materialFilePath.c_str() );
 		XMLDocument& doc = parser.getDocument();
 		bool failedToLoad = true;
@@ -74,14 +88,43 @@ namespace Monky
 					m_fragShaderGenerator->AddUniform( "Mat4", "uViewMatrix" );
 					m_fragShaderGenerator->AddUniform( "Mat4", "uModelMatrix" );
 					m_fragShaderGenerator->AddUniform( "Mat4", "uMVPMatrix" );
+					m_fragShaderGenerator->AddUniform( "Integer", "uUnlit" );
 
-					m_fragShaderGenerator->AddInVariable( "Vector4", "vColor" );
-					m_fragShaderGenerator->AddInVariable( "Vector2", "vTexCoord0" );
+					m_vertexShaderGenerator->AddUniform( "Real", "time" );
+					m_vertexShaderGenerator->AddUniform( "Mat4", "uProjectionMatrix" );
+					m_vertexShaderGenerator->AddUniform( "Mat4", "uViewMatrix" );
+					m_vertexShaderGenerator->AddUniform( "Mat4", "uModelMatrix" );
+					m_vertexShaderGenerator->AddUniform( "Mat4", "uMVPMatrix" );
+					m_vertexShaderGenerator->AddUniform( "Integer", "uUnlit" );
+
+				//	m_fragShaderGenerator->AddInVariable( "Vector3", "vDirToLightFromVertexTBN[ MAX_NUM_LIGHTS ]" );
+				//	m_fragShaderGenerator->AddInVariable( "Real", "vDistanceToLightFromVertex[ MAX_NUM_LIGHTS ]" );
+				//	m_fragShaderGenerator->AddInVariable( "Vector3", "vLightDirTBN[ MAX_NUM_LIGHTS ]" );
 
 					materialName = parser.getXMLAttributeAsString( root, "name", "" );
-					shaderCode = m_fragShaderGenerator->GenerateShader( parser, root );
+
+
+					
+					
+					
+					XMLNode* node = nullptr;
+					for( node = root->FirstChildElement(); node != nullptr; node = node->NextSiblingElement() )
+					{
+						if( !m_fragShaderGenerator->ProcessNode( parser, node ) )
+						{
+							if( !m_vertexShaderGenerator->ProcessNode( parser, node ) )
+							{
+								//Invalid node in document
+							}
+						}
+					}					
+					
+					vertShaderCode = m_vertexShaderGenerator->GenerateShader();
+					fragShaderCode = m_fragShaderGenerator->GenerateShader();
+					
 					m_fragShaderGenerator->OutputShaderLog();
-					if( shaderCode != "" && !m_fragShaderGenerator->WasCompilerError() )
+					m_vertexShaderGenerator->OutputShaderLog();
+					if( fragShaderCode != "" && !m_fragShaderGenerator->WasCompilerError() && vertShaderCode != "" && !m_vertexShaderGenerator->WasCompilerError() )
 						failedToLoad = false;
 				}
 			}
@@ -90,13 +133,20 @@ namespace Monky
 		if( !failedToLoad )
 		{		
 			consolePrintColorf( "Successfully loaded material file: %s", color::GREEN, materialFilePath.c_str() );
-			std::ofstream outFile( "Test.frag.glsl" );
-			outFile.write( shaderCode.c_str(), shaderCode.size() + 1 );
-			outFile.close();
+			std::ofstream fragFile( "Test.frag.glsl" );
+			fragFile.write( fragShaderCode.c_str(), fragShaderCode.size() + 1 );
+			fragFile.close();
+			std::ofstream vertFile( "Test.vert.glsl" );
+			vertFile.write( vertShaderCode.c_str(), vertShaderCode.size() + 1 );
+			vertFile.close();
+
 			std::string fragShaderName = materialName + ".frag.glsl";
+			std::string vertShaderName = materialName + ".vert.glsl";
 			std::string programName = materialName + ".shaderProgram";
-			Shader::createShader( fragShaderName, shaderCode, GL_FRAGMENT_SHADER );
-			ShaderProgram::createShaderProgram( programName, "shaders/simpleShader.vertex.glsl", fragShaderName );
+			Shader::createShader( fragShaderName, fragShaderCode, GL_FRAGMENT_SHADER );
+			Shader::createShader( vertShaderName, vertShaderCode, GL_VERTEX_SHADER );
+			ShaderProgram::createShaderProgram( programName, vertShaderName, fragShaderName );
+						
 			Material::createMaterial( materialName, programName );
 			material = Material::getMaterial( materialName );
 

@@ -25,6 +25,8 @@ namespace Monky
 			glBindAttribLocation( m_programID, 4, "aTangent" );
 			glBindAttribLocation( m_programID, 5, "aBitangent" );
 
+			
+
 			glLinkProgram( m_programID );
 
 			GLint linked = GL_FALSE;

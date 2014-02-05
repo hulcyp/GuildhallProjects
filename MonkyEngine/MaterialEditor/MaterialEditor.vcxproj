@@ -84,12 +84,14 @@
     <ClInclude Include="MaterialGenerator.h" />
     <ClInclude Include="MathNodeProcessor.h" />
     <ClInclude Include="SampleTextureNodeProcessor.h" />
+    <ClInclude Include="FragmentShaderGenerator.h" />
     <ClInclude Include="ShaderGenerator.h" />
     <ClInclude Include="ShaderVariable.h" />
     <ClInclude Include="MathFuncWithParamNodeProcessor.h" />
     <ClInclude Include="StatementNodeProcessor.h" />
     <ClInclude Include="DeclareTextureSampleNodeProcessor.h" />
     <ClInclude Include="VariableNodeProcessor.h" />
+    <ClInclude Include="VertexShaderGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryMathOperatorNodeProcessor.cpp" />
@@ -97,12 +99,14 @@
     <ClCompile Include="MaterialGenerator.cpp" />
     <ClCompile Include="MathNodeProcessor.cpp" />
     <ClCompile Include="SampleTextureNodeProcessor.cpp" />
-    <ClCompile Include="ShaderGenerator.cpp" />
+    <ClCompile Include="FragmentShaderGenerator.cpp" />
     <ClCompile Include="DeclareTextureSampleNodeProcessor.cpp" />
+    <ClCompile Include="ShaderGenerator.cpp" />
     <ClCompile Include="ShaderVariable.cpp" />
     <ClCompile Include="MathFuncWithParamNodeProcessor.cpp" />
     <ClCompile Include="StatementNodeProcessor.cpp" />
     <ClCompile Include="VariableNodeProcessor.cpp" />
+    <ClCompile Include="VertexShaderGenerator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

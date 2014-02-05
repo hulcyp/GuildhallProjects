@@ -11,6 +11,7 @@ namespace Monky
 {
 	class Mesh;
 	class MaterialGenerator;
+	struct Light;
 
 	class App : public GameApp
 	{
@@ -24,11 +25,13 @@ namespace Monky
 	protected:
 		virtual void updateDisplay();
 	private:
-		Mesh* m_cube;
 		Mesh* m_icosahedron;
 		int m_subdivisions;
 		MaterialGenerator* m_materialGenerator;
 		std::string m_currentMatBeingTestedName;
 		std::string m_currentMatBeingTestedPath;
+		bool m_unlit;
+		Light* m_light;
+		Light* m_dudLight;
 	};
 }

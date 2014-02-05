@@ -31,7 +31,8 @@ namespace Monky
 			variableType[ "Vector4" ] = VT_VECTOR_4;
 			variableType[ "Mat3" ] = VT_MAT_3;
 			variableType[ "Mat4" ] = VT_MAT_4;
-			variableType[ "Texture2D" ] = VT_TEXTURE_SAMPLE_2D;			
+			variableType[ "Texture2D" ] = VT_TEXTURE_SAMPLE_2D;	
+			variableType[ "Integer" ] = VT_INT;
 		}
 
 		auto iter = variableType.find( type );
@@ -54,7 +55,8 @@ namespace Monky
 			variableType[ VT_VECTOR_4 ] = "vec4";
 			variableType[ VT_MAT_3 ] = "mat3";
 			variableType[ VT_MAT_4 ] = "mat4";
-			variableType[ VT_TEXTURE_SAMPLE_2D ] = "sampler2D";			
+			variableType[ VT_TEXTURE_SAMPLE_2D ] = "sampler2D";		
+			variableType[ VT_INT ] = "int";
 		}
 
 		auto iter = variableType.find( type );

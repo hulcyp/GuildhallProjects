@@ -37,6 +37,7 @@ namespace Monky
 		void processSystemEvents();
 		void handleKeyDownEvent( SDL_keysym* keysym );
 		void handleKeyUpEvent( SDL_keysym* keysym );
+		void handleMouseButtonEvent( SDL_Event* buttonEvent );
 
 		int m_screenWidth;
 		int m_screenHeight;

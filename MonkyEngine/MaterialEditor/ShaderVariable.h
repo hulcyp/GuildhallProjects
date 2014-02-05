@@ -18,6 +18,7 @@ namespace Monky
 		VT_MAT_3,
 		VT_MAT_4,
 		VT_TEXTURE_SAMPLE_2D,
+		VT_INT,
 		VT_COUNT
 	};
 

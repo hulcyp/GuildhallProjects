@@ -18,7 +18,7 @@ namespace Monky
 		if( inputs.size() > 0 )
 		{
 			statementData.statement = m_funcName + "( ";
-			for( int i = 0; i < inputs.size(); ++i )
+			for( unsigned int i = 0; i < inputs.size(); ++i )
 			{
 				statementData.statement += inputs[i].statement;
 				if( i + 1 != inputs.size() )

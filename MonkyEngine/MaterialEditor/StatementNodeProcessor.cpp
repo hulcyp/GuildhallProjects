@@ -63,7 +63,7 @@ namespace Monky
 					inputData = inputData.substr( 1, inputData.npos );
 					if( m_shaderGenerator->IsTextureSampleDeclared( inputData ) )
 					{
-						statement = "texture( " + inputData + ", vTexCoord0 )";
+						statement = "texture( " + inputData + ", vTexCoord )";
 						type = VT_TEXTURE_SAMPLE_2D;
 					}
 					
@@ -71,6 +71,11 @@ namespace Monky
 					{
 						statement = inputData;
 						type = m_shaderGenerator->GetVariableType( inputData );
+					}
+					else if( IsVariableAccessingComponentOfVariable( inputData ) )
+					{
+						statement = inputData;
+						type = VT_REAL;
 					}
 					else
 					{

@@ -13,7 +13,7 @@ namespace Monky
 	class MaterialEditorCamera : public Camera, public InputListener
 	{
 	public:
-		MaterialEditorCamera( const std::string& id, const vec3f& pos, const vec3f& lookAt, const mat4f& projMatrix, const mat4f& viewMatrix = mat4f::IDENTITY );
+		MaterialEditorCamera( const std::string& id, const vec3f& pos, const vec3f& lookAt, const mat4f& projMatrix );
 
 		~MaterialEditorCamera();
 
@@ -21,7 +21,7 @@ namespace Monky
 
 		virtual bool onKeyDown( MonkyKey keyCode, int x, int y );
 		virtual bool onKeyUp( MonkyKey keyCode, int x, int y );		
-		virtual bool onMouseButton( int mouseKeyCode, MonkyMouseButtonState state, int x, int y ){ return false; }
+		virtual bool onMouseButton( int mouseKeyCode, MonkyMouseButtonState state, int x, int y );
 		virtual void onMouseMove( int x, int y );
 #pragma warning( default:4100 )
 
@@ -31,6 +31,9 @@ namespace Monky
 
 	private:
 		vec3f m_lookAtPos;
+		bool m_leftButtonDown;
+		bool m_rightButtonDown;
+		vec2i m_mousePosWhenMouseButtonLastWentDown;
 
 		bool m_keyboard[ 256 ];
 

@@ -1,3 +1,4 @@
+
 #include "SDLApp.h"
 #ifdef _WIN32
 #include <glew.h>
@@ -129,9 +130,13 @@ namespace Monky
 			case SDL_MOUSEMOTION:
 				onMouseMove( m_evtStruct.motion.x, m_evtStruct.motion.y );
 				break;
+			case SDL_MOUSEBUTTONDOWN:
+			case SDL_MOUSEBUTTONUP:
+				handleMouseButtonEvent( &m_evtStruct );
+				break;
 			case SDL_QUIT:
 				exitProgram( 0 );
-				break;
+				break;			
 			}
 		}
 	}
@@ -150,6 +155,14 @@ namespace Monky
 		SDL_GetMouseState( &x, &y );
 		InputSystem::getInstance()->setCurrentModifiers( (MonkyMod)keysym->mod );		
 		onKeyUp( (MonkyKey)keysym->sym, x, y );
+	}
+	//------------------------------------------------
+	void SDLApp::handleMouseButtonEvent( SDL_Event* buttonEvent )
+	{
+		int x = 0, y = 0;
+		SDL_GetMouseState( &x, &y );
+		InputSystem::getInstance()->setCurrentModifiers( (MonkyMod) (buttonEvent->key.keysym.mod) );
+		onMouseButton( buttonEvent->button.button, (MonkyMouseButtonState)buttonEvent->button.state, x, y );
 	}
 	
 }

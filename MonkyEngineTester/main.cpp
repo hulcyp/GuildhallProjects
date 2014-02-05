@@ -2,7 +2,7 @@
 #include "FileManager.h"
 #include "MaterialEditorCamera.h"
 #include "StartupCommandsParser.h"
-#include "MCCamera.h"
+#include "MaterialEditorCamera.h"
 
 using namespace Monky;
 
@@ -22,7 +22,7 @@ int main( int argc, char** argv )
 		commandLineParser.issueStartupCommands();
 
 		g_app = new App( DELTA_TIME, WINDOW_WIDTH, WINDOW_HEIGHT, FOV, "Engine Tester" );
-		Camera* camera = new MCCamera( "MainCamera", vec3f( 0.0f, 10.0f, 20.f ), vec2i( WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 ),
+		Camera* camera = new MaterialEditorCamera( "MainCamera", vec3f( 10.0f, 10.0f, 20.f ), vec3f(),
 			mat4f::perspective( FOV, (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 10000.0f ) );
 		g_app->initializeCamera( camera );
 

@@ -1,5 +1,4 @@
-<!-- The simplest of all materials 
-	Simply assign the texture to the diffuse channel
+<!-- 
 	$time
 	$vTexCoord0
 -->
@@ -28,8 +27,10 @@
 	</Multiply>
 	
 	
+	
 	<Diffuse>
 		<Multiply>
+			<SampleTexture textureSampleName="RockTexture">$sampleTexCoords</SampleTexture>
 			<Input>$RockTexture</Input>
 			<Input>$MultiFactor</Input>
 		</Multiply>

@@ -142,7 +142,7 @@ namespace Monky
 		virtual void updateMaterial( const matStackf& modelStack, int index ){};
 #pragma warning( default:4100 )
 
-		void addLight( const Material::Light* light, int i );
+		void addLight( const Light* light, int i );
 		
 	protected:
 		void generateTangentSpaceVectors( std::vector< Vertex >& vertices, std::vector< unsigned int >& indices );

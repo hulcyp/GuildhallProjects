@@ -11,59 +11,60 @@ namespace Monky
 	class ShaderProgram;
 	class Renderer;
 
+	struct AttenuationType
+	{
+		AttenuationType()
+			:	constant( 0 )
+			,	linear( 1 )
+			,	inverse( 0 )
+			,	inverseSquared( 0 ) 
+		{}
+		int constant;
+		int linear;
+		int inverse;
+		int inverseSquared;
+	};
+
+	struct Attenuation
+	{
+		Attenuation()
+			:	start( -1.0f )
+			,	end( -1.0f )
+		{}
+		float start;
+		float end;
+	};
+
+
+	struct Aperture
+	{
+		Aperture()
+			:	innerConeDot( -1.0f )
+			,	outerConeDot( -1.0f )
+		{}
+		float innerConeDot;
+		float outerConeDot;
+	};
+
+	struct Light
+	{
+		Light()
+			:	ambientFactor( 0.0f )
+			,	color( 0,0,0,0 )
+		{}
+		vec3f position;
+		Color4f color;
+		vec3f direction;
+		float ambientFactor;
+		Attenuation attenuation;
+		Aperture aperture;
+		AttenuationType attenuationType;
+	};
+
 	class Material
 	{
 	public:
-		friend Renderer;
-
-		struct AttenuationType
-		{
-			AttenuationType()
-				:	constant( 0 )
-				,	linear( 1 )
-				,	inverse( 0 )
-				,	inverseSquared( 0 ) 
-			{}
-			int constant;
-			int linear;
-			int inverse;
-			int inverseSquared;
-		};
-
-		struct Attenuation
-		{
-			Attenuation()
-				:	start( 0.0f )
-				,	end( 10.0f )
-			{}
-			float start;
-			float end;
-		};
-
-		
-		struct Aperture
-		{
-			Aperture()
-				:	innerConeDot( -1.0f )
-				,	outerConeDot( -1.0f )
-			{}
-			float innerConeDot;
-			float outerConeDot;
-		};
-		
-		struct Light
-		{
-			Light()
-				:	ambientFactor( 0.0f )
-			{}
-			vec3f position;
-			Color4f color;
-			vec3f direction;
-			float ambientFactor;
-			Attenuation attenuation;
-			Aperture aperture;
-			AttenuationType attenuationType;
-		};
+		friend Renderer;		
 
 		struct AttenuationUniformLocs
 		{

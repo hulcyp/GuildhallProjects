@@ -22,6 +22,6 @@ namespace Monky
 
 	private:
 		ShaderGenerator* m_fragShaderGenerator;
-
+		ShaderGenerator* m_vertexShaderGenerator;
 	};
 }

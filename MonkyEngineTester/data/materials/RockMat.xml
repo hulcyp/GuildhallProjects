@@ -1,0 +1,32 @@
+<!-- 
+	$time
+	$vTexCoord0
+-->
+<Material name="RockMat">
+	<TextureSample name="RockDiffuse" textureSampleName="StoneTextureDiffuse"/>	
+	<TextureSample name="RockEmissive" textureSampleName="StoneTextureEmissive"/>	
+	<TextureSample name="RockNormal" textureSampleName="StoneTextureNormal"/>	
+	<TextureSample name="RockSpecular" textureSampleName="StoneTextureSpecular"/>	
+
+	
+	
+	
+	<Diffuse>
+		<Input>$RockDiffuse</Input>
+	</Diffuse>
+	<Normal>
+		<Input>$RockNormal</Input>
+	</Normal>
+	<Specular>
+		<Input>$RockSpecular</Input>
+	</Specular>
+	<Emissive>
+		<Input>$RockEmissive</Input>
+	</Emissive>
+	<Opacity>
+		<Input>0.5</Input>
+	</Opacity>
+	<VertexOffset>
+		<Input>$time,$time,0</Input>
+	</VertexOffset>
+</Material>

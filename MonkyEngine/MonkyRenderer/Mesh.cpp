@@ -215,11 +215,13 @@ namespace Monky
 		}
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	void Mesh::addLight( const Material::Light* light, int index )
+	void Mesh::addLight( const Light* light, int index )
 	{
 		for( size_t i = 0; i < m_triangleBatches.size(); ++i )
 		{
-			Material::getMaterial( m_triangleBatches[i]->material )->addUniform( ("uLights[" + toString(index) + "]").c_str(), light );
+			Material* mat = Material::getMaterial( m_triangleBatches[i]->material );
+			if( mat != nullptr )
+				mat->addUniform( ("uLights[" + toString(index) + "]").c_str(), light );
 		}
 	}
 		

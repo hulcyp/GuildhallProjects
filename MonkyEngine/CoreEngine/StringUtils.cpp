@@ -6,7 +6,7 @@ namespace Monky
 	unsigned int HashStringTo32Bytes( const std::string& str )
 	{
 		unsigned int hash = 0;
-		for( int b = 0; b < str.size(); ++b )
+		for( unsigned int b = 0; b < str.size(); ++b )
 		{
 			hash &= 0x07FFFFFF;
 			hash *= 31;

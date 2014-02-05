@@ -1,4 +1,9 @@
 <Textures>
-  <Texture name="AudioSymbol">audioSymbol.jpg</Texture>
-  <Texture name="StoneTextureDiffuse">cobblestonesDiffuse.png</Texture>
+	<Texture name="AudioSymbol">audioSymbol.jpg</Texture>
+	<Texture name="StoneTextureDiffuse">cobblestonesDiffuse.png</Texture>
+	<Texture name="StoneTextureNormal">cobblestonesNormal.png</Texture>
+	<Texture name="StoneTextureEmissive">cobblestonesEmissive.png</Texture>
+	<Texture name="StoneTextureSpecular">cobblestonesSpecular.png</Texture>
+ 
+	<Texture name="StaticShield">bs_IlianaParticles_StaticShield_Tex.png</Texture>
 </Textures>

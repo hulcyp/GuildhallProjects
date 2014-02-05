@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ShaderGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MaterialGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,11 +57,17 @@
     <ClInclude Include="MathFuncWithParamNodeProcessor.h">
       <Filter>Header Files\NodeProcessors\MathNodeProcessors</Filter>
     </ClInclude>
+    <ClInclude Include="FragmentShaderGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShaderGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ShaderGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MaterialGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -94,6 +97,15 @@
     </ClCompile>
     <ClCompile Include="MathFuncWithParamNodeProcessor.cpp">
       <Filter>Source Files\NodeProcessors\MathProcessors</Filter>
+    </ClCompile>
+    <ClCompile Include="FragmentShaderGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShaderGenerator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

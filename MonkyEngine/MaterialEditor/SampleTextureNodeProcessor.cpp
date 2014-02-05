@@ -1,5 +1,5 @@
 #include "SampleTextureNodeProcessor.h"
-#include "ShaderGenerator.h"
+#include "FragmentShaderGenerator.h"
 
 namespace Monky
 {
@@ -27,19 +27,27 @@ namespace Monky
 					{
 						std::vector< std::string > tokens;
 						stringTokenizer( texCoords, tokens, "," );
-						if( tokens.size() != 2 )
+						if( tokens.size() == 2 )
+						{
+							std::string texCoordsValues = StripDollarSignsFromListOfVariables( tokens );
+							statement = outputVar + " = texture( " + textureSample + ", vec2( " + texCoordsValues + " ) );";
+						}
+						else if( tokens.size() == 1 && tokens[0] != "" && tokens[0][0] == '$' )
+						{
+							std::string variable = StripDollarSignsFromListOfVariables( tokens );
+							if( m_shaderGenerator->IsVariableDeclared( variable ) && m_shaderGenerator->GetVariableType( variable ) == VT_VECTOR_2 )
+								statement = outputVar + " = texture( " + textureSample + ", " + variable + " );";
+
+						}
+						else
 						{
 							m_shaderGenerator->AddLogMessage( "Invalid texture coordinates specified for texture sample: %s", color::RED, textureSample.c_str() );
 							m_shaderGenerator->EnableCompilerErrorFlag();
 						}
-						else
-						{
-							statement = outputVar + " = texture( " + textureSample + ", vec2( " + texCoords + " ) );";
-						}
 					}
 					else
 					{
-						statement = outputVar + " = texture( " + textureSample + ", vTexCoord0 );";
+						statement = outputVar + " = texture( " + textureSample + ", vTexCoord );";
 					}
 				}
 			}
@@ -57,24 +65,40 @@ namespace Monky
 			
 			if( textureSample != "" )
 			{
-				std::string texCoords = parser.getXMLElementPCDataAsString( node );
-				if( texCoords != "" )
+				if( m_shaderGenerator->IsTextureSampleDeclared( textureSample ) )
 				{
-					std::vector< std::string > tokens;
-					stringTokenizer( texCoords, tokens, "," );
-					if( tokens.size() != 2 )
+					std::string texCoords = parser.getXMLElementPCDataAsString( node );
+					if( texCoords != "" )
 					{
-						m_shaderGenerator->AddLogMessage( "Invalid texture coordinates specified for texture sample: %s", color::RED, textureSample.c_str() );
-						m_shaderGenerator->EnableCompilerErrorFlag();
+						std::vector< std::string > tokens;
+						stringTokenizer( texCoords, tokens, "," );
+						if( tokens.size() == 2 )
+						{
+							std::string texCoordsValues = StripDollarSignsFromListOfVariables( tokens );
+							statement = "texture( " + textureSample + ", vec2( " + texCoordsValues + " ) )";
+						}
+						else if( tokens.size() == 1 && tokens[0] != "" && tokens[0][0] == '$' )
+						{
+							std::string variable = StripDollarSignsFromListOfVariables( tokens );
+							if( m_shaderGenerator->IsVariableDeclared( variable ) && m_shaderGenerator->GetVariableType( variable ) == VT_VECTOR_2 )
+								statement = "texture( " + textureSample + ", " + variable + " )";
+
+						}
+						else
+						{
+							m_shaderGenerator->AddLogMessage( "Invalid texture coordinates specified for texture sample: %s", color::RED, textureSample.c_str() );
+							m_shaderGenerator->EnableCompilerErrorFlag();
+						}
 					}
 					else
 					{
-						statement = "texture( " + textureSample + ", vec2( " + texCoords + " ) )";
+						statement = "texture( " + textureSample + ", vTexCoord )";
 					}
 				}
 				else
 				{
-					statement = "texture( " + textureSample + ", vTexCoord0 )";
+					m_shaderGenerator->AddLogMessage( "Invalid texture sample name: %s", color::RED, textureSample.c_str() );
+					m_shaderGenerator->EnableCompilerErrorFlag();
 				}
 			}
 		}

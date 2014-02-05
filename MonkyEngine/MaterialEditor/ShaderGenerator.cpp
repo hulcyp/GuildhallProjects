@@ -7,13 +7,23 @@
 namespace Monky
 {	
 	const std::string ShaderGenerator::DIFFUSE_CHANNEL_VARIABLE_NAME = "diffuseColor";
+	const std::string ShaderGenerator::NORMAL_CHANNEL_VARIABLE_NAME = "normalColor";
+	const std::string ShaderGenerator::SPECULAR_CHANNEL_VARIABLE_NAME = "specularColor";
+	const std::string ShaderGenerator::EMISSIVE_CHANNEL_VARIABLE_NAME = "emmisiveColor";
+	const std::string ShaderGenerator::OPACITY_CHANNEL_VARIABLE_NAME = "opacity";
 	const std::string ShaderGenerator::FRAG_COLOR_OUT_CHANNEL = "fragColor";
+	const std::string ShaderGenerator::VERTEX_OFFSET_CHANNEL_NAME = "vertexOffset";
+
 	//----------------------------------------------------------------------
 	ShaderGenerator::ShaderGenerator( ShaderVersion version )
 		:	m_version( version )
 		,	m_wasCompilerError( false )
 	{
-		AddOutVariable( "Vector4", FRAG_COLOR_OUT_CHANNEL );
+		//AddOutVariable( "Vector4", FRAG_COLOR_OUT_CHANNEL );
+		for( int i = 0; i < SOC_COUNT; ++i )
+		{
+			m_outputChannelEnabled[i] = false;
+		}
 	}
 	//----------------------------------------------------------------------
 	ShaderGenerator::~ShaderGenerator()
@@ -29,50 +39,70 @@ namespace Monky
 		m_variables.clear();
 		m_statements.clear();
 		m_orderToDeclareVariables.clear();
-		AddOutVariable( "Vector4", FRAG_COLOR_OUT_CHANNEL );
+		//AddOutVariable( "Vector4", FRAG_COLOR_OUT_CHANNEL );
 		m_wasCompilerError = false;
 		for( auto iter = m_statementNodeProcessors.begin(); iter != m_statementNodeProcessors.end(); ++iter )
 		{
 			iter->second->ReloadProcessorDataToShaderGenerator();
 		}
 		m_logMessages.clear();
+		for( int i = 0; i < SOC_COUNT; ++i )
+		{
+			m_outputChannelEnabled[i] = false;
+		}
 	}
 	//----------------------------------------------------------------------
-	std::string ShaderGenerator::GenerateShader( XMLParser& parser, XMLNode* root )
+	bool ShaderGenerator::ProcessNode( XMLParser& parser, XMLNode* node )
+	{
+		bool success = false;
+		std::string name = node->Name();
+		StatementNodeProcessor* processor = GetStatementNodeProcessor( name );
+		if( processor != nullptr )
+		{
+			std::string statement = processor->ProcessAsRoot( parser, node ).statement;
+			if( statement != "" )
+				m_statements.push_back( statement );
+			success = true;
+		}
+		return success;
+	}
+	//----------------------------------------------------------------------
+	std::string ShaderGenerator::GenerateShader()
 	{
 		std::string shaderCode;
-		
-		if( parser.validateXMLChildElements( root, "", m_commaSeparatedValidNodes.c_str() ) )
-		{
-			XMLNode* node = nullptr;
-			for( node = root->FirstChildElement(); node != nullptr; node = node->NextSiblingElement() )
-			{
-				std::string name = node->Name();
-				StatementNodeProcessor* processor = GetStatementNodeProcessor( name );
-				if( processor != nullptr )
-				{
-					std::string statement = processor->ProcessAsRoot( parser, node ).statement;
-					if( statement != "" )
-						m_statements.push_back( statement );
-				}
-			}
-		}
-		else
-		{
-			//Invalid node in doc...handle this some how lol
-		}
+
+		//if( parser.validateXMLChildElements( root, "", m_commaSeparatedValidNodes.c_str() ) )
+		//{
+		//	XMLNode* node = nullptr;
+		//	for( node = root->FirstChildElement(); node != nullptr; node = node->NextSiblingElement() )
+		//	{
+		//		std::string name = node->Name();
+		//		StatementNodeProcessor* processor = GetStatementNodeProcessor( name );
+		//		if( processor != nullptr )
+		//		{
+		//			std::string statement = processor->ProcessAsRoot( parser, node ).statement;
+		//			if( statement != "" )
+		//				m_statements.push_back( statement );
+		//		}
+		//	}
+		//}
+		//else
+		//{
+		//	//Invalid node in doc...handle this some how lol
+		//}
 
 		//Compile shader code
 		shaderCode += GetShaderVersionCode() + '\n';
+		shaderCode += GetLightingStructInfo() + '\n';
 
 		for( auto iter = m_uniforms.begin(); iter != m_uniforms.end(); ++iter )
 		{
 			shaderCode += iter->second.declarationStatment + "\n";
 		}
 
-		for( auto iter = m_inVariables.begin(); iter != m_inVariables.end(); ++iter )
+		for( unsigned int i = 0; i < m_orderToDeclareInVariables.size(); ++i )
 		{
-			shaderCode += iter->second.declarationStatment + "\n";
+			shaderCode += m_orderToDeclareInVariables[i]->declarationStatment + "\n";
 		}
 
 		for( auto iter = m_outVariables.begin(); iter != m_outVariables.end(); ++iter )
@@ -80,18 +110,22 @@ namespace Monky
 			shaderCode += iter->second.declarationStatment + "\n";
 		}
 
+		shaderCode += GetOutputChannelVariableDeclarations();
+
+		shaderCode += GetLightingFunctionDefinitions();
+
 		shaderCode += GetMainFunctionStart();
 		for( unsigned int i = 0; i < m_orderToDeclareVariables.size(); ++i )
 		{
-			shaderCode += m_orderToDeclareVariables[i]->declarationStatment + "\n";
+			shaderCode += "\t" + m_orderToDeclareVariables[i]->declarationStatment + "\n";
 		}	
 
 		for( unsigned int i = 0; i < m_statements.size(); ++i )
 		{
-			shaderCode += m_statements[i] + "\n";
+			shaderCode += "\t" + m_statements[i] + "\n";
 		}
 
-		shaderCode += GetFragColorOutCode();
+		shaderCode += GetShaderOutCode();
 		shaderCode += GetMainFunctionEnd();
 		return shaderCode;
 	}
@@ -110,6 +144,7 @@ namespace Monky
 		variable.declarationStatment = "in " + GetVariableTypeAsString( variable.type ) + " " + name + ";";
 		unsigned int hash = HashStringTo32Bytes( name );
 		m_inVariables[ hash ] = variable;
+		m_orderToDeclareInVariables.push_back( &m_inVariables[ hash ] );
 	}
 	//----------------------------------------------------------------------
 	void ShaderGenerator::AddOutVariable( const std::string& type, std::string name )
@@ -213,6 +248,11 @@ namespace Monky
 		return type;
 	}
 	//----------------------------------------------------------------------
+	void ShaderGenerator::EnableOuputChannel( ShaderOutputChannels comp )
+	{
+		m_outputChannelEnabled[ comp ] = true;
+	}
+	//----------------------------------------------------------------------
 	void ShaderGenerator::AddLogMessage( const char* format, Color4f color, ... )
 	{
 		va_list args;
@@ -254,9 +294,9 @@ namespace Monky
 		if( !initialized )
 		{
 			versionCode[ SV_GLSL_NONE ] = "";
-			versionCode[ SV_GLSL_330 ] = "#version 330";			
+			versionCode[ SV_GLSL_330 ] = "#version 330\n\n";			
 		}
-		
+
 		auto iter = versionCode.find( m_version );
 		if( iter != versionCode.end() )
 			return iter->second;
@@ -274,9 +314,47 @@ namespace Monky
 		return "\n}\0";
 	}
 	//----------------------------------------------------------------------
-	std::string ShaderGenerator::GetFragColorOutCode()
+	std::string ShaderGenerator::GetLightingStructInfo() const
 	{
-		return FRAG_COLOR_OUT_CHANNEL + " = " + DIFFUSE_CHANNEL_VARIABLE_NAME + ";";
+		static std::string structInfo = "#pragma optionNV unroll all\n" 
+			"struct Light {\n" 
+			"vec4 color;\n" 
+			"vec3 direction;\n};\n\n" 
+			"const int MAX_NUM_LIGHTS = 8;\n"
+			"uniform Light uLights[ MAX_NUM_LIGHTS ];\n"
+			"float SPECULAR_POWER = 32.0;\n";
+		//"float FOG_SCALE = 10000.0;\n"
+		//"vec4 FOG_COLOR = vec4( 0.0, 0.0, 0.0, 1.0 );\n"
+		return structInfo;
+	}
+	//----------------------------------------------------------------------
+	std::string ShaderGenerator::GetOutputChannelVariableDeclarations() const
+	{
+		static std::vector< std::string > outputChannelVariables;
+		if( outputChannelVariables.size() == 0 )
+		{
+			outputChannelVariables.resize( SOC_COUNT );
+			outputChannelVariables[ SOC_DIFFUSE ] = DIFFUSE_CHANNEL_VARIABLE_NAME;
+			outputChannelVariables[ SOC_NORMAL ] = NORMAL_CHANNEL_VARIABLE_NAME;
+			outputChannelVariables[ SOC_SPECULAR ] = SPECULAR_CHANNEL_VARIABLE_NAME;
+			outputChannelVariables[ SOC_EMISSIVE ] = EMISSIVE_CHANNEL_VARIABLE_NAME;
+			outputChannelVariables[ SOC_OPACITY ] = OPACITY_CHANNEL_VARIABLE_NAME;
+			outputChannelVariables[ SOC_VERTEX_OFFSET ] = VERTEX_OFFSET_CHANNEL_NAME;
+		}
+
+		std::string variableDeclaration;
+		for( int i = 0; i < SOC_OPACITY; ++i ) 
+		{
+			if( m_outputChannelEnabled[ i ] )
+				variableDeclaration += "vec4 " + outputChannelVariables[ i ] + ";\n";
+		}
+		if( m_outputChannelEnabled[ SOC_OPACITY ] )
+			variableDeclaration += "float " + outputChannelVariables[ SOC_OPACITY ] + ";\n";
+		else if( m_outputChannelEnabled[ SOC_VERTEX_OFFSET ] )
+			variableDeclaration += "vec3 " + outputChannelVariables[ SOC_VERTEX_OFFSET ] + ";\n";
+
+		variableDeclaration +="\n";
+		return variableDeclaration;
 	}
 	//----------------------------------------------------------------------
 	void ShaderGenerator::vAddLogMessage( const char* format, Color4f color, va_list args )
