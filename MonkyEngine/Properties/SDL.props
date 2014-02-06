@@ -3,18 +3,18 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>../libs/SDL-1.2.15/include;$(IncludePath)</IncludePath>
+    <IncludePath>../libs/SDL2-2.0.1/include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup>
-    <LibraryPath>../libs/SDL-1.2.15/lib/x86;$(LibraryPath)</LibraryPath>
+    <LibraryPath>../libs/SDL2-2.0.1/lib/x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup>
-    <SourcePath>../libs/SDL-1.2.15/include;$(SourcePath)</SourcePath>
+    <SourcePath>../libs/SDL2-2.0.1/include;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>SDL.lib;SDLmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup />

@@ -13,8 +13,9 @@ namespace Monky
 	std::vector< Material::Occlusion > Material::m_occlusionValues;
 	std::map< std::string, Material::MaterialType > Material::m_stringToMaterialTypeMap;
 
-	Material::Material( ShaderProgram* program, int srcBlendFunc, int destBlendFunc )
-		:	m_program( program )
+	Material::Material( const std::string& materialName, ShaderProgram* program, int srcBlendFunc, int destBlendFunc )
+		:	m_materialName( materialName )
+		,	m_program( program )
 		,	m_blendFuncSrcFactor( srcBlendFunc )
 		,	m_blendFuncDestFactor( destBlendFunc )
 		,	m_isActive( false )
@@ -42,7 +43,7 @@ namespace Monky
 		Material* newMaterial = nullptr;//sm_materials[ materialName ];
 		if( iter == sm_materials.end() )
 		{
-			newMaterial = new Material( ShaderProgram::getShaderProgram( shaderProgramName ) );
+			newMaterial = new Material( materialName, ShaderProgram::getShaderProgram( shaderProgramName ) );
 
 			newMaterial->addUniform( "uProjectionMatrix", mat4f::identity() );
 			newMaterial->addUniform( "uViewMatrix", mat4f::identity() );
@@ -69,7 +70,7 @@ namespace Monky
 			SAFE_DELETE( iter->second );
 			sm_materials.erase( iter );
 		}	
-		newMaterial = new Material( ShaderProgram::getShaderProgram( shaderProgramName ) );
+		newMaterial = new Material( materialName, ShaderProgram::getShaderProgram( shaderProgramName ) );
 
 		newMaterial->addUniform( "uProjectionMatrix", mat4f::identity() );
 		newMaterial->addUniform( "uViewMatrix", mat4f::identity() );

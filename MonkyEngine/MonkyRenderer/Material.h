@@ -112,7 +112,7 @@ namespace Monky
 			float reverb;
 		};
 															//GL_SRC_ALPHA		GL_ONE_MINUS_SRC_ALPHA
-		Material( ShaderProgram* program, int srcBlendFunc = 0x0302, int destBlendFunc = 0x0303 );
+		Material( const std::string& materialName, ShaderProgram* program, int srcBlendFunc = 0x0302, int destBlendFunc = 0x0303 );
 		~Material();
 
 
@@ -166,12 +166,15 @@ namespace Monky
 		void updateUniform( const std::string& uniformName, const Light* value );
 		void updateUniform( const std::string& uniformName, const Color4f& value );
 
+		const std::string& getMaterialName() const { return m_materialName; }
+
 	protected:
 		static void cleanupMaterials();
 		void activateLights();
 		void updateUniformLocations();
 		
 	private:
+		std::string m_materialName;
 		ShaderProgram* m_program;
 		std::map< std::string, std::pair< int, Texture* > > m_textures;
 		std::map< std::string, std::pair< int, int > > m_intUniforms;

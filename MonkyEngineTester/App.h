@@ -20,6 +20,7 @@ namespace Monky
 		virtual ~App();
 
 		virtual bool onKeyDown( MonkyKey keyCode, int x, int y );
+		virtual void onFileDrop( const std::string& filePath );
 
 		
 	protected:

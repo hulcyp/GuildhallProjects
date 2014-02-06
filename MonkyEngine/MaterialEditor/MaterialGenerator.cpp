@@ -97,10 +97,6 @@ namespace Monky
 					m_vertexShaderGenerator->AddUniform( "Mat4", "uMVPMatrix" );
 					m_vertexShaderGenerator->AddUniform( "Integer", "uUnlit" );
 
-				//	m_fragShaderGenerator->AddInVariable( "Vector3", "vDirToLightFromVertexTBN[ MAX_NUM_LIGHTS ]" );
-				//	m_fragShaderGenerator->AddInVariable( "Real", "vDistanceToLightFromVertex[ MAX_NUM_LIGHTS ]" );
-				//	m_fragShaderGenerator->AddInVariable( "Vector3", "vLightDirTBN[ MAX_NUM_LIGHTS ]" );
-
 					materialName = parser.getXMLAttributeAsString( root, "name", "" );
 
 
@@ -126,6 +122,9 @@ namespace Monky
 					m_vertexShaderGenerator->OutputShaderLog();
 					if( fragShaderCode != "" && !m_fragShaderGenerator->WasCompilerError() && vertShaderCode != "" && !m_vertexShaderGenerator->WasCompilerError() )
 						failedToLoad = false;
+
+					m_vertexShaderGenerator->ResetGenerator();
+					m_fragShaderGenerator->ResetGenerator();
 				}
 			}
 		}
@@ -169,7 +168,6 @@ namespace Monky
 			consolePrintColorf( "Failed to load material: %s", color::RED, materialFilePath.c_str() );
 			material = Material::getMaterial( "SimpleColorMaterial" );
 		}
-		m_fragShaderGenerator->ResetGenerator();
 		return material;
 	}
 }

@@ -18,9 +18,9 @@ namespace Monky
 		,	m_frameOwed( true )
 		,	m_windowTitle( windowTitle )
 	{
-		const SDL_VideoInfo* info = nullptr;
-		int bpp = 0;
-		int flags = 0;
+		//const SDL_VideoInfo* info = nullptr;
+		//int bpp = 0;
+		//int flags = 0;
 		
 		if( windowTitle == nullptr )
 		{
@@ -31,11 +31,11 @@ namespace Monky
 			assertion( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO ) != -1, "Could not initialize SDL %s.", SDL_GetError() );
 		
 
-			info = SDL_GetVideoInfo();
+			//info = SDL_GetVideoInfo();
 
-			assertion( info != nullptr, "Video query failed: %s", SDL_GetError() );
+			//assertion( info != nullptr, "Video query failed: %s", SDL_GetError() );
 
-			bpp = info->vfmt->BitsPerPixel;
+			//bpp = info->vfmt->BitsPerPixel;
 
 			SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
 			SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
@@ -43,11 +43,17 @@ namespace Monky
 			SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 16 );
 			SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 
-			flags = SDL_OPENGL;
+			//flags = SDL_OPENGL;
 
-			assertion( SDL_SetVideoMode( width, height, bpp, flags ) != 0, "Video mode set failed: %s", SDL_GetError() );
+			m_window = SDL_CreateWindow( windowTitle, 
+													SDL_WINDOWPOS_CENTERED,
+													SDL_WINDOWPOS_CENTERED,
+													width, height, SDL_WINDOW_OPENGL );
+															
+			SDL_GL_CreateContext( m_window );
+			//assertion( SDL_SetVideoMode( width, height, bpp, flags ) != 0, "Video mode set failed: %s", SDL_GetError() );
 
-			SDL_WM_SetCaption( m_windowTitle, "" );
+			//SDL_WM_SetCaption( m_windowTitle, "" );
 		
 
 #ifdef _WIN32
@@ -74,8 +80,8 @@ namespace Monky
 				if( m_frameOwed )
 				{
 					updateFrame();
-					if( m_windowTitle != nullptr )
-						SDL_GL_SwapBuffers();
+					if( m_window != nullptr )
+						SDL_GL_SwapWindow(m_window);
 				}
 				double endTime = TimeUtils::GetAbsoluteTimeSeconds();		
 				m_applicationClock.advance( endTime - startTime );
@@ -102,7 +108,7 @@ namespace Monky
 	//------------------------------------------------
 	void SDLApp::warpPointer( int x, int y )
 	{
-		SDL_WarpMouse( x, y );
+		SDL_WarpMouseInWindow( m_window, x, y );
 	}
 	//------------------------------------------------
 	void SDLApp::showCursor( bool show )
@@ -134,6 +140,9 @@ namespace Monky
 			case SDL_MOUSEBUTTONUP:
 				handleMouseButtonEvent( &m_evtStruct );
 				break;
+			case SDL_DROPFILE:
+				handleFileDrop( &m_evtStruct.drop );
+				break;
 			case SDL_QUIT:
 				exitProgram( 0 );
 				break;			
@@ -141,7 +150,7 @@ namespace Monky
 		}
 	}
 	//------------------------------------------------
-	void SDLApp::handleKeyDownEvent( SDL_keysym* keysym )
+	void SDLApp::handleKeyDownEvent( SDL_Keysym* keysym )
 	{
 		int x = 0, y = 0;
 		SDL_GetMouseState( &x, &y );
@@ -149,7 +158,7 @@ namespace Monky
 		onKeyDown( (MonkyKey)keysym->sym, x, y );
 	}
 	//------------------------------------------------
-	void SDLApp::handleKeyUpEvent( SDL_keysym* keysym )
+	void SDLApp::handleKeyUpEvent( SDL_Keysym* keysym )
 	{
 		int x = 0, y = 0;
 		SDL_GetMouseState( &x, &y );
@@ -163,6 +172,11 @@ namespace Monky
 		SDL_GetMouseState( &x, &y );
 		InputSystem::getInstance()->setCurrentModifiers( (MonkyMod) (buttonEvent->key.keysym.mod) );
 		onMouseButton( buttonEvent->button.button, (MonkyMouseButtonState)buttonEvent->button.state, x, y );
+	}
+	//------------------------------------------------
+	void SDLApp::handleFileDrop( SDL_DropEvent* event )
+	{
+		onFileDrop( std::string( event->file ) );
 	}
 	
 }

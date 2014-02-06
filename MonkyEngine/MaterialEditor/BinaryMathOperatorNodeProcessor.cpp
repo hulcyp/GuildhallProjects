@@ -18,9 +18,12 @@ namespace Monky
 		statementData.statement = "( ";
 		for( unsigned int i = 0; i < inputs.size(); ++i )
 		{
-			statementData.statement += inputs[i].statement;
-			if( i + 1 < inputs.size() )
-				statementData.statement += m_operatorSymbol;
+			if( inputs[i].statement != "" )
+			{
+				statementData.statement += inputs[i].statement;
+				if( i + 1 < inputs.size() )
+					statementData.statement += m_operatorSymbol;
+			}
 		}
 		statementData.statement += " )";
 		statementData.outputType = inputs[0].outputType;

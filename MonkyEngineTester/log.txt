@@ -1,1 +1,2 @@
-Successfully loaded material file: ./materials/RockMat.xml
+Successfully loaded material file: ./materials/GreenGlowMat.xml
+Successfully loaded material file: .\materials\StaticShieldMat.xml

@@ -7,8 +7,8 @@
 using namespace Monky;
 
 const double DELTA_TIME = 1/60.0;
-const int WINDOW_WIDTH = 1024;
-const int WINDOW_HEIGHT = 768;
+const int WINDOW_WIDTH = 1600;
+const int WINDOW_HEIGHT = 900;
 const float FOV = 45.0f;
 
 GameApp* g_app = nullptr;

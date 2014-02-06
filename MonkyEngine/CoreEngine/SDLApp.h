@@ -3,6 +3,8 @@
 #include "InputSystem.h"
 #include "Singleton.h"
 #include "Clock.h"
+#include <SDL_events.h>
+
 
 namespace Monky
 {
@@ -23,21 +25,24 @@ namespace Monky
 		virtual bool onKeyDown( MonkyKey keyCode, int x, int y ){ return false; }
 		virtual bool onKeyUp( MonkyKey keyCode, int x, int y ){ return false; }
 		virtual bool onMouseButton( int keyCode, MonkyMouseButtonState state, int x, int y ){ return false; }
+		virtual void onFileDrop( const std::string& filePath ) {}
 	#pragma warning( default:4100 )
 		
 		void exitProgram( int code );
 
 		const char* getWindowTitle() { return m_windowTitle; }
 
-		static void warpPointer( int x, int y );
+		void warpPointer( int x, int y );
 		static void showCursor( bool show );
 		static int getModifiers();
 
 	protected:
 		void processSystemEvents();
-		void handleKeyDownEvent( SDL_keysym* keysym );
-		void handleKeyUpEvent( SDL_keysym* keysym );
+		void handleKeyDownEvent( SDL_Keysym* keysym );
+		void handleKeyUpEvent( SDL_Keysym* keysym );
 		void handleMouseButtonEvent( SDL_Event* buttonEvent );
+		void handleFileDrop( SDL_DropEvent* event );
+
 
 		int m_screenWidth;
 		int m_screenHeight;
@@ -49,6 +54,7 @@ namespace Monky
 	private:
 		const char* m_windowTitle;
 		SDL_Event m_evtStruct;
+		SDL_Window* m_window;
 
 		class QuitProgram : public std::exception
 		{};

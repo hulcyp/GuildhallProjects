@@ -7,20 +7,31 @@
 //---------------------------------------------
 #include "CommonCoreEngineIncludes.h"
 
+#define VT_REAL 0
+#define VT_VECTOR_2 1
+#define VT_VECTOR_3 2
+#define VT_VECTOR_4 3
+#define VT_MAT_3 4
+#define VT_MAT_4 5
+#define VT_TEXTURE_SAMPLE_2D 6
+#define VT_INT 7
+#define VT_COUNT 8
+
 namespace Monky
 {
-	enum ShaderVariableType
-	{
-		VT_REAL,
-		VT_VECTOR_2,
-		VT_VECTOR_3,
-		VT_VECTOR_4,
-		VT_MAT_3,
-		VT_MAT_4,
-		VT_TEXTURE_SAMPLE_2D,
-		VT_INT,
-		VT_COUNT
-	};
+	typedef short ShaderVariableType;
+	//enum ShaderVariableType
+	//{
+	//	VT_REAL,
+	//	VT_VECTOR_2,
+	//	VT_VECTOR_3,
+	//	VT_VECTOR_4,
+	//	VT_MAT_3,
+	//	VT_MAT_4,
+	//	VT_TEXTURE_SAMPLE_2D,
+	//	VT_INT,
+	//	VT_COUNT
+	//};
 
 	struct ShaderVariable
 	{
@@ -30,7 +41,7 @@ namespace Monky
 		std::string name;
 		std::string value;
 		std::string declarationStatment;
-		bool isConst;
+		unsigned char isConst;
 	};
 
 	ShaderVariableType GetVariableTypeFromString( const std::string& type );

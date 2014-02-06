@@ -37,9 +37,9 @@ namespace Monky
 		m_inVariables.clear();
 		m_outVariables.clear();
 		m_variables.clear();
-		m_statements.clear();
+		m_statementsString.clear();
 		m_orderToDeclareVariables.clear();
-		//AddOutVariable( "Vector4", FRAG_COLOR_OUT_CHANNEL );
+		m_orderToDeclareInVariables.clear();
 		m_wasCompilerError = false;
 		for( auto iter = m_statementNodeProcessors.begin(); iter != m_statementNodeProcessors.end(); ++iter )
 		{
@@ -61,7 +61,9 @@ namespace Monky
 		{
 			std::string statement = processor->ProcessAsRoot( parser, node ).statement;
 			if( statement != "" )
-				m_statements.push_back( statement );
+			{
+				m_statementsString += "\t" + statement + "\n";
+			}
 			success = true;
 		}
 		return success;
@@ -70,26 +72,6 @@ namespace Monky
 	std::string ShaderGenerator::GenerateShader()
 	{
 		std::string shaderCode;
-
-		//if( parser.validateXMLChildElements( root, "", m_commaSeparatedValidNodes.c_str() ) )
-		//{
-		//	XMLNode* node = nullptr;
-		//	for( node = root->FirstChildElement(); node != nullptr; node = node->NextSiblingElement() )
-		//	{
-		//		std::string name = node->Name();
-		//		StatementNodeProcessor* processor = GetStatementNodeProcessor( name );
-		//		if( processor != nullptr )
-		//		{
-		//			std::string statement = processor->ProcessAsRoot( parser, node ).statement;
-		//			if( statement != "" )
-		//				m_statements.push_back( statement );
-		//		}
-		//	}
-		//}
-		//else
-		//{
-		//	//Invalid node in doc...handle this some how lol
-		//}
 
 		//Compile shader code
 		shaderCode += GetShaderVersionCode() + '\n';
@@ -120,10 +102,7 @@ namespace Monky
 			shaderCode += "\t" + m_orderToDeclareVariables[i]->declarationStatment + "\n";
 		}	
 
-		for( unsigned int i = 0; i < m_statements.size(); ++i )
-		{
-			shaderCode += "\t" + m_statements[i] + "\n";
-		}
+		shaderCode += m_statementsString;
 
 		shaderCode += GetShaderOutCode();
 		shaderCode += GetMainFunctionEnd();

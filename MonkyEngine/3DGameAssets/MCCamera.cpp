@@ -96,7 +96,7 @@ namespace Monky
 	void MCCamera::updateInput()
 	{
 
-		GameApp::warpPointer( m_mouseCenterPos.x, m_mouseCenterPos.y );
+		GameApp::getInstance()->warpPointer( m_mouseCenterPos.x, m_mouseCenterPos.y );
 
 		m_impulse = vec3f( 0.0, 0.0, 0.0 );
 

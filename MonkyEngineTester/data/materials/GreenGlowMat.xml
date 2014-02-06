@@ -30,7 +30,6 @@
 	
 	<Diffuse>
 		<Multiply>
-			<SampleTexture textureSampleName="RockTexture">$sampleTexCoords</SampleTexture>
 			<Input>$RockTexture</Input>
 			<Input>$MultiFactor</Input>
 		</Multiply>

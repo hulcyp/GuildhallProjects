@@ -95,7 +95,7 @@ namespace Monky
 		std::vector< ShaderVariable* > m_orderToDeclareVariables;
 		std::vector< ShaderVariable* > m_orderToDeclareInVariables;
 
-		std::vector< std::string > m_statements;
+		std::string m_statementsString;
 
 		std::string m_commaSeparatedValidNodes;
 		std::map< unsigned int, StatementNodeProcessor* > m_statementNodeProcessors;
