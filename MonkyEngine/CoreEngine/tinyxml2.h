@@ -1397,6 +1397,8 @@ public:
     */
     XMLError LoadFile( FILE* );
 
+	XMLError LoadFile( FILE* file, size_t size );
+
     /**
     	Save the XML file to disk.
     	Returns XML_NO_ERROR (0) on success, or

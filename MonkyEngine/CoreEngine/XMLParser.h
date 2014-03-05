@@ -26,6 +26,8 @@ namespace Monky
 	{
 	public:
 		XMLParser( const char* fileLocation, bool showErrorDialog = true );
+		XMLParser( FILE* file, bool showErrorDialog = true );
+		XMLParser( FILE* file, size_t size, bool showErrorDialog = true );
 
 		XMLDocument& getDocument() { return m_document; }
 

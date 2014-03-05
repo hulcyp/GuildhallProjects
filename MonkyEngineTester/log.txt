@@ -1,2 +1,3 @@
-Successfully loaded material file: ./materials/GreenGlowMat.xml
-Successfully loaded material file: .\materials\StaticShieldMat.xml
+Successfully loaded material file: ./materials/StaticShield_01.xml
+Successfully loaded material file: .\materials\StaticShield_01.xml
+Successfully loaded material file: .\materials\StaticShield_01.xml

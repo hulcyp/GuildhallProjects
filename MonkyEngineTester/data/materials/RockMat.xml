@@ -8,8 +8,14 @@
 	<TextureSample name="RockNormal" textureSampleName="StoneTextureNormal"/>	
 	<TextureSample name="RockSpecular" textureSampleName="StoneTextureSpecular"/>	
 
+	<Variable name="sineOfTime" type="Real">0</Variable>
 	
-	
+	<Multiply outputVar="sineOfTime">
+		<Sine>
+			<Input>$time</Input>
+		</Sine>
+		<Input>3</Input>
+	</Multiply>
 	
 	<Diffuse>
 		<Input>$RockDiffuse</Input>
@@ -27,6 +33,6 @@
 		<Input>0.5</Input>
 	</Opacity>
 	<VertexOffset>
-		<Input>$time,$time,0</Input>
+		<Input>$sineOfTime,$sineOfTime,0</Input>
 	</VertexOffset>
 </Material>

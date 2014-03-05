@@ -1639,6 +1639,36 @@ XMLError XMLDocument::LoadFile( FILE* fp )
     return _errorID;
 }
 
+XMLError XMLDocument::LoadFile( FILE* fp, size_t size )
+{
+	DeleteChildren();
+	InitDocument();
+
+	
+	if ( size == 0 ) {
+		return _errorID;
+	}
+
+	_charBuffer = new char[size+1];
+	size_t read = fread( _charBuffer, 1, size, fp );
+	if ( read != size ) {
+		SetError( XML_ERROR_FILE_READ_ERROR, 0, 0 );
+		return _errorID;
+	}
+
+	_charBuffer[size] = 0;
+
+	const char* p = _charBuffer;
+	p = XMLUtil::SkipWhiteSpace( p );
+	p = XMLUtil::ReadBOM( p, &_writeBOM );
+	if ( !p || !*p ) {
+		SetError( XML_ERROR_EMPTY_DOCUMENT, 0, 0 );
+		return _errorID;
+	}
+
+	ParseDeep( _charBuffer + (p-_charBuffer), 0 );
+	return _errorID;
+}
 
 XMLError XMLDocument::SaveFile( const char* filename, bool compact )
 {

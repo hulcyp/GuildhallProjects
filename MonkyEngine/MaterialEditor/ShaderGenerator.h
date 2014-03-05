@@ -97,7 +97,6 @@ namespace Monky
 
 		std::string m_statementsString;
 
-		std::string m_commaSeparatedValidNodes;
 		std::map< unsigned int, StatementNodeProcessor* > m_statementNodeProcessors;
 
 		ShaderVersion m_version;

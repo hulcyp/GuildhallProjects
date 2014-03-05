@@ -160,7 +160,6 @@ namespace Monky
 		if( newProcessor )
 			SAFE_DELETE( newProcessor );
 		newProcessor = processor;
-		m_commaSeparatedValidNodes += "," + newProcessor->GetName();
 	}
 	//----------------------------------------------------------------------
 	StatementNodeProcessor* ShaderGenerator::GetStatementNodeProcessor( const std::string& name )

@@ -21,14 +21,14 @@ namespace Monky
 	//----------------------------------------------------------------------
 	Monky::ShaderVariableType GetVariableTypeFromString( const std::string& type )
 	{
-		static bool initialized = false;
 		static std::map< std::string, ShaderVariableType > variableType;
-		if( !initialized )
+		if( variableType.empty() )
 		{
 			variableType[ "Real" ] = VT_REAL;
 			variableType[ "Vector2" ] = VT_VECTOR_2;
 			variableType[ "Vector3" ] = VT_VECTOR_3;
 			variableType[ "Vector4" ] = VT_VECTOR_4;
+			variableType[ "Color" ] = VT_VECTOR_4;
 			variableType[ "Mat3" ] = VT_MAT_3;
 			variableType[ "Mat4" ] = VT_MAT_4;
 			variableType[ "Texture2D" ] = VT_TEXTURE_SAMPLE_2D;	

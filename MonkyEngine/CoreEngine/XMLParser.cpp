@@ -33,6 +33,29 @@ namespace Monky
 		SAFE_DELETE( xmlBuffer );
 	}
 
+
+	XMLParser::XMLParser( FILE* file, bool showErrorDialog )
+	{
+		int errorID = 0;
+		errorID = m_document.LoadFile( file ); 
+		
+		if(  errorID != tinyxml2::XML_NO_ERROR && showErrorDialog )
+		{
+			outputXMLErrorMsgToWindow( m_document.GetErrorStr1() );
+		}
+	}
+
+	XMLParser::XMLParser( FILE* file, size_t size, bool showErrorDialog )
+	{
+		int errorID = 0;
+		errorID = m_document.LoadFile( file, size ); 
+
+		if(  errorID != tinyxml2::XML_NO_ERROR && showErrorDialog )
+		{
+			outputXMLErrorMsgToWindow( m_document.GetErrorStr1() );
+		}
+	}
+
 	float XMLParser::getXMLAttributeAsFloat( const XMLNode* element, const char* attributeName, float defaultValue )
 	{
 		float attrib = defaultValue;
@@ -523,22 +546,26 @@ namespace Monky
 	void XMLParser::outputXMLErrorMsgToWindow( const char* format, ... )
 	{
 		char locMsg[512];
-		
-		sprintf_s( locMsg, ms_ErrorLocation, m_fileLocation.c_str() );
 
-		va_list args;
-		va_start( args, format );
-		char errorMsg[ MAX_MESSAGE_SIZE ];
-		vsprintf_s( errorMsg, format, args );
-		va_end( args );
-
-		std::string msg = std::string( locMsg ) + "\n" + std::string( errorMsg ) + "\n" + std::string( ms_ErrorMsg );		
-		
-		bool response = MonkyException::yesNoMessageBox( ms_ErrorTitle, msg.c_str() );
-
-		if( !response )
+		if( format != nullptr )
 		{
-			exit( 0 );
+		
+			sprintf_s( locMsg, ms_ErrorLocation, m_fileLocation.c_str() );
+
+			va_list args;
+			va_start( args, format );
+			char errorMsg[ MAX_MESSAGE_SIZE ];
+			vsprintf_s( errorMsg, format, args );
+			va_end( args );
+
+			std::string msg = std::string( locMsg ) + "\n" + std::string( errorMsg ) + "\n" + std::string( ms_ErrorMsg );		
+
+			bool response = MonkyException::yesNoMessageBox( ms_ErrorTitle, msg.c_str() );
+
+			if( !response )
+			{
+				exit( 0 );
+			}
 		}
 	}
 

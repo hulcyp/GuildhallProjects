@@ -12,7 +12,7 @@
 	<Variable name="colorSample0" type="Vector4">0,0,0,0</Variable>
 	<Variable name="colorSample1" type="Vector4">0,0,0,0</Variable>
 	<Variable name="Brightness" type="Real">5</Variable>
-	<Variable name="Color" type="Vector4">0.122,0.507,1,1</Variable>
+	<Variable name="Color" type="Color">0.122,0.507,1,1</Variable>
 	
 
 	<Add outputVar="pannerTexCoords0">

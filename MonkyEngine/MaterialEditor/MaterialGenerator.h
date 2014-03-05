@@ -7,6 +7,8 @@
 //---------------------------------------------
 #include "CommonCoreEngineIncludes.h"
 
+#define MATERIAL_VERSION_NUMBER 1
+
 namespace Monky
 {
 	class Material;

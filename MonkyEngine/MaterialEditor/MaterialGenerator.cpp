@@ -14,6 +14,7 @@
 #include "MathFuncWithParamNodeProcessor.h"
 #include "VertexShaderGenerator.h"
 
+
 #include <fstream>
 
 namespace Monky
@@ -30,6 +31,8 @@ namespace Monky
 		new OutputChannelNodeProcessor( "Opacity", ShaderGenerator::OPACITY_CHANNEL_VARIABLE_NAME, ShaderGenerator::SOC_OPACITY, m_fragShaderGenerator, VT_REAL );
 
 		new OutputChannelNodeProcessor( "VertexOffset", ShaderGenerator::VERTEX_OFFSET_CHANNEL_NAME, ShaderGenerator::SOC_VERTEX_OFFSET, m_vertexShaderGenerator, VT_VECTOR_3 );
+		new VariableNodeProcessor( "Variable", m_vertexShaderGenerator );
+		new VariableNodeProcessor( "Constant", m_vertexShaderGenerator );
 
 		
 		new SampleTextureNodeProcessor( "SampleTexture", m_fragShaderGenerator );
@@ -72,11 +75,38 @@ namespace Monky
 		std::string materialName;
 		std::string fragShaderCode;
 		std::string vertShaderCode;
-		XMLParser parser( materialFilePath.c_str() );
-		XMLDocument& doc = parser.getDocument();
 		bool failedToLoad = true;
+				
+		std::string filePath = "./data/" + materialFilePath;
+		FILE* matFile = fopen( filePath.c_str(), "rb" );
+		
+		
+		int graphLayoutBufferSize = 0;
+		int versionNumber = 0;
+		int pos = 0;
+		size_t size = 9;
+		if( matFile )
+		{
+			fread( reinterpret_cast< void* >( &graphLayoutBufferSize ), sizeof( int ), 1, matFile );
+		
+			fread( reinterpret_cast< void* >( &versionNumber ), sizeof( int ), 1, matFile );
+			fseek( matFile, graphLayoutBufferSize + sizeof(int), SEEK_SET );
+			pos = ftell( matFile );
+			fseek( matFile, 0, SEEK_END );
+			size = ftell( matFile ) - pos;
+			fclose( matFile );
+		}
+
+		matFile = fopen( filePath.c_str(), "rb" );
+		
+		fseek( matFile, pos, SEEK_SET );
+			
+		XMLParser parser( matFile, size );
+		fclose( matFile );
+
+		XMLDocument& doc = parser.getDocument();
 		XMLNode* root = nullptr;
-		if( !doc.Error() )
+		if( !doc.Error() && versionNumber == MATERIAL_VERSION_NUMBER )
 		{
 			root = doc.FirstChildElement( "Material" );
 			if( root != nullptr )
@@ -108,10 +138,11 @@ namespace Monky
 					{
 						if( !m_fragShaderGenerator->ProcessNode( parser, node ) )
 						{
-							if( !m_vertexShaderGenerator->ProcessNode( parser, node ) )
-							{
-								//Invalid node in document
-							}
+							
+						}
+						if( !m_vertexShaderGenerator->ProcessNode( parser, node ) )
+						{
+							//Invalid node in document
 						}
 					}					
 					
@@ -128,6 +159,7 @@ namespace Monky
 				}
 			}
 		}
+
 
 		if( !failedToLoad )
 		{		

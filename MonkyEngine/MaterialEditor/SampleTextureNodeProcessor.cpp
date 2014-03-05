@@ -13,6 +13,7 @@ namespace Monky
 	StatementData SampleTextureNodeProcessor::ProcessAsRoot( XMLParser& parser, XMLNode* node )
 	{
 		std::string statement;
+		ShaderVariableType type = VT_VECTOR_4;
 		if( parser.validateXMLAttributes( node, "textureSampleName", "outputVar" ) )
 		{
 			std::string textureSample = parser.getXMLAttributeAsString( node, "textureSampleName", "" );
@@ -47,7 +48,38 @@ namespace Monky
 					}
 					else
 					{
-						statement = outputVar + " = texture( " + textureSample + ", vTexCoord );";
+						XMLNode* child = node->FirstChildElement();
+						if( child != nullptr )
+						{
+							StatementNodeProcessor* processor = m_shaderGenerator->GetStatementNodeProcessor( child->Name() );
+							if( processor != nullptr )
+							{
+								StatementData texCoordsStatement = processor->ProcessAsChild( parser, child );
+								if( texCoordsStatement.outputType == VT_VECTOR_2 )
+								{
+									statement = outputVar + " = texture( " + textureSample + ", " + texCoordsStatement.statement + " );";
+								}
+								else
+								{
+									m_shaderGenerator->AddLogMessage( "Invalid type for texture coords from node: %s, and texture sample: %s", color::RED, child->Name(), textureSample.c_str() );
+									m_shaderGenerator->EnableCompilerErrorFlag();
+								}
+							}
+						}
+						else
+						{
+							statement = outputVar + " = texture( " + textureSample + ", vTexCoord );";
+						}
+					}
+
+					if( statement != "" )
+					{
+						std::string comp = parser.getXMLAttributeAsString( node, "comp", "" );
+						if( comp != "" )
+						{
+							statement += "." + comp;
+							type = VT_REAL;
+						}
 					}
 				}
 			}
@@ -59,7 +91,8 @@ namespace Monky
 	StatementData SampleTextureNodeProcessor::ProcessAsChild( XMLParser& parser, XMLNode* node )
 	{
 		std::string statement;
-		if( parser.validateXMLAttributes( node, "textureSampleName", "" ) )
+		ShaderVariableType type = VT_VECTOR_4;
+		if( parser.validateXMLAttributes( node, "textureSampleName", "comp" ) )
 		{
 			std::string textureSample = parser.getXMLAttributeAsString( node, "textureSampleName", "" );
 			
@@ -89,10 +122,42 @@ namespace Monky
 							m_shaderGenerator->AddLogMessage( "Invalid texture coordinates specified for texture sample: %s", color::RED, textureSample.c_str() );
 							m_shaderGenerator->EnableCompilerErrorFlag();
 						}
+						
 					}
 					else
 					{
-						statement = "texture( " + textureSample + ", vTexCoord )";
+						XMLNode* child = node->FirstChildElement();
+						if( child != nullptr )
+						{
+							StatementNodeProcessor* processor = m_shaderGenerator->GetStatementNodeProcessor( child->Name() );
+							if( processor != nullptr )
+							{
+								StatementData texCoordsStatement = processor->ProcessAsChild( parser, child );
+								if( texCoordsStatement.outputType == VT_VECTOR_2 )
+								{
+									statement = "texture( " + textureSample + ", " + texCoordsStatement.statement + " )";
+								}
+								else
+								{
+									m_shaderGenerator->AddLogMessage( "Invalid type for texture coords from node: %s, and texture sample: %s", color::RED, child->Name(), textureSample.c_str() );
+									m_shaderGenerator->EnableCompilerErrorFlag();
+								}
+							}
+						}
+						else
+						{
+							statement = "texture( " + textureSample + ", vTexCoord )";
+						}
+					}
+
+					if( statement != "" )
+					{
+						std::string comp = parser.getXMLAttributeAsString( node, "comp", "" );
+						if( comp != "" )
+						{
+							statement += "." + comp;
+							type = VT_REAL;
+						}
 					}
 				}
 				else
@@ -102,6 +167,6 @@ namespace Monky
 				}
 			}
 		}
-		return StatementData( statement, VT_VECTOR_4 );
+		return StatementData( statement, type );
 	}
 }

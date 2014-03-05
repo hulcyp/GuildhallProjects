@@ -12,8 +12,8 @@ namespace Monky
 	App::App( double deltaTime, int width, int height, float fov, const char* windowTitle )
 		:	GameApp( deltaTime, width, height, fov, windowTitle )
 		,	m_subdivisions( 4 )
-		,	m_currentMatBeingTestedName( "GreenGlowMaterial" )
-		,	m_currentMatBeingTestedPath( "./materials/GreenGlowMat.xml" )
+		,	m_currentMatBeingTestedName( "StaticShield.xml" )
+		,	m_currentMatBeingTestedPath( "./materials/StaticShield_01.xml" )
 		,	m_unlit( false )
 	{
 		showCursor( true );
