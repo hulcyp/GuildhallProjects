@@ -2,7 +2,8 @@
 //---------------------------------------------
 //	Author: Preston Hulcy
 //	Date: 1/21/2014
-//	Description:
+//	Description: Each XML node represents a statement or sub-statement. This class is the abstract base class
+//		for processing an XML node. Sub-class this class to create a new XML node type.
 //
 //---------------------------------------------
 #include "CommonCoreEngineIncludes.h"
