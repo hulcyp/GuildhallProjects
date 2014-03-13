@@ -1,4 +1,5 @@
 <!--
+	These two variables are accesible at all times.
 	$time
 	$vTexCoord0
 -->
