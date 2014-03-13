@@ -2,7 +2,9 @@
 //---------------------------------------------
 //	Author: Preston Hulcy
 //	Date: 1/31/2014
-//	Description:
+//	Description: This is the base abstract class for shader generation. Two sub-classes of this class
+//		exist one for the vertex and one for the fragment shader. This class manages the core shader generation
+// 		that is common between both vertex and fragment shaders.
 //
 //---------------------------------------------
 #include "CommonCoreEngineIncludes.h"
